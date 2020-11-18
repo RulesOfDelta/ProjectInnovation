@@ -17,7 +17,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 7223027450396877}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   - {fileID: 7223027450396877}
   StringsBanks:
   - {fileID: 7118097576119804876}
-  stringsBankWriteTime: 637412887116757609
+  stringsBankWriteTime: 637412944246541485
   cacheVersion: 5
 --- !u!114 &7223027450396877
 MonoBehaviour:
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/FMOD/project/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637412887116727619
+  lastModified: 637412944246511474
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/FMOD/project/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637412887116757609
+  lastModified: 637412944246541485
   LoadResult: 0
   FileSizes:
   - Name: Desktop

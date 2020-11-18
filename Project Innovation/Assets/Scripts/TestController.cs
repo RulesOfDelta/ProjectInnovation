@@ -14,16 +14,21 @@ public class TestController : MonoBehaviour
         handler.RegisterOnFire(OnFire);
     }
 
+    private void OnDestroy()
+    {
+        handler.DeregisterOnFire(OnFire);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, Time.deltaTime * handler.State.look.x * rotSpeed, 0);
-        var move = handler.State.move * (Time.deltaTime * moveSpeed);
+        transform.Rotate(0, Time.deltaTime * handler.Look.x * rotSpeed, 0);
+        var move = handler.Move * (Time.deltaTime * moveSpeed);
         transform.Translate(move.x, 0, move.y);
     }
 
     private void OnFire()
     {
-        
+        transform.Translate(transform.forward * 10f);
     }
 }

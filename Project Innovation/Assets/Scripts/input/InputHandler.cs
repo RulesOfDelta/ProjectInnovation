@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class InputHandler : MonoBehaviour
 {
     public class InputState
     {
-        public Vector2 move;
-        public Vector2 look;
+        public Vector2 Move;
+        public Vector2 Look;
     }
 
     public delegate void ButtonCallback();
@@ -19,6 +20,9 @@ public class InputHandler : MonoBehaviour
     private event ButtonCallback OnFireCb;
     
     public InputState State { get; private set; }
+    public Vector2 Look => State.Look;
+    public Vector2 Move => State.Move;
+    public bool Moving => State.Move != Vector2.zero;
 
     private void Start()
     {
@@ -45,11 +49,11 @@ public class InputHandler : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        State.move = context.ReadValue<Vector2>();
+        State.Move = context.ReadValue<Vector2>();
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        State.look = context.ReadValue<Vector2>();
+        State.Look = context.ReadValue<Vector2>();
     }
 }

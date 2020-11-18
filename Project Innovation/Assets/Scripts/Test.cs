@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] private float speed = 15f;
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        transform.Rotate(new Vector3(0, Time.deltaTime * speed, 0));
     }
 }

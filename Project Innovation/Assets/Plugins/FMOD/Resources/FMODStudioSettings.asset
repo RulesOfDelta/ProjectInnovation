@@ -662,7 +662,8 @@ MonoBehaviour:
       Value: 0
       HasValue: 1
     Plugins:
-      Value: []
+      Value:
+      - OculusSpatializerFMOD
       HasValue: 1
     StaticPlugins:
       Value: []

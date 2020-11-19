@@ -666,7 +666,8 @@ MonoBehaviour:
       - OculusSpatializerFMOD
       HasValue: 1
     StaticPlugins:
-      Value: []
+      Value:
+      - 
       HasValue: 1
     CallbackHandler:
       Value: {fileID: 0}

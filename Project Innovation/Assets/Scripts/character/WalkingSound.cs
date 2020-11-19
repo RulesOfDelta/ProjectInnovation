@@ -5,6 +5,7 @@ public class WalkingSound : MonoBehaviour
     private float _distanceTraveled;
     private Vector3 _oldPosition;
     public float stepDistance = 1.2f;
+    private float _randomStepSDistance;
 
     [FMODUnity.EventRef]
     public string fmodEventPath;
@@ -13,16 +14,20 @@ public class WalkingSound : MonoBehaviour
     {
         _distanceTraveled = 0;
         _oldPosition = transform.position;
+        _randomStepSDistance = Random.Range(0.0f, 0.5f);
     }
     
     void Update()
     {
         _distanceTraveled += (transform.position - _oldPosition).magnitude;
-        if(_distanceTraveled >= stepDistance + Random.Range(0, 0.5f))
+        _oldPosition = transform.position;
+        if(_distanceTraveled >= stepDistance + _randomStepSDistance)
         {
             PlayFootstepSound();
             _distanceTraveled = 0;
+            _randomStepSDistance = Random.Range(0.0f, 0.5f);
         }
+        _oldPosition = transform.position;
     }
 
     private void PlayFootstepSound()

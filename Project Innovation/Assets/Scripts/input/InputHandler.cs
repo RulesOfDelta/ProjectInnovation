@@ -35,6 +35,8 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private InputSettings mouseSettings = InputSettings.Default();
     [SerializeField] private InputSettings gamepadSettings = InputSettings.Default();
 
+    [SerializeField, Range(0f, 1f)] private float rumbleStrength = .5f;
+
     private event ButtonCallback OnFireCb;
     private PlayerInput input;
 
@@ -49,6 +51,11 @@ public class InputHandler : MonoBehaviour
         state = new InputState();
         input = GetComponent<PlayerInput>();
         state.IsMouse = input.currentControlScheme == mouseSettings.controlScheme;
+    }
+
+    private void OnDestroy()
+    {
+        ResetRumble();
     }
 
     public void RegisterOnFire(ButtonCallback cb)
@@ -81,7 +88,25 @@ public class InputHandler : MonoBehaviour
 
     public void OnControlsChanged()
     {
+        ResetRumble();
         state.IsMouse = input.currentControlScheme == mouseSettings.controlScheme;
+    }
+
+    private void RumbleInternal(float lowFreq, float highFreq)
+    {
+        Gamepad.current?.SetMotorSpeeds(Mathf.Clamp01(lowFreq) * rumbleStrength,
+            Mathf.Clamp01(highFreq) * rumbleStrength);
+    }
+
+    public void ResetRumble()
+    {
+        RumbleInternal(0f, 0f);
+    }
+    
+    public void Rumble(float lowFreq, float highFreq)
+    {
+        if (!state.IsMouse)
+            RumbleInternal(lowFreq, highFreq);
     }
 
     private InputSettings CurrentSettings()

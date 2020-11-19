@@ -1,32 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
 
+[RequireComponent(typeof(PlayerInput))]
 public class InputHandler : MonoBehaviour
 {
-    public class InputState
+    private class InputState
     {
         public Vector2 Move;
         public Vector2 Look;
+        public bool IsMouse;
+    }
+
+    [Serializable]
+    public struct InputSettings
+    {
+        public string controlScheme;
+        public float lookSensitivity;
+
+        public InputSettings(string controlScheme, float lookSensitivity)
+        {
+            this.controlScheme = controlScheme;
+            this.lookSensitivity = lookSensitivity;
+        }
+
+        public static InputSettings Default()
+        {
+            return new InputSettings("<NONE>", 1f);
+        }
     }
 
     public delegate void ButtonCallback();
 
+    [SerializeField] private InputSettings mouseSettings = InputSettings.Default();
+    [SerializeField] private InputSettings gamepadSettings = InputSettings.Default();
+
     private event ButtonCallback OnFireCb;
-    
-    public InputState State { get; private set; }
-    public Vector2 Look => State.Look;
-    public Vector2 Move => State.Move;
-    public bool Moving => State.Move != Vector2.zero;
+    private PlayerInput input;
+
+    private InputState state;
+    public Vector2 Look => state.Look * CurrentSettings().lookSensitivity;
+    public Vector2 Move => state.Move;
+    public bool Moving => state.Move != Vector2.zero;
+    public bool IsMouse => state.IsMouse;
 
     private void Start()
     {
-        State = new InputState();
+        state = new InputState();
+        input = GetComponent<PlayerInput>();
+        state.IsMouse = input.currentControlScheme == mouseSettings.controlScheme;
     }
 
     public void RegisterOnFire(ButtonCallback cb)
@@ -49,11 +71,21 @@ public class InputHandler : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        State.Move = context.ReadValue<Vector2>();
+        state.Move = context.ReadValue<Vector2>();
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        State.Look = context.ReadValue<Vector2>();
+        state.Look = context.ReadValue<Vector2>();
+    }
+
+    public void OnControlsChanged()
+    {
+        state.IsMouse = input.currentControlScheme == mouseSettings.controlScheme;
+    }
+
+    private InputSettings CurrentSettings()
+    {
+        return state.IsMouse ? mouseSettings : gamepadSettings;
     }
 }

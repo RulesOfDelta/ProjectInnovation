@@ -206,7 +206,7 @@
 			<value>Range Min</value>
 		</property>
 		<property name="value">
-			<value>0.25</value>
+			<value>0.800000012</value>
 		</property>
 		<property name="curve">
 			<value>{(0.000000,0.000000)(1.000000,5.000000)(2.000000,10.000000)(3.000000,100.000000)(4.000000,1000.000000)(5.000000,10000.000000)}</value>
@@ -217,7 +217,7 @@
 			<value>Range Max</value>
 		</property>
 		<property name="value">
-			<value>10000</value>
+			<value>150</value>
 		</property>
 		<property name="curve">
 			<value>{(0.000000,0.000000)(1.000000,5.000000)(2.000000,10.000000)(3.000000,100.000000)(4.000000,1000.000000)(5.000000,10000.000000)}</value>

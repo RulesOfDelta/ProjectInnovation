@@ -62,6 +62,10 @@ crashlytics-build.properties
 /Assets/FMOD/project/.user
 /Assets/FMOD/project/.unsaved
 /Assets/FMOD/project/.restore
+/Assets/Plugins/FMOD/**/FMODStudioCache.asset
+/Assets/Plugins/FMOD/**/FMODStudioCache.asset.meta
+/Assets/Plugins/FMOD/Cache
+/Assets/Plugins/FMOD/Cache.meta
 fmod.log
 fmod_editor.log
 

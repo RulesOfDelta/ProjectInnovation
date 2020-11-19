@@ -114,7 +114,7 @@
 	<object class="MixerBusPanner" id="{587ae96b-81f1-41b1-b1d0-53b4be823e61}" />
 	<object class="MultiSound" id="{6e9ef7aa-9449-4c79-b2c1-60445f16674e}">
 		<property name="length">
-			<value>0.59999999999999998</value>
+			<value>0.59999999999999987</value>
 		</property>
 		<property name="delayType">
 			<value>0</value>

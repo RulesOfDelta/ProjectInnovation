@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 44369455}
   - component: {fileID: 44369457}
   - component: {fileID: 44369458}
+  - component: {fileID: 44369459}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -173,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44369452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.31, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -234,7 +235,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44369452}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
@@ -256,6 +257,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &44369459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44369452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71eea1d6e5070f428b53ba339019b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 366513392}
+  attackDist: 2
+  attackTime: 1
+  damage: 5
 --- !u!1 &366513382
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +290,7 @@ GameObject:
   - component: {fileID: 366513384}
   - component: {fileID: 366513383}
   - component: {fileID: 366513391}
+  - component: {fileID: 366513392}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -431,6 +449,19 @@ MonoBehaviour:
     type: 3}
   bulletParent: {fileID: 402353401}
   handler: {fileID: 1472566693}
+--- !u!114 &366513392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366513382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b18870a81521e848af61f4647457ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &402353400
 GameObject:
   m_ObjectHideFlags: 0

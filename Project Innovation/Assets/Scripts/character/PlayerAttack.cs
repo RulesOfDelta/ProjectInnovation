@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private SwordHandler sword;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletParent;
     [SerializeField] private InputHandler handler;
@@ -11,11 +12,13 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         handler.RegisterOnFire(OnFire);
+        handler.RegisterOnSword(OnSword);
     }
 
     private void OnDestroy()
     {
         handler.DeregisterOnFire(OnFire);
+        handler.DeregisterOnSword(OnSword);
     }
 
     private void OnFire()
@@ -24,5 +27,11 @@ public class PlayerAttack : MonoBehaviour
             .GetComponent<Bullet>();
         if(bullet) bullet.Fire(transform.forward);
         else Debug.LogError("Bullet prefab should have a Bullet component on it");
+    }
+
+    private void OnSword()
+    {
+        // TODO: spawn hitbox that stays in front of player and that does damage once to the enemy
+        sword.Attack();
     }
 }

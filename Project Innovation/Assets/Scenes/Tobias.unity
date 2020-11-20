@@ -446,11 +446,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f8bf8cf35a811479efd3ee8112c313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 511236241}
   bulletPrefab: {fileID: 342873530849895128, guid: bfaa0de59430f5c4a8ce9ca1bc933732,
     type: 3}
   bulletParent: {fileID: 402353401}
   handler: {fileID: 1472566693}
+  sword: {fileID: 511236241}
+  swordDamage: 5
+  swordAttackTime: 0.3
+  swordAttackCooldown: 1
 --- !u!114 &366513392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,8 +538,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511236239}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.665}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.66499996}
   m_LocalScale: {x: 1, y: 2, z: 0.6}
   m_Children: []
   m_Father: {fileID: 366513390}
@@ -554,8 +557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f860b2f8b8aa94e8eee542a0e46617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  attackTime: 0.25
   enemyMask:
     serializedVersion: 2
     m_Bits: 512

@@ -9,6 +9,9 @@ public class InputHandler : MonoBehaviour
     {
         public Vector2 Move;
         public Vector2 Look;
+        
+        public bool ShieldPressed;
+        
         public bool IsMouse;
     }
 
@@ -30,7 +33,14 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    public enum ButtonAction
+    {
+        Down, Up, Invalid
+    }
+
     public delegate void ButtonCallback();
+
+    public delegate void ButtonActionCallback(ButtonAction action);
 
     [SerializeField] private InputSettings mouseSettings = InputSettings.Default();
     [SerializeField] private InputSettings gamepadSettings = InputSettings.Default();
@@ -38,6 +48,8 @@ public class InputHandler : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float rumbleStrength = .5f;
 
     private event ButtonCallback OnFireCb;
+    private event ButtonCallback OnSwordCb;
+    private event ButtonActionCallback OnShieldCb;
     private PlayerInput input;
 
     private InputState state;
@@ -45,6 +57,7 @@ public class InputHandler : MonoBehaviour
     public Vector2 Move => state.Move;
     public bool Moving => state.Move != Vector2.zero;
     public bool IsMouse => state.IsMouse;
+    public bool ShieldPressed => state.ShieldPressed;
 
     private void Start()
     {
@@ -68,11 +81,73 @@ public class InputHandler : MonoBehaviour
         OnFireCb -= cb;
     }
 
+    public void RegisterOnSword(ButtonCallback cb)
+    {
+        OnSwordCb += cb;
+    }
+
+    public void DeregisterOnSword(ButtonCallback cb)
+    {
+        OnSwordCb -= cb;
+    }
+
+    public void RegisterOnShield(ButtonActionCallback cb)
+    {
+        OnShieldCb += cb;
+    }
+
+    public void DeregisterOnShield(ButtonActionCallback cb)
+    {
+        OnShieldCb -= cb;
+    }
+
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.ReadValueAsButton() && context.action.triggered)
+        switch (CheckButton(context))
         {
-            OnFireCb?.Invoke();
+            case ButtonAction.Down:
+                OnFireCb?.Invoke();
+                break;
+            case ButtonAction.Up:
+            case ButtonAction.Invalid:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    public void OnSword(InputAction.CallbackContext context)
+    {
+        switch (CheckButton(context))
+        {
+            case ButtonAction.Down:
+                OnSwordCb?.Invoke();
+                break;
+            case ButtonAction.Up:
+            case ButtonAction.Invalid:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    public void OnShield(InputAction.CallbackContext context)
+    {
+        var action = CheckButton(context);
+        switch (action)
+        {
+            case ButtonAction.Down:
+                OnShieldCb?.Invoke(action);
+                state.ShieldPressed = true;
+                break;
+            case ButtonAction.Up:
+                OnShieldCb?.Invoke(action);
+                state.ShieldPressed = false;
+                break;
+            case ButtonAction.Invalid:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -112,5 +187,15 @@ public class InputHandler : MonoBehaviour
     private InputSettings CurrentSettings()
     {
         return state.IsMouse ? mouseSettings : gamepadSettings;
+    }
+
+    private ButtonAction CheckButton(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+            return context.ReadValueAsButton() ? ButtonAction.Down : ButtonAction.Up;
+        }
+
+        return ButtonAction.Invalid;
     }
 }

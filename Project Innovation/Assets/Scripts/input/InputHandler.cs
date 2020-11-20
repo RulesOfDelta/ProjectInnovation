@@ -57,6 +57,7 @@ public class InputHandler : MonoBehaviour
     public Vector2 Move => state.Move;
     public bool Moving => state.Move != Vector2.zero;
     public bool IsMouse => state.IsMouse;
+    public bool ShieldPressed => state.ShieldPressed;
 
     private void Start()
     {

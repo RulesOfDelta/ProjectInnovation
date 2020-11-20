@@ -6,7 +6,6 @@ public class DemoRumble : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private InputHandler handler;
-    [SerializeField] private float range = 25f;
 
     // Update is called once per frame
     void Update()

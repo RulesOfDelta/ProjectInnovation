@@ -17,4 +17,9 @@ public static class ExtensionMethodsTobias
     {
         return new Vector3(0, v.x, v.y);
     }
+
+    public static bool Contains(this LayerMask mask, int layer)
+    {
+        return mask == (mask | (1 << layer));
+    }
 }

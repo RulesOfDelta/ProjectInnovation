@@ -663,7 +663,7 @@ MonoBehaviour:
       HasValue: 1
     Plugins:
       Value:
-      - OculusSpatializerFMOD
+      - phonon_fmod
       HasValue: 1
     StaticPlugins:
       Value:

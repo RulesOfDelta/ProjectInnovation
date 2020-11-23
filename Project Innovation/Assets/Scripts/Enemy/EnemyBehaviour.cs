@@ -25,6 +25,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float walkableRadius;
     [SerializeField] private Vector3 destinationPoint;
     private Vector3 _initalPosition;
+    private bool _withinDestinationRange;
 
     private void Start()
     {
@@ -39,6 +40,8 @@ public class EnemyBehaviour : MonoBehaviour
             _initalPosition = _transform.position;
             FindClosestCollider();
         }
+
+        _withinDestinationRange = false;
     }
 
     private void Update()
@@ -49,9 +52,9 @@ public class EnemyBehaviour : MonoBehaviour
         {
             CollisionReorientation();
         }
-        else
+        else if(enableSBR)
         {
-            //SphereReorientation();
+            SphereReorientation();
         }
 
         if (showDebugInfo) DrawDebug();
@@ -98,18 +101,22 @@ public class EnemyBehaviour : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0, deltaAngle, 0);
     }
 
-    // private void SphereReorientation()
-    // {
-    //     if ((destinationPoint - _transform.position).magnitude < minDistToDestPoint + 1)
-    //     {
-    //         SetRandomDestination();
-    //         Vector3 diffVector = destinationPoint - _transform.position;
-    //         Debug.Log(diffVector);
-    //         //_transform.rotation *= Quaternion.Euler(0,Vector3.Angle(_transform.forward, diffVector),0);
-    //         _transform.LookAt(destinationPoint);
-    //     }
-    // }
-    //
+    private void SphereReorientation()
+    {
+        if (!_withinDestinationRange && (destinationPoint - _transform.position).magnitude < minDistToDestPoint)
+        {
+            _withinDestinationRange = true;
+            SetRandomDestination();
+            //Vector from current position to new destination position
+            Vector3 differenceVector = destinationPoint - _transform.position;
+            float deltaAngle = Vector3.SignedAngle(_transform.forward, differenceVector, Vector3.up);
+            _transform.rotation *= Quaternion.Euler(0, deltaAngle, 0);
+        }
+        else{
+            _withinDestinationRange = false;
+        }
+    }
+    
     private void FindClosestCollider()
     {
         float currentSphereRadius = 0;
@@ -122,18 +129,19 @@ public class EnemyBehaviour : MonoBehaviour
             colliderAmount = Physics.OverlapSphereNonAlloc(_transform.position, currentSphereRadius, collidersOverlapped, LayerMask.GetMask("Room"));
         }
     
-        Debug.Log(collidersOverlapped[0].transform.name);
-        walkableRadius = currentSphereRadius;
+        if(showDebugInfo) Debug.Log("First collider hit was " + collidersOverlapped[0].transform.name);
+        walkableRadius = currentSphereRadius - stepSize;
     }
     
     private void SetRandomDestination()
     {
         Vector2 randomXZPosition = Random.insideUnitCircle * walkableRadius;
-        destinationPoint = _initalPosition + new Vector3(randomXZPosition.x, 0, randomXZPosition.y);
+        destinationPoint = _initalPosition + new Vector3(randomXZPosition.x, _transform.lossyScale.y / 2, randomXZPosition.y);
     }
 
     private void DrawDebug()
     {
         Debug.DrawRay(_transform.position, _transform.forward * wallCheckDistance, Color.magenta);
+        Debug.DrawLine(_transform.position, destinationPoint, Color.green);
     }
 }

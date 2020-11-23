@@ -223,7 +223,7 @@
 			<value>OcclusionMode</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>3</value>
 		</property>
 		<property name="minimumValue">
 			<value>0</value>

@@ -281,7 +281,7 @@
 			<value>Indirect</value>
 		</property>
 		<property name="value">
-			<value>false</value>
+			<value>true</value>
 		</property>
 	</object>
 	<object class="BoolPluginParameter" id="{502c14a6-b113-484c-9d15-37053ad3892d}">
@@ -289,7 +289,7 @@
 			<value>IndirBinaural</value>
 		</property>
 		<property name="value">
-			<value>false</value>
+			<value>true</value>
 		</property>
 	</object>
 	<object class="FloatPluginParameter" id="{0426ce56-d96d-4909-8499-5366b99456a5}">

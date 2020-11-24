@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -9,13 +8,15 @@ using Random = UnityEngine.Random;
 public class Room2 : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    
+
     [SerializeField] private float minSize = 15f;
     [SerializeField] private float maxSize = 50f;
     [SerializeField] private float wallHeight = 10f;
 
     [SerializeField] private float doorWidth = 2f;
+
     [SerializeField, Range(0f, 1f)] private float doorSpace = 0.5f;
+
     // TODO use something like a door class to insert reference to this object
     [SerializeField] private Door doorPrefab;
 
@@ -94,19 +95,23 @@ public class Room2 : MonoBehaviour
 
     private void SetupEditMode()
     {
+#if UNITY_EDITOR
         if (inEditMode) return;
-        EditorApplication.playModeStateChanged += EditModeHandleStateChange;
+        UnityEditor.EditorApplication.playModeStateChanged += EditModeHandleStateChange;
         inEditMode = true;
+#endif
     }
 
-    private void EditModeHandleStateChange(PlayModeStateChange newState)
+#if UNITY_EDITOR
+    private void EditModeHandleStateChange(UnityEditor.PlayModeStateChange newState)
     {
-        if (newState != PlayModeStateChange.ExitingEditMode) return;
-        EditorApplication.playModeStateChanged -= EditModeHandleStateChange;
+        if (newState != UnityEditor.PlayModeStateChange.ExitingEditMode) return;
+        UnityEditor.EditorApplication.playModeStateChanged -= EditModeHandleStateChange;
         Clear();
         inEditMode = false;
     }
-
+#endif
+    
     public void Generate()
     {
         Clear();
@@ -122,7 +127,7 @@ public class Room2 : MonoBehaviour
             new Wall(x / 2f, Quaternion.Euler(0, 270, 0), y, true)
         };
 
-        var splitCount = Mathf.Min(Random.Range(minDoorCount, maxDoorCount), preWalls.Count);
+        var splitCount = Mathf.Min(Random.Range(minDoorCount, maxDoorCount + 1), preWalls.Count);
         var tempWalls = new List<Wall>();
         for (var i = 0; i < splitCount; i++)
         {
@@ -210,21 +215,31 @@ public class Room2 : MonoBehaviour
         wallList.Add(wall2);
         var dist = wall.Distance < 0f ? -entryDepth : entryDepth;
         wallList.Add(new Wall(wall.Distance + dist, splitPos, wall.Rotation, entryWidth, wall.Horizontal));
-        
+
         // Side walls
-        wallList.Add(new Wall(splitPos + entryWidth / 2f, wall.Distance + dist / 2f, 
+        wallList.Add(new Wall(splitPos + entryWidth / 2f, wall.Distance + dist / 2f,
             Quaternion.Euler(0, wall.Rotation.eulerAngles.y + 90f, 0), entryDepth, !wall.Horizontal));
         wallList.Add(new Wall(splitPos - entryWidth / 2f, wall.Distance + dist / 2f,
             Quaternion.Euler(0, wall.Rotation.eulerAngles.y - 90f, 0), entryDepth, !wall.Horizontal));
 
         var posWall = wall;
+        posWall.AxisPos = splitPos;
         posWall.Distance += dist / 2f;
+
+#if UNITY_EDITOR
+        if (!UnityEditor.EditorApplication.isPlaying) return;
+#endif
+
+        var controller = player.GetComponent<SimpleCharacterController>();
+        controller.ResetController();
+        controller.EnableControls(false);
 
         var playerPos = transform.position + PosFromWall(posWall);
         playerPos.y = player.position.y;
         player.position = playerPos;
         var sign = Mathf.Sign(posWall.Distance);
         player.forward = posWall.Horizontal ? new Vector3(-sign, 0, 0) : new Vector3(0, 0, -sign);
+        controller.EnableControls(true);
     }
 
     // TODO HORRIBLE NAMING
@@ -240,9 +255,7 @@ public class Room2 : MonoBehaviour
 
     private Vector3 PosFromWall(Wall w)
     {
-        return w.Horizontal
-            ? new Vector3(w.Distance, wallHeight / 2f, w.AxisPos)
-            : new Vector3(w.AxisPos, wallHeight / 2f, w.Distance);
+        return PosFromWeird(w.Distance, w.AxisPos, w.Horizontal);
     }
 
     private Vector3 PosFromWeird(float distance, float axisPos, bool horizontal)
@@ -255,9 +268,9 @@ public class Room2 : MonoBehaviour
     public void Clear()
     {
         if (walls == null) walls = new List<Transform>();
-        if(doors == null) doors = new List<Door>();
+        if (doors == null) doors = new List<Door>();
 #if UNITY_EDITOR
-        if (EditorApplication.isPlaying)
+        if (UnityEditor.EditorApplication.isPlaying)
         {
             doors.ForEach(door =>
             {

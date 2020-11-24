@@ -16,6 +16,8 @@ public class Room2 : MonoBehaviour
 
     [SerializeField] private float doorWidth = 2f;
     [SerializeField, Range(0f, 1f)] private float doorSpace = 0.5f;
+    // TODO use something like a door class to insert reference to this object
+    [SerializeField] private Door doorPrefab;
 
     [SerializeField] private float entryWidth = 4f;
     [SerializeField] private float entryDepth = 4f;
@@ -23,18 +25,19 @@ public class Room2 : MonoBehaviour
     [SerializeField] private Transform wallPrefab;
     [SerializeField] private Transform floor;
     private List<Transform> walls;
+    private List<Door> doors;
 
     [SerializeField, Min(0)] private int minDoorCount;
     [SerializeField, Min(0)] private int maxDoorCount;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Generate();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
@@ -104,7 +107,7 @@ public class Room2 : MonoBehaviour
         inEditMode = false;
     }
 
-    private void Generate()
+    public void Generate()
     {
         Clear();
 
@@ -133,8 +136,7 @@ public class Room2 : MonoBehaviour
         preWalls.RemoveAt(entryWallIndex);
         // TODO create entry
         AddEntry(preWalls, entryWall);
-        
-        
+
         foreach (var t in tempWalls)
         {
             SplitWallAndAdd(preWalls, t);
@@ -161,18 +163,18 @@ public class Room2 : MonoBehaviour
 
     private void SplitWallAndAdd(ICollection<Wall> wallList, Wall wall)
     {
-        SplitWall(wall).Deconstruct(out var wall1, out var wall2, out _);
+        SplitWall(wall, true).Deconstruct(out var wall1, out var wall2, out _);
         wallList.Add(wall1);
         wallList.Add(wall2);
     }
 
-    private Tuple<Wall, Wall, float> SplitWall(Wall wall)
+    private Tuple<Wall, Wall, float> SplitWall(Wall wall, bool makeDoor = false)
     {
-        return SplitWall(wall, doorWidth);
+        return SplitWall(wall, doorWidth, makeDoor);
     }
 
     // TODO also return door position (where the split was)
-    private Tuple<Wall, Wall, float> SplitWall(Wall wall, float gapWidth)
+    private Tuple<Wall, Wall, float> SplitWall(Wall wall, float gapWidth, bool makeDoor = false)
     {
         // TODO parameters for door width and empty room at each side
         var maxDist = (wall.Size / 2f - gapWidth) * doorSpace;
@@ -184,6 +186,18 @@ public class Room2 : MonoBehaviour
         sizeB = Mathf.Max(0f, sizeB);
         var splitPosA = wall.AxisPos - split - sizeA / 2f - gapWidth / 2f;
         var splitPosB = wall.AxisPos - split + sizeB / 2f + gapWidth / 2f;
+
+        if (makeDoor)
+        {
+            // Create a door
+            // TODO simpler method for posfrom wall
+            var door = Instantiate(doorPrefab,
+                PosFromWeird(wall.Distance, wall.AxisPos - split, wall.Horizontal), wall.Rotation,
+                transform);
+            door.transform.localScale = new Vector3(gapWidth, wallHeight, 1f);
+            door.InsertRoom(this);
+            doors.Add(door);
+        }
 
         return new Tuple<Wall, Wall, float>(wall.Split(splitPosA, sizeA),
             wall.Split(splitPosB, sizeB), wall.AxisPos - split);
@@ -231,32 +245,49 @@ public class Room2 : MonoBehaviour
             : new Vector3(w.AxisPos, wallHeight / 2f, w.Distance);
     }
 
+    private Vector3 PosFromWeird(float distance, float axisPos, bool horizontal)
+    {
+        return horizontal
+            ? new Vector3(distance, wallHeight / 2f, axisPos)
+            : new Vector3(axisPos, wallHeight / 2f, distance);
+    }
+
     public void Clear()
     {
         if (walls == null) walls = new List<Transform>();
+        if(doors == null) doors = new List<Door>();
 #if UNITY_EDITOR
         if (EditorApplication.isPlaying)
         {
-            foreach (var w in walls)
+            doors.ForEach(door =>
             {
-                if (w)
-                    Destroy(w.gameObject);
-            }
+                if (door) Destroy(door.gameObject);
+            });
+            walls.ForEach(wall =>
+            {
+                if (wall) Destroy(wall.gameObject);
+            });
         }
         else
         {
-            foreach (var w in walls)
+            doors.ForEach(door =>
             {
-                if (w)
-                    DestroyImmediate(w.gameObject);
-            }
+                if (door) DestroyImmediate(door.gameObject);
+            });
+            walls.ForEach(wall =>
+            {
+                if (wall) DestroyImmediate(wall.gameObject);
+            });
         }
 #else
-        foreach (var w in walls) 
+        doors.ForEach(door =>
         {
-            if(w)
-                Destroy(w.gameObject);
-        }
+            if (door) Destroy(door.gameObject);
+        });
+        walls.ForEach(wall =>
+        {
+            if (wall) Destroy(wall.gameObject);
+        });
 #endif
         walls.Clear();
     }

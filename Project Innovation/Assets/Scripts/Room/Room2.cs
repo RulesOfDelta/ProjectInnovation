@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class Room2 : MonoBehaviour
 {
+    [SerializeField] private Transform player;
+    
     [SerializeField] private float minSize = 15f;
     [SerializeField] private float maxSize = 50f;
     [SerializeField] private float wallHeight = 10f;
@@ -40,14 +42,19 @@ public class Room2 : MonoBehaviour
         }
     }
 
-    private readonly struct Wall
+    private void OnValidate()
+    {
+        SetupEditMode();
+    }
+
+    private struct Wall
     {
         // TODO naming
-        public readonly float Distance;
-        public readonly float AxisPos;
-        public readonly Quaternion Rotation;
-        public readonly float Size;
-        public readonly bool Horizontal;
+        public float Distance;
+        public float AxisPos;
+        public Quaternion Rotation;
+        public float Size;
+        public bool Horizontal;
 
         public Wall(float distance, float axisPos, Quaternion rotation, float size, bool horizontal)
         {
@@ -77,13 +84,16 @@ public class Room2 : MonoBehaviour
 
     public void EditModeGenerate()
     {
-        if (!inEditMode)
-        {
-            EditorApplication.playModeStateChanged += EditModeHandleStateChange;
-            inEditMode = true;
-        }
+        SetupEditMode();
 
         Generate();
+    }
+
+    private void SetupEditMode()
+    {
+        if (inEditMode) return;
+        EditorApplication.playModeStateChanged += EditModeHandleStateChange;
+        inEditMode = true;
     }
 
     private void EditModeHandleStateChange(PlayModeStateChange newState)
@@ -110,7 +120,6 @@ public class Room2 : MonoBehaviour
         };
 
         var splitCount = Mathf.Min(Random.Range(minDoorCount, maxDoorCount), preWalls.Count);
-        Debug.Log($"Split walls {splitCount}");
         var tempWalls = new List<Wall>();
         for (var i = 0; i < splitCount; i++)
         {
@@ -124,7 +133,8 @@ public class Room2 : MonoBehaviour
         preWalls.RemoveAt(entryWallIndex);
         // TODO create entry
         AddEntry(preWalls, entryWall);
-
+        
+        
         foreach (var t in tempWalls)
         {
             SplitWallAndAdd(preWalls, t);
@@ -192,6 +202,15 @@ public class Room2 : MonoBehaviour
             Quaternion.Euler(0, wall.Rotation.eulerAngles.y + 90f, 0), entryDepth, !wall.Horizontal));
         wallList.Add(new Wall(splitPos - entryWidth / 2f, wall.Distance + dist / 2f,
             Quaternion.Euler(0, wall.Rotation.eulerAngles.y - 90f, 0), entryDepth, !wall.Horizontal));
+
+        var posWall = wall;
+        posWall.Distance += dist / 2f;
+
+        var playerPos = transform.position + PosFromWall(posWall);
+        playerPos.y = player.position.y;
+        player.position = playerPos;
+        var sign = Mathf.Sign(posWall.Distance);
+        player.forward = posWall.Horizontal ? new Vector3(-sign, 0, 0) : new Vector3(0, 0, -sign);
     }
 
     // TODO HORRIBLE NAMING
@@ -203,13 +222,13 @@ public class Room2 : MonoBehaviour
             w.localScale = new Vector3(wall.Size, wallHeight, 1);
             walls.Add(w);
         }
+    }
 
-        Vector3 PosFromWall(Wall w)
-        {
-            return w.Horizontal
-                ? new Vector3(w.Distance, wallHeight / 2f, w.AxisPos)
-                : new Vector3(w.AxisPos, wallHeight / 2f, w.Distance);
-        }
+    private Vector3 PosFromWall(Wall w)
+    {
+        return w.Horizontal
+            ? new Vector3(w.Distance, wallHeight / 2f, w.AxisPos)
+            : new Vector3(w.AxisPos, wallHeight / 2f, w.Distance);
     }
 
     public void Clear()

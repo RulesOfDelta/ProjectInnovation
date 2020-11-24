@@ -666,8 +666,7 @@ MonoBehaviour:
       - phonon_fmod
       HasValue: 1
     StaticPlugins:
-      Value:
-      - 
+      Value: []
       HasValue: 1
     CallbackHandler:
       Value: {fileID: 0}

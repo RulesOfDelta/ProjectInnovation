@@ -1,12 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [Header("General")] public float walkSpeed = 2.0f;
+    [Header("General")] 
+    public float walkSpeed = 2.0f;
 
+    private float currentWalkSpeed;
     public bool showDebugInfo = true;
     private Transform _transform;
+    private EnemyAttack enemyAttack;
+    public GameObject Player;
+    public bool SawPlayer { get; private set; }
+    public float SightDistance = 2.0f, SightRange = 70.0f;
 
     [Header("Collision-based Reorientation")]
     public bool enableCBR = true;
@@ -27,11 +34,17 @@ public class EnemyBehaviour : MonoBehaviour
     private Vector3 _initalPosition;
     private bool _withinDestinationRange;
 
+    private float test = 0;
+
     private void Start()
     {
+        currentWalkSpeed = walkSpeed;
+        
         _transform = GetComponent<Transform>();
 
         layerMask = LayerMask.GetMask("Room");
+        
+        if (enableCBR && enableSBR) Debug.LogError("You must either enable CBR or SBR. Both are not allowed!");
 
         if (enableSBR)
         {
@@ -42,19 +55,33 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         _withinDestinationRange = false;
+
+        enemyAttack = GetComponent<EnemyAttack>();
     }
 
     private void Update()
     {
-        if (enableCBR && enableSBR) Debug.LogError("You must either enable CBR or SBR. Both are not allowed!");
-        _transform.Translate(walkSpeed * Time.deltaTime * transform.forward, Space.World);
-        if (enableCBR)
+        _transform.Translate(currentWalkSpeed * Time.deltaTime * transform.forward, Space.World);
+
+        if(!SawPlayer) LookForPlayer();
+        else
         {
-            CollisionReorientation();
+            ChasePlayer();
+            test = 0;
         }
-        else if(enableSBR)
+
+        test += Time.deltaTime;
+        
+        if (!SawPlayer)
         {
-            SphereReorientation();
+            if (enableCBR)
+            {
+                CollisionReorientation();
+            }
+            else if(enableSBR)
+            {
+                SphereReorientation();
+            }   
         }
 
         if (showDebugInfo) DrawDebug();
@@ -62,7 +89,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void CollisionReorientation()
     {
-        if (!Physics.Raycast(_transform.position, _transform.forward, out var raycastHit, wallCheckDistance)) return;
+        if (!Physics.Raycast(_transform.position, _transform.forward, out var raycastHit, wallCheckDistance, layerMask)) return;
 
         Mesh hitObjectMesh = raycastHit.collider.GetComponent<MeshFilter>().mesh;
         var vertexIndex = hitObjectMesh.triangles[raycastHit.triangleIndex * 3];
@@ -143,5 +170,32 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Debug.DrawRay(_transform.position, _transform.forward * wallCheckDistance, Color.magenta);
         Debug.DrawLine(_transform.position, destinationPoint, Color.green);
+    }
+    
+    private void ChasePlayer()
+    {
+         Vector3 differenceVector = Player.transform.position - transform.position;
+         
+         if (Vector3.Distance(Player.transform.position, transform.position) < 1.5f) currentWalkSpeed = 0;
+        else currentWalkSpeed = walkSpeed;
+
+        transform.rotation = Quaternion.LookRotation(differenceVector);
+    }
+
+    private void LookForPlayer()
+    {
+        if (Vector3.Distance(Player.transform.position, transform.position) <= SightDistance)
+        {
+            Debug.Log("Player in proximity");
+            Vector3 differenceVector = Player.transform.position - transform.position;
+            float deltaAngle = Vector3.Angle(differenceVector, transform.forward);
+            Debug.Log("Angle was " + deltaAngle);
+            if (deltaAngle <= SightRange)
+            {
+                SawPlayer = true;
+                Debug.Log("Saw player");
+                StartCoroutine(enemyAttack.AttackLoop());
+            }
+        }
     }
 }

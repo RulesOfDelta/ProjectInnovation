@@ -15,6 +15,9 @@ public class Room2 : MonoBehaviour
     [SerializeField] private float doorWidth = 2f;
     [SerializeField, Range(0f, 1f)] private float doorSpace = 0.5f;
 
+    [SerializeField] private float entryWidth = 4f;
+    [SerializeField] private float entryDepth = 4f;
+
     [SerializeField] private Transform wallPrefab;
     [SerializeField] private Transform floor;
     private List<Transform> walls;
@@ -46,7 +49,7 @@ public class Room2 : MonoBehaviour
         public readonly float Size;
         public readonly bool Horizontal;
 
-        private Wall(float distance, float axisPos, Quaternion rotation, float size, bool horizontal)
+        public Wall(float distance, float axisPos, Quaternion rotation, float size, bool horizontal)
         {
             Distance = distance;
             AxisPos = axisPos;
@@ -72,14 +75,14 @@ public class Room2 : MonoBehaviour
 
     private bool inEditMode;
 
-    [ContextMenu("Generate")]
-    private void EditModeGenerate()
+    public void EditModeGenerate()
     {
         if (!inEditMode)
         {
             EditorApplication.playModeStateChanged += EditModeHandleStateChange;
             inEditMode = true;
         }
+
         Generate();
     }
 
@@ -106,12 +109,32 @@ public class Room2 : MonoBehaviour
             new Wall(x / 2f, Quaternion.Euler(0, 270, 0), y, true)
         };
 
-        var splitCount = Random.Range(minDoorCount, maxDoorCount);
-        for (var i = 0; i < splitCount; i++) SplitWallInList(preWalls, Random.Range(0, preWalls.Count - 1));
+        var splitCount = Mathf.Min(Random.Range(minDoorCount, maxDoorCount), preWalls.Count);
+        Debug.Log($"Split walls {splitCount}");
+        var tempWalls = new List<Wall>();
+        for (var i = 0; i < splitCount; i++)
+        {
+            var num = Random.Range(0, preWalls.Count - 1);
+            tempWalls.Add(preWalls[num]);
+            preWalls.RemoveAt(num);
+        }
+
+        var entryWallIndex = Random.Range(0, preWalls.Count);
+        var entryWall = preWalls[entryWallIndex];
+        preWalls.RemoveAt(entryWallIndex);
+        // TODO create entry
+        AddEntry(preWalls, entryWall);
+
+        foreach (var t in tempWalls)
+        {
+            SplitWallAndAdd(preWalls, t);
+        }
+
+        tempWalls.Clear();
 
         FillFromWalls(preWalls);
         // TODO no magic division by 10
-        floor.localScale = new Vector3(x / 10, 1, y / 10);
+        floor.localScale = new Vector3((x + entryDepth * 2) / 10, 1, (y + entryDepth * 2) / 10);
     }
 
     private void SplitWallAtEnd(IList<Wall> wallList)
@@ -128,31 +151,51 @@ public class Room2 : MonoBehaviour
 
     private void SplitWallAndAdd(ICollection<Wall> wallList, Wall wall)
     {
-        SplitWall(wall).Deconstruct(out var wall1, out var wall2);
+        SplitWall(wall).Deconstruct(out var wall1, out var wall2, out _);
         wallList.Add(wall1);
         wallList.Add(wall2);
     }
 
+    private Tuple<Wall, Wall, float> SplitWall(Wall wall)
+    {
+        return SplitWall(wall, doorWidth);
+    }
+
     // TODO also return door position (where the split was)
-    private Tuple<Wall, Wall> SplitWall(Wall wall)
+    private Tuple<Wall, Wall, float> SplitWall(Wall wall, float gapWidth)
     {
         // TODO parameters for door width and empty room at each side
-        var maxDist = (wall.Size / 2f - doorWidth) * doorSpace;
+        var maxDist = (wall.Size / 2f - gapWidth) * doorSpace;
         var split = Random.Range(-maxDist, maxDist);
         // TODO leave room for door
-        var sizeA = wall.Size / 2f - split - doorWidth / 2f;
+        var sizeA = wall.Size / 2f - split - gapWidth / 2f;
         sizeA = Mathf.Max(0f, sizeA);
-        var sizeB = wall.Size / 2f + split - doorWidth / 2f;
+        var sizeB = wall.Size / 2f + split - gapWidth / 2f;
         sizeB = Mathf.Max(0f, sizeB);
-        var splitPosA = wall.AxisPos - split - sizeA / 2f - doorWidth / 2f;
-        var splitPosB = wall.AxisPos - split + sizeB / 2f + doorWidth / 2f;
+        var splitPosA = wall.AxisPos - split - sizeA / 2f - gapWidth / 2f;
+        var splitPosB = wall.AxisPos - split + sizeB / 2f + gapWidth / 2f;
 
-        return new Tuple<Wall, Wall>(wall.Split(splitPosA, sizeA),
-            wall.Split(splitPosB, sizeB));
+        return new Tuple<Wall, Wall, float>(wall.Split(splitPosA, sizeA),
+            wall.Split(splitPosB, sizeB), wall.AxisPos - split);
+    }
+
+    private void AddEntry(ICollection<Wall> wallList, Wall wall)
+    {
+        SplitWall(wall, entryWidth).Deconstruct(out var wall1, out var wall2, out var splitPos);
+        wallList.Add(wall1);
+        wallList.Add(wall2);
+        var dist = wall.Distance < 0f ? -entryDepth : entryDepth;
+        wallList.Add(new Wall(wall.Distance + dist, splitPos, wall.Rotation, entryWidth, wall.Horizontal));
+        
+        // Side walls
+        wallList.Add(new Wall(splitPos + entryWidth / 2f, wall.Distance + dist / 2f, 
+            Quaternion.Euler(0, wall.Rotation.eulerAngles.y + 90f, 0), entryDepth, !wall.Horizontal));
+        wallList.Add(new Wall(splitPos - entryWidth / 2f, wall.Distance + dist / 2f,
+            Quaternion.Euler(0, wall.Rotation.eulerAngles.y - 90f, 0), entryDepth, !wall.Horizontal));
     }
 
     // TODO HORRIBLE NAMING
-    private void FillFromWalls(List<Wall> wallStructs)
+    private void FillFromWalls(IEnumerable<Wall> wallStructs)
     {
         foreach (var wall in wallStructs)
         {
@@ -169,8 +212,7 @@ public class Room2 : MonoBehaviour
         }
     }
 
-    [ContextMenu("Clear")]
-    private void Clear()
+    public void Clear()
     {
         if (walls == null) walls = new List<Transform>();
 #if UNITY_EDITOR
@@ -178,7 +220,7 @@ public class Room2 : MonoBehaviour
         {
             foreach (var w in walls)
             {
-                if(w)
+                if (w)
                     Destroy(w.gameObject);
             }
         }
@@ -186,7 +228,7 @@ public class Room2 : MonoBehaviour
         {
             foreach (var w in walls)
             {
-                if(w)
+                if (w)
                     DestroyImmediate(w.gameObject);
             }
         }

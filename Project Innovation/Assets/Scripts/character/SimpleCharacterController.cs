@@ -3,6 +3,8 @@
 [RequireComponent(typeof(CharacterController))]
 public class SimpleCharacterController : MonoBehaviour
 {
+    [SerializeField] private CharacterController controller;
+    
     [SerializeField] private InputHandler handler;
     
     [SerializeField] private float acceleration = 5.0f;
@@ -22,7 +24,8 @@ public class SimpleCharacterController : MonoBehaviour
     private void Start()
     {
         //Components
-        characterController = GetComponent<CharacterController>();
+        if(!characterController)
+            characterController = GetComponent<CharacterController>();
         //Movement vectors
         acceleration3d = Vector3.zero;
         velocityXZ = Vector3.zero;
@@ -61,5 +64,19 @@ public class SimpleCharacterController : MonoBehaviour
         //Move character
         characterController.Move(transform.rotation * velocityXZ * Time.deltaTime);
         characterController.Move(velocityY * Time.deltaTime);
+    }
+
+    public void EnableControls(bool shouldBeEnabledPlease)
+    {
+        characterController.enabled = shouldBeEnabledPlease;
+    }
+
+    public void ResetController()
+    {
+        characterController.SimpleMove(Vector3.zero);
+        
+        acceleration3d = Vector3.zero;
+        velocityXZ = Vector3.zero;
+        velocityY = Vector3.zero;
     }
 }

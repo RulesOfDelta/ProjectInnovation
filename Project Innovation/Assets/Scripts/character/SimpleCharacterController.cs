@@ -19,11 +19,15 @@ public class SimpleCharacterController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 acceleration3d, velocityXZ, velocityY;
 
+    private void Awake()
+    {
+        if (!characterController)
+            characterController = GetComponent<CharacterController>();
+    }
+
     private void Start()
     {
         //Components
-        if(!characterController)
-            characterController = GetComponent<CharacterController>();
         if (!handler)
             handler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         //Movement vectors

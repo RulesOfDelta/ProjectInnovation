@@ -1,19 +1,16 @@
-﻿using System.Runtime.InteropServices;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [Header("General")] 
-    public float walkSpeed = 2.0f;
+    [Header("General")] public float walkSpeed = 2.0f;
 
     private float currentWalkSpeed;
     public bool showDebugInfo = true;
-    private Transform _transform;
+    private Transform ownTransform;
     private EnemyAttack enemyAttack;
-    public GameObject Player;
+    public GameObject player;
     public bool SawPlayer { get; private set; }
-    public float SightDistance = 2.0f, SightRange = 70.0f;
+    public float sightDistance = 2.0f, sightRange = 70.0f;
 
     [Header("Collision-based Reorientation")]
     public bool enableCBR = true;
@@ -39,18 +36,18 @@ public class EnemyBehaviour : MonoBehaviour
     private void Start()
     {
         currentWalkSpeed = walkSpeed;
-        
-        _transform = GetComponent<Transform>();
+
+        ownTransform = GetComponent<Transform>();
 
         layerMask = LayerMask.GetMask("Room");
-        
+
         if (enableCBR && enableSBR) Debug.LogError("You must either enable CBR or SBR. Both are not allowed!");
 
         if (enableSBR)
         {
             walkableRadius = 0;
-            destinationPoint = _transform.position;
-            _initalPosition = _transform.position;
+            destinationPoint = ownTransform.position;
+            _initalPosition = ownTransform.position;
             FindClosestCollider();
         }
 
@@ -61,9 +58,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        _transform.Translate(currentWalkSpeed * Time.deltaTime * transform.forward, Space.World);
+        ownTransform.Translate(currentWalkSpeed * Time.deltaTime * transform.forward, Space.World);
 
-        if(!SawPlayer) LookForPlayer();
+        if (!SawPlayer) LookForPlayer();
         else
         {
             ChasePlayer();
@@ -71,17 +68,17 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         test += Time.deltaTime;
-        
+
         if (!SawPlayer)
         {
             if (enableCBR)
             {
                 CollisionReorientation();
             }
-            else if(enableSBR)
+            else if (enableSBR)
             {
                 SphereReorientation();
-            }   
+            }
         }
 
         if (showDebugInfo) DrawDebug();
@@ -89,22 +86,26 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void CollisionReorientation()
     {
-        if (!Physics.Raycast(_transform.position, _transform.forward, out var raycastHit, wallCheckDistance, layerMask)) return;
+        if (!Physics.Raycast(ownTransform.position, ownTransform.forward, out var raycastHit, wallCheckDistance,
+            layerMask)) return;
 
         Mesh hitObjectMesh = raycastHit.collider.GetComponent<MeshFilter>().mesh;
         var vertexIndex = hitObjectMesh.triangles[raycastHit.triangleIndex * 3];
-        Vector3 hitObjectNormal = raycastHit.collider.gameObject.transform.TransformVector(hitObjectMesh.normals[vertexIndex]);
-        
+        Vector3 hitObjectNormal =
+            raycastHit.collider.gameObject.transform.TransformVector(hitObjectMesh.normals[vertexIndex]);
+
         Vector3 transformForwardXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
         Vector3 hitObjectNormalXZ = new Vector3(hitObjectNormal.x, 0, hitObjectNormal.z);
 
         float leftAngleRange = -angleRange, rightAngleRange = angleRange;
 
         //Considers xz-plane only
-        float deltaAngle = Vector3.SignedAngle(transformForwardXZ, hitObjectNormalXZ, Vector3.up) + Random.Range(leftAngleRange, rightAngleRange);
-        
+        float deltaAngle = Vector3.SignedAngle(transformForwardXZ, hitObjectNormalXZ, Vector3.up) +
+                           Random.Range(leftAngleRange, rightAngleRange);
+
         //This loop will only run if the newly generated angle intersects with another collider
-        while (Physics.Raycast(transform.position, Quaternion.Euler(0, deltaAngle, 0) * transform.forward, wallCheckDistance * 2, layerMask))
+        while (Physics.Raycast(transform.position, Quaternion.Euler(0, deltaAngle, 0) * transform.forward,
+            wallCheckDistance * 2, layerMask))
         {
             Vector3 newDirectionVector = Quaternion.Euler(0, deltaAngle, 0) * transformForwardXZ;
             Vector3 perpendicularVector = Vector3.Cross(hitObjectNormalXZ, newDirectionVector);
@@ -121,8 +122,9 @@ public class EnemyBehaviour : MonoBehaviour
                 if (showDebugInfo) Debug.Log("Unsuccessful direction-vector had a counter-clockwise rotation");
                 leftAngleRange = deltaAngle + 1;
             }
-        
-            deltaAngle = Vector3.SignedAngle(transformForwardXZ, hitObjectNormalXZ, Vector3.up) + Random.Range(leftAngleRange, rightAngleRange);
+
+            deltaAngle = Vector3.SignedAngle(transformForwardXZ, hitObjectNormalXZ, Vector3.up) +
+                         Random.Range(leftAngleRange, rightAngleRange);
         }
 
         transform.rotation *= Quaternion.Euler(0, deltaAngle, 0);
@@ -130,20 +132,21 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SphereReorientation()
     {
-        if (!_withinDestinationRange && (destinationPoint - _transform.position).magnitude < minDistToDestPoint)
+        if (!_withinDestinationRange && (destinationPoint - ownTransform.position).magnitude < minDistToDestPoint)
         {
             _withinDestinationRange = true;
             SetRandomDestination();
             //Vector from current position to new destination position
-            Vector3 differenceVector = destinationPoint - _transform.position;
-            float deltaAngle = Vector3.SignedAngle(_transform.forward, differenceVector, Vector3.up);
-            _transform.rotation *= Quaternion.Euler(0, deltaAngle, 0);
+            Vector3 differenceVector = destinationPoint - ownTransform.position;
+            float deltaAngle = Vector3.SignedAngle(ownTransform.forward, differenceVector, Vector3.up);
+            ownTransform.rotation *= Quaternion.Euler(0, deltaAngle, 0);
         }
-        else{
+        else
+        {
             _withinDestinationRange = false;
         }
     }
-    
+
     private void FindClosestCollider()
     {
         float currentSphereRadius = 0;
@@ -153,30 +156,32 @@ public class EnemyBehaviour : MonoBehaviour
         while (colliderAmount == 0)
         {
             currentSphereRadius += stepSize;
-            colliderAmount = Physics.OverlapSphereNonAlloc(_transform.position, currentSphereRadius, collidersOverlapped, LayerMask.GetMask("Room"));
+            colliderAmount = Physics.OverlapSphereNonAlloc(ownTransform.position, currentSphereRadius,
+                collidersOverlapped, layerMask);
         }
-    
-        if(showDebugInfo) Debug.Log("First collider hit was " + collidersOverlapped[0].transform.name);
+
+        if (showDebugInfo) Debug.Log("First collider hit was " + collidersOverlapped[0].transform.name);
         walkableRadius = currentSphereRadius - stepSize;
     }
-    
+
     private void SetRandomDestination()
     {
         Vector2 randomXZPosition = Random.insideUnitCircle * walkableRadius;
-        destinationPoint = _initalPosition + new Vector3(randomXZPosition.x, _transform.lossyScale.y / 2, randomXZPosition.y);
+        destinationPoint = _initalPosition +
+                           new Vector3(randomXZPosition.x, ownTransform.lossyScale.y / 2, randomXZPosition.y);
     }
 
     private void DrawDebug()
     {
-        Debug.DrawRay(_transform.position, _transform.forward * wallCheckDistance, Color.magenta);
-        Debug.DrawLine(_transform.position, destinationPoint, Color.green);
+        Debug.DrawRay(ownTransform.position, ownTransform.forward * wallCheckDistance, Color.magenta);
+        Debug.DrawLine(ownTransform.position, destinationPoint, Color.green);
     }
-    
+
     private void ChasePlayer()
     {
-         Vector3 differenceVector = Player.transform.position - transform.position;
-         
-         if (Vector3.Distance(Player.transform.position, transform.position) < 1.5f) currentWalkSpeed = 0;
+        Vector3 differenceVector = player.transform.position - transform.position;
+
+        if (Vector3.Distance(player.transform.position, transform.position) < 1.5f) currentWalkSpeed = 0;
         else currentWalkSpeed = walkSpeed;
 
         transform.rotation = Quaternion.LookRotation(differenceVector);
@@ -184,13 +189,13 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void LookForPlayer()
     {
-        if (Vector3.Distance(Player.transform.position, transform.position) <= SightDistance)
+        if (Vector3.Distance(player.transform.position, transform.position) <= sightDistance)
         {
             Debug.Log("Player in proximity");
-            Vector3 differenceVector = Player.transform.position - transform.position;
+            Vector3 differenceVector = player.transform.position - transform.position;
             float deltaAngle = Vector3.Angle(differenceVector, transform.forward);
             Debug.Log("Angle was " + deltaAngle);
-            if (deltaAngle <= SightRange)
+            if (deltaAngle <= sightRange)
             {
                 SawPlayer = true;
                 Debug.Log("Saw player");

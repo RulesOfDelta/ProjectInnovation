@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
-    
+
     [SerializeField] private float attackDist = 1f;
     [SerializeField] private float attackTime = 1f;
     [SerializeField] private float damage;
-    
+
     public IEnumerator AttackLoop()
     {
         while (gameObject)
@@ -22,10 +22,11 @@ public class EnemyAttack : MonoBehaviour
                     float angle = Vector3.Angle(differenceVector, transform.forward);
                     if (angle >= playerStats.shieldAngle)
                     {
-                        playerStats.Health -= damage;       
+                        playerStats.Health -= damage;
                         Debug.Log("Attack player");
                     }
                 }
+
                 yield return new WaitForSeconds(attackTime);
             }
             else

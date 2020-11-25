@@ -1,34 +1,77 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.AccessControl;
-using UnityEditor;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Room2))]
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject enemyPrefab;
+
     //[SerializeField] [Tooltip("Only the xz-plane will be considered!")] private Vector3 spawnArea;
     [SerializeField] private float spawnInterval;
+
+    private Room2 room;
     
+    private List<GameObject> enemies;
+
+    private void Start()
+    {
+        room = GetComponent<Room2>();
+        enemies = new List<GameObject>();
+    }
+
     // private void SpawnEnemyIntervals()
     // {
     // }
 
     public void SpawnEnemies(int amount, Vector2 spawnArea)
     {
+        ClearEnemies();
         Vector3 vectorToGround;
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycastHit, float.PositiveInfinity))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycastHit,
+            float.PositiveInfinity))
         {
             vectorToGround = raycastHit.point;
         }
         else vectorToGround = transform.position;
+
         for (int i = 0; i < amount; i++)
         {
-            Vector3 spawnPoint = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2), 
-                vectorToGround.y + enemy.transform.localScale.y,Random.Range(-spawnArea.y / 2, spawnArea.y / 2));
-            Instantiate(enemy, spawnPoint, Quaternion.identity * Quaternion.Euler(0,Random.rotation.eulerAngles.y,0));
+            Vector3 spawnPoint = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2),
+                vectorToGround.y + enemyPrefab.transform.localScale.y, Random.Range(-spawnArea.y / 2, spawnArea.y / 2));
+            var enemy = Instantiate(enemyPrefab, spawnPoint,
+                Quaternion.identity * Quaternion.Euler(0, Random.rotation.eulerAngles.y, 0));
+            enemy.GetComponent<EnemyRemoveNotifier>().AddEvent(OnRemoveEnemy);
+            enemies.Add(enemy);
         }
+    }
+
+    private bool clearing = false;
+
+    private void OnRemoveEnemy(GameObject enemy)
+    {
+        if (clearing) return;
+        enemies.Remove(enemy);
+        if (!HasEnemies()) 
+            room.OnClear();
+        // TODO notify room
+    }
+
+    private void ClearEnemies()
+    {
+        clearing = true;
+        foreach (var enemy in enemies)
+        {
+            if (enemy)
+                Destroy(enemy);
+        }
+        
+        enemies.Clear();
+        clearing = false;
+    }
+
+    public bool HasEnemies()
+    {
+        return !enemies.TrueForAll(obj => !obj);
     }
 
     // public void SetSpawnArea(Vector3 area)

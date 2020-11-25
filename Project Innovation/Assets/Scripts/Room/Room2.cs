@@ -319,4 +319,12 @@ public class Room2 : MonoBehaviour
 #endif
         walls.Clear();
     }
+
+    public void OnClear()
+    {
+        foreach (var door in doors)
+        {
+            if(door) door.OnAllEnemiesClear();
+        }
+    }
 }

@@ -18,9 +18,9 @@ GameObject:
   - component: {fileID: 1316099054983123672}
   - component: {fileID: 1316099054983123679}
   - component: {fileID: 1316099054983123678}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Player
-  m_TagString: MainCamera
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316099054983123677}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -161,7 +161,6 @@ MonoBehaviour:
     type: 3}
   bulletParent: {fileID: 0}
   sword: {fileID: 1316099055176214389}
-  swordDamage: 5
   swordAttackTime: 0.3
   swordAttackCooldown: 1
 --- !u!114 &1316099054983123679
@@ -302,3 +301,4 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 512
+  swordDamage: 5

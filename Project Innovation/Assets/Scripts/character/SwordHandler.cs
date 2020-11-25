@@ -21,8 +21,10 @@ public class SwordHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!enemyMask.Contains(other.gameObject.layer) || attacked.Contains(other)) return;
-        attacked.Add(other);
+        Debug.Log("this was exectued");
+        // if(!other.gameObject.tag.Equals("GameController")) return;
+        // Debug.Log("enemy was found");   
+        // attacked.Add(other);
         AddDamageToEnemies();
     }
 

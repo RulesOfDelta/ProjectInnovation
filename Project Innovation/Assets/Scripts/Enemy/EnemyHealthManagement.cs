@@ -29,6 +29,7 @@ public class EnemyHealthManagement : MonoBehaviour
 
     public void ReduceHealth(int damage)
     {
+        Debug.Log("Enemy received damage");
         if (health > 0) health -= damage;
         else currentStatus = CurrentStatus.Dead;
         Destroy(gameObject);

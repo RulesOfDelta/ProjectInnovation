@@ -25,6 +25,7 @@ public class EnemyBehaviour : MonoBehaviour
     public bool enableSBR = false;
 
     public float minDistToDestPoint = 0.4f;
+    public float maxSphereSize = 100.0f;
 
     [SerializeField] private float walkableRadius;
     [SerializeField] private Vector3 destinationPoint;
@@ -152,15 +153,24 @@ public class EnemyBehaviour : MonoBehaviour
         float stepSize = 0.05f;
         int colliderAmount = 0;
         Collider[] collidersOverlapped = new Collider[1];
-        while (colliderAmount == 0)
+        while (colliderAmount == 0 && currentSphereRadius <= maxSphereSize)
         {
             currentSphereRadius += stepSize;
             colliderAmount = Physics.OverlapSphereNonAlloc(ownTransform.position, currentSphereRadius,
                 collidersOverlapped, layerMask);
         }
 
-        if (showDebugInfo) Debug.Log("First collider hit was " + collidersOverlapped[0].transform.name);
-        walkableRadius = currentSphereRadius - stepSize;
+        if (colliderAmount == 0)
+        {
+            walkableRadius = 2.0f;
+            Debug.LogWarning("No collider with the correct tag was found! 'walkableRadius' was set to 2!");
+        }
+
+        else
+        {
+            if (showDebugInfo) Debug.Log("First collider hit was " + collidersOverlapped[0].transform.name);
+            walkableRadius = currentSphereRadius - stepSize;   
+        }
     }
 
     private void SetRandomDestination()

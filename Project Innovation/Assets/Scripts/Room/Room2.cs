@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,6 +29,10 @@ public class Room2 : MonoBehaviour
 
     [SerializeField, Min(0)] private int minDoorCount;
     [SerializeField, Min(0)] private int maxDoorCount;
+
+    [SerializeField, Range(0, 1f)] private float enemySpawnPercentageX;
+    [SerializeField, Range(0, 1f)] private float enemySpawnPercentageY;
+    [SerializeField, Min(0.01f)] private float enemySpawnPerSqrUnit;
 
     // Start is called before the first frame update
     private void Start()
@@ -152,6 +155,10 @@ public class Room2 : MonoBehaviour
         FillFromWalls(preWalls);
         // TODO no magic division by 10
         floor.localScale = new Vector3((x + entryDepth * 2) / 10, 1, (y + entryDepth * 2) / 10);
+        // TODO spawn enemies
+        var spawnX = x * enemySpawnPercentageX;
+        var spawnY = y * enemySpawnPercentageY;
+        var enemyCount = Mathf.CeilToInt(spawnX * spawnY * enemySpawnPerSqrUnit);
     }
 
     private void SplitWallAtEnd(IList<Wall> wallList)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Security.AccessControl;
+using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -188,8 +189,9 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (Vector3.Distance(player.transform.position, transform.position) < 2.5f) currentWalkSpeed = 0;
         else currentWalkSpeed = walkSpeed;
-
-        transform.rotation = Quaternion.LookRotation(differenceVector);
+        
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
+            Quaternion.LookRotation(differenceVector).eulerAngles.y, transform.rotation.eulerAngles.z);
     }
 
     private void LookForPlayer()

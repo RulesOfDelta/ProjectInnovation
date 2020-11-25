@@ -318,6 +318,7 @@ public class Room2 : MonoBehaviour
         });
 #endif
         walls.Clear();
+        doors.Clear();
     }
 
     public void OnClear()

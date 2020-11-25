@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        //sword.gameObject.SetActive(false);
+        sword.gameObject.SetActive(false);
         if (!handler)
             handler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         handler.RegisterOnFire(OnFire);
@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
     private void SwordAttack()
     {
         if (attacking) return;
-        //sword.gameObject.SetActive(true);
+        sword.gameObject.SetActive(true);
         attacking = true;
         StartCoroutine(Disable());
 
@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
         IEnumerator Disable()
         {
             yield return new WaitForSeconds(swordAttackTime);
-            //sword.gameObject.SetActive(false);
+            sword.gameObject.SetActive(false);
             sword.AfterAttack();
             yield return new WaitForSeconds(swordAttackCooldown);
             attacking = false;

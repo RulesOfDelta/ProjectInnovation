@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3693557877149292986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.41, y: 1.5, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.8, z: 1.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -111,13 +111,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2
   showDebugInfo: 1
-  sightDistance: 2
+  sightDistance: 5
   sightRange: 70
   enableCBR: 1
-  wallCheckDistance: 1.5
+  wallCheckDistance: 2
   angleRange: 65
   enableSBR: 0
   minDistToDestPoint: 1
+  maxSphereSize: 100
   walkableRadius: 0
   destinationPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &3693557877149292980
@@ -132,10 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71eea1d6e5070f428b53ba339019b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 0}
-  attackDist: 1.5
-  attackTime: 2.5
+  attackDistance: 5
+  attackInterval: 1
   damage: 10
+  showDebugInfo: 1
 --- !u!114 &284317916417099805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +149,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6d204cd96450e408334147f57c59f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 100

@@ -190,7 +190,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Vector3 differenceVector = player.transform.position - transform.position;
 
-        if (Vector3.Distance(player.transform.position, transform.position) < 1.5f) currentWalkSpeed = 0;
+        if (Vector3.Distance(player.transform.position, transform.position) < 2.5f) currentWalkSpeed = 0;
         else currentWalkSpeed = walkSpeed;
 
         transform.rotation = Quaternion.LookRotation(differenceVector);
@@ -200,10 +200,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (Vector3.Distance(player.transform.position, transform.position) <= sightDistance)
         {
-            Debug.Log("Player in proximity");
             Vector3 differenceVector = player.transform.position - transform.position;
             float deltaAngle = Vector3.Angle(differenceVector, transform.forward);
-            Debug.Log("Angle was " + deltaAngle);
             if (deltaAngle <= sightRange)
             {
                 SawPlayer = true;

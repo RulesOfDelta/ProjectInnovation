@@ -2,7 +2,7 @@
 
 public class EnemyHealthManagement : MonoBehaviour
 {
-    private int health;
+    public int Health = 100;
     private CurrentStatus currentStatus;
 
     public enum CurrentStatus
@@ -13,26 +13,28 @@ public class EnemyHealthManagement : MonoBehaviour
 
     private void Start()
     {
-        health = 100;
         currentStatus = CurrentStatus.Alive;
     }
 
     public int GetHealth()
     {
-        return health;
+        return Health;
     }
 
     public void SetHealth(int newHealth)
     {
-        if (newHealth > 0) health = newHealth;
+        if (newHealth > 0) Health = newHealth;
     }
 
     public void ReduceHealth(int damage)
     {
         Debug.Log("Enemy received damage");
-        if (health > 0) health -= damage;
-        else currentStatus = CurrentStatus.Dead;
-        Destroy(gameObject);
+        Health -= damage;
+        if(Health <= 0)
+        {
+            currentStatus = CurrentStatus.Dead;
+            Destroy(gameObject);
+        }
     }
 
     public CurrentStatus GetCurrentStatus()

@@ -64,12 +64,40 @@ public class InputHandler : MonoBehaviour
         state = new InputState();
         input = GetComponent<PlayerInput>();
         state.IsMouse = input.currentControlScheme == mouseSettings.controlScheme;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OnDestroy()
     {
         ResetRumble();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
+    
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            switch (Cursor.lockState)
+            {
+                case CursorLockMode.None:
+                    Cursor.lockState = CursorLockMode.Locked;
+                    break;
+                case CursorLockMode.Locked:
+                case CursorLockMode.Confined:
+                    Cursor.lockState = CursorLockMode.None;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            Cursor.visible = !Cursor.visible;
+        }
+        
+    }
+#endif
 
     public void RegisterOnFire(ButtonCallback cb)
     {

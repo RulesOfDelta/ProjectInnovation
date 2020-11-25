@@ -3,9 +3,7 @@
 [RequireComponent(typeof(CharacterController))]
 public class SimpleCharacterController : MonoBehaviour
 {
-    [SerializeField] private CharacterController controller;
-    
-    [SerializeField] private InputHandler handler;
+    private InputHandler handler;
     
     [SerializeField] private float acceleration = 5.0f;
     [SerializeField] private float maxVelocity = 10.0f;
@@ -21,11 +19,17 @@ public class SimpleCharacterController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 acceleration3d, velocityXZ, velocityY;
 
+    private void Awake()
+    {
+        if (!characterController)
+            characterController = GetComponent<CharacterController>();
+    }
+
     private void Start()
     {
         //Components
-        if(!characterController)
-            characterController = GetComponent<CharacterController>();
+        if (!handler)
+            handler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         //Movement vectors
         acceleration3d = Vector3.zero;
         velocityXZ = Vector3.zero;

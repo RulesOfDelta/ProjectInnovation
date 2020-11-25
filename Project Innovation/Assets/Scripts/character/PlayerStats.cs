@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float maxHealth;
     private float health;
     
-    public InputHandler controls;
+    private InputHandler controls;
     public bool shieldActive;
     public int shieldAngle = 90;
     
@@ -24,6 +24,8 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+        if (!controls)
+            controls = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         controls.RegisterOnShield(ToggleShield);
     }
 

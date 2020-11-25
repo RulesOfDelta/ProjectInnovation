@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletParent;
-    [SerializeField] private InputHandler handler;
+    private InputHandler handler;
     [Header("Sword settings")]
     [SerializeField] private SwordHandler sword;
     [SerializeField] private float swordDamage = 5f;
@@ -18,6 +18,8 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         sword.gameObject.SetActive(false);
+        if (!handler)
+            handler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         handler.RegisterOnFire(OnFire);
         handler.RegisterOnSword(OnSword);
     }

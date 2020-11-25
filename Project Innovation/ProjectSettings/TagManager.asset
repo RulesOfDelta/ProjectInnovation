@@ -19,8 +19,8 @@ TagManager:
   - Bounds
   - Bullets
   - Room
-  - 
-  - 
+  - Player
+  - IgnorePlayer
   - 
   - 
   - 

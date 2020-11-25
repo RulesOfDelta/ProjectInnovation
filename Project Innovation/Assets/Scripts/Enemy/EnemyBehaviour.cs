@@ -17,7 +17,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public float wallCheckDistance = 1.5f;
     [Range(0, 89)] public float angleRange = 0.0f;
-    private int layerMask;
+    [SerializeField] private LayerMask layerMask;
 
     [Header("Sphere-based Reorientation")]
     [Tooltip(
@@ -41,7 +41,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         ownTransform = GetComponent<Transform>();
 
-        layerMask = LayerMask.GetMask("Room");
+        // layerMask = LayerMask.GetMask("Room");
 
         if (enableCBR && enableSBR) Debug.LogError("You must either enable CBR or SBR. Both are not allowed!");
 

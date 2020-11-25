@@ -387,11 +387,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1316099054983123672, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
-        type: 3}
-      propertyPath: bulletParent
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1316099054983123677, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: m_Name
@@ -452,6 +447,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1316099055176214385, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099055176214385, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099055176214385, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099055176214385, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a, type: 3}
 --- !u!1001 &4418598227584804922
@@ -466,6 +481,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 81074980}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: minSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: maxSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: enemySpawnPercentageX
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: enemySpawnPercentageY
+      value: 0.62
+      objectReference: {fileID: 0}
     - target: {fileID: 4418598227391175933, guid: b8702a98fdb547d48bd58f795c6057ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -535,6 +570,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8025365089208255649, guid: 6dbe4e07036b7d34c89702ce8ba70090,
+        type: 3}
+      propertyPath: showLoadTimeOptions
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025365089208255649, guid: 6dbe4e07036b7d34c89702ce8ba70090,
+        type: 3}
+      propertyPath: showMassBakingOptions
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8025365089622558268, guid: 6dbe4e07036b7d34c89702ce8ba70090,
         type: 3}
       propertyPath: m_Name

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwordHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask enemyMask;
-    [SerializeField] private int swordDamage = 5;
+    [SerializeField] private int swordDamage = 50;
 
     private List<Collider> attacked;
 
@@ -25,14 +25,11 @@ public class SwordHandler : MonoBehaviour
         // if(!other.gameObject.tag.Equals("GameController")) return;
         // Debug.Log("enemy was found");   
         // attacked.Add(other);
-        AddDamageToEnemies();
+        AddDamageToEnemies(other.gameObject);
     }
 
-    private void AddDamageToEnemies()
+    private void AddDamageToEnemies(GameObject hitGameObject)
     {
-        foreach (Collider currentCollider in attacked)
-        {
-            currentCollider.GetComponent<EnemyHealthManagement>().ReduceHealth(swordDamage);
-        }
+        hitGameObject.GetComponent<EnemyHealthManagement>().ReduceHealth(swordDamage);
     }
 }

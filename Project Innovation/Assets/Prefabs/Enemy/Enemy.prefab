@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3693557877149292987}
   - component: {fileID: 3693557877149292980}
   - component: {fileID: 284317916417099805}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,6 +116,9 @@ MonoBehaviour:
   enableCBR: 1
   wallCheckDistance: 2
   angleRange: 65
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4096
   enableSBR: 0
   minDistToDestPoint: 1
   maxSphereSize: 100

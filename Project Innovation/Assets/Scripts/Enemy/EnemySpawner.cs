@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     // {
     // }
 
-    private void SpawnEnemies(int amount, Vector2 spawnArea)
+    public void SpawnEnemies(int amount, Vector2 spawnArea)
     {
         Vector3 vectorToGround;
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycastHit, float.PositiveInfinity))

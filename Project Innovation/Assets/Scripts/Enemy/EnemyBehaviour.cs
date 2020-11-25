@@ -32,8 +32,8 @@ public class EnemyBehaviour : MonoBehaviour
     private Vector3 _initalPosition;
     private bool _withinDestinationRange;
 
-    private float test = 0;
-
+    private Rigidbody rigidbody;
+    
     private void Start()
     {
         currentWalkSpeed = walkSpeed;
@@ -56,21 +56,17 @@ public class EnemyBehaviour : MonoBehaviour
         _withinDestinationRange = false;
 
         enemyAttack = GetComponent<EnemyAttack>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        ownTransform.Translate(currentWalkSpeed * Time.deltaTime * transform.forward, Space.World);
+        //Deprecated: ownTransform.Translate(currentWalkSpeed * Time.deltaTime * transform.forward, Space.World);
+        rigidbody.MovePosition(transform.position + currentWalkSpeed * Time.deltaTime * transform.forward);
 
         if (!SawPlayer) LookForPlayer();
-        else
-        {
-            ChasePlayer();
-            test = 0;
-        }
-
-        test += Time.deltaTime;
-
+        else ChasePlayer();
+        
         if (!SawPlayer)
         {
             if (enableCBR)

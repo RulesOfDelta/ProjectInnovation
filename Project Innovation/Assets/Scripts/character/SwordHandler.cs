@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwordHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask enemyMask;
+    [SerializeField] private int swordDamage = 5;
 
     private List<Collider> attacked;
 
@@ -20,10 +21,16 @@ public class SwordHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!enemyMask.Contains(other.gameObject.layer) || attacked.Contains(other))
-            return;
-        // TODO attack enemy
-        Debug.Log("Attacked Enemy");
+        if(!enemyMask.Contains(other.gameObject.layer) || attacked.Contains(other)) return;
         attacked.Add(other);
+        AddDamageToEnemies();
+    }
+
+    private void AddDamageToEnemies()
+    {
+        foreach (Collider currentCollider in attacked)
+        {
+            currentCollider.GetComponent<EnemyHealthManagement>().ReduceHealth(swordDamage);
+        }
     }
 }

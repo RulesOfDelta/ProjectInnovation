@@ -31,6 +31,7 @@ public class EnemyHealthManagement : MonoBehaviour
     {
         if (health > 0) health -= damage;
         else currentStatus = CurrentStatus.Dead;
+        Destroy(gameObject);
     }
 
     public CurrentStatus GetCurrentStatus()

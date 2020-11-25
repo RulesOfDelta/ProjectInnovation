@@ -9,7 +9,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private InputHandler handler;
     [Header("Sword settings")]
     [SerializeField] private SwordHandler sword;
-    [SerializeField] private float swordDamage = 5f;
     [SerializeField] private float swordAttackTime = 0.1f;
     [SerializeField] private float swordAttackCooldown = 1f;
 
@@ -21,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
         handler.RegisterOnFire(OnFire);
         handler.RegisterOnSword(OnSword);
     }
-
+    
     private void OnDestroy()
     {
         handler.DeregisterOnFire(OnFire);
@@ -54,7 +53,6 @@ public class PlayerAttack : MonoBehaviour
         IEnumerator Disable()
         {
             yield return new WaitForSeconds(swordAttackTime);
-            Debug.Log("Attack done");
             sword.gameObject.SetActive(false);
             sword.AfterAttack();
             yield return new WaitForSeconds(swordAttackCooldown);

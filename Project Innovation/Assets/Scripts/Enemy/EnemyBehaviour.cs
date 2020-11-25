@@ -8,7 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
     public bool showDebugInfo = true;
     private Transform ownTransform;
     private EnemyAttack enemyAttack;
-    public GameObject player;
+    private GameObject player;
     public bool SawPlayer { get; private set; }
     public float sightDistance = 2.0f, sightRange = 70.0f;
 
@@ -36,6 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void Start()
     {
         currentWalkSpeed = walkSpeed;
+        player = GameObject.FindWithTag("Player");
 
         ownTransform = GetComponent<Transform>();
 
@@ -109,9 +110,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Vector3 newDirectionVector = Quaternion.Euler(0, deltaAngle, 0) * transformForwardXZ;
             Vector3 perpendicularVector = Vector3.Cross(hitObjectNormalXZ, newDirectionVector);
-
-            Debug.Log(perpendicularVector);
-
+            
             if (perpendicularVector.y > 0)
             {
                 if (showDebugInfo) Debug.Log("Unsuccessful direction-vector had a clockwise rotation");

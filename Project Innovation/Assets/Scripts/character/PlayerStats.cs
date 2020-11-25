@@ -30,6 +30,7 @@ public class PlayerStats : MonoBehaviour
     private void OnDeath()
     {
         // TODO: DIE!!!!!!!!
+        Debug.Log("omfg he fuckin ded");
     }
     
     private void ToggleShield(InputHandler.ButtonAction action)

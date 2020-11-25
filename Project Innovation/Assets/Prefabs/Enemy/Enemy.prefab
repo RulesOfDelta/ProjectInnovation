@@ -109,9 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da0fabd3a0b3a114cab8ad885f6b1b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 3
+  walkSpeed: 2
   showDebugInfo: 1
-  player: {fileID: 0}
   sightDistance: 2
   sightRange: 70
   enableCBR: 1
@@ -134,8 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
-  attackDist: 1
-  attackTime: 1
+  attackDist: 1.5
+  attackTime: 2.5
   damage: 10
 --- !u!114 &284317916417099805
 MonoBehaviour:

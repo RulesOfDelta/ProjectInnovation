@@ -8,11 +8,6 @@ public class WalkingSound : MonoBehaviour
     public float stepDistance = 1.2f;
     private float _randomStepSDistance;
 
-    [SerializeField] private float minWaterDist;
-    [SerializeField] private float maxWaterDist;
-    [SerializeField] private AnimationCurve waterFalloff = AnimationCurve.Constant(0f, 1f, 1f);
-    [SerializeField] private Transform waterSource;
-
     [FMODUnity.EventRef]
     public string fmodEventPath;
 
@@ -41,20 +36,14 @@ public class WalkingSound : MonoBehaviour
         FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventPath);
         eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position - new Vector3(0,-0.5f,0)));
 
-        eventInstance.setParameterByName("wet", SampleParamVal());
+        ApplyParameters(eventInstance);
         
         eventInstance.start();
         eventInstance.release();
     }
 
-    private float SampleParamVal()
+    protected virtual void ApplyParameters(FMOD.Studio.EventInstance eventInstance)
     {
-        if (!waterSource) return 0f;
-        var dist = Vector3.Distance(transform.position, waterSource.position);
-        if (dist < minWaterDist) return 1f;
-        if (dist > maxWaterDist) return 0f;
-        var val = dist - minWaterDist;
-        val /= maxWaterDist - minWaterDist;
-        return Mathf.Clamp01(val);
+        
     }
 }

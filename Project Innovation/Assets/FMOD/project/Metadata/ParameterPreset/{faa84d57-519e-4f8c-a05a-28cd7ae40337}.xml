@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{faa84d57-519e-4f8c-a05a-28cd7ae40337}">
+		<property name="name">
+			<value>BattleMusic</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d135528b-1fbb-4fc2-8dc2-81596b7154e8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e539cb5f-e806-422d-91f9-59eadf1c0d8e}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e539cb5f-e806-422d-91f9-59eadf1c0d8e}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>On</value>
+			<value>Off</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

@@ -33,7 +33,7 @@ public class WalkingSound : MonoBehaviour
     private void PlayFootstepSound()
     {
         FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventPath);
-        eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position - new Vector3(0,-0.5f,0)));
 
         eventInstance.start();
         eventInstance.release();

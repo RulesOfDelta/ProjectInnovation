@@ -28,7 +28,6 @@ public class EnemyHealthManagement : MonoBehaviour
 
     public void ReduceHealth(int damage)
     {
-        Debug.Log("Enemy received damage");
         Health -= damage;
         if(Health <= 0)
         {

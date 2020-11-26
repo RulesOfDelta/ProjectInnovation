@@ -115,14 +115,14 @@ MonoBehaviour:
   showDebugInfo: 1
   sightDistance: 5
   sightRange: 70
-  enableCBR: 1
+  enableCBR: 0
   wallCheckDistance: 2
   angleRange: 65
   layerMask:
     serializedVersion: 2
     m_Bits: 4096
-  enableSBR: 0
-  minDistToDestPoint: 1
+  enableSBR: 1
+  minDistToDestPoint: 0.5
   maxSphereSize: 100
   walkableRadius: 0
   destinationPoint: {x: 0, y: 0, z: 0}

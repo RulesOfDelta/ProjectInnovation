@@ -11,7 +11,9 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyAttack enemyAttack;
     private GameObject player;
     public bool SawPlayer { get; private set; }
+    private bool reenabledReorientation = false;
     public float sightDistance = 2.0f, sightRange = 70.0f;
+    public float maxChaseDistance = 10.0f;
 
     [Header("Collision-based Reorientation")]
     public bool enableCBR = true;
@@ -42,7 +44,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         ownTransform = GetComponent<Transform>();
 
-        // layerMask = LayerMask.GetMask("Room");
+        layerMask = LayerMask.GetMask("Room");
 
         if (enableCBR && enableSBR) Debug.LogError("You must either enable CBR or SBR. Both are not allowed!");
 
@@ -129,9 +131,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SphereReorientation()
     {
-        if (!_withinDestinationRange && (destinationPoint - ownTransform.position).magnitude < minDistToDestPoint)
+        if (!_withinDestinationRange && (destinationPoint - ownTransform.position).magnitude < minDistToDestPoint || reenabledReorientation)
         {
             _withinDestinationRange = true;
+            reenabledReorientation = false;
             SetRandomDestination();
             //Vector from current position to new destination position
             Vector3 differenceVector = destinationPoint - ownTransform.position;
@@ -174,7 +177,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Vector2 randomXZPosition = Random.insideUnitCircle * walkableRadius;
         destinationPoint = _initalPosition +
-                           new Vector3(randomXZPosition.x, ownTransform.lossyScale.y / 2, randomXZPosition.y);
+                           new Vector3(randomXZPosition.x, ownTransform.position.y - ownTransform.lossyScale.y, randomXZPosition.y);
     }
 
     private void DrawDebug()
@@ -187,7 +190,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Vector3 differenceVector = player.transform.position - transform.position;
 
-        if (Vector3.Distance(player.transform.position, transform.position) < 2.5f) currentWalkSpeed = 0;
+        float currentDistanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        if (currentDistanceToPlayer < 2.5f) currentWalkSpeed = 0;
+        else if (!HasSightOnPlayer())
+        {
+            SawPlayer = false;
+            reenabledReorientation = true;
+        }
         else currentWalkSpeed = walkSpeed;
         
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
@@ -203,9 +212,13 @@ public class EnemyBehaviour : MonoBehaviour
             if (deltaAngle <= sightRange)
             {
                 SawPlayer = true;
-                Debug.Log("Saw player");
                 StartCoroutine(enemyAttack.AttackLoop());
             }
         }
+    }
+
+    private bool HasSightOnPlayer()
+    {
+        return Physics.Raycast(transform.position, ownTransform.forward, maxChaseDistance);
     }
 }

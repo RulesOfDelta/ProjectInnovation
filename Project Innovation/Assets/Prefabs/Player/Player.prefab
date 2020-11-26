@@ -160,7 +160,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 342873530849895128, guid: bfaa0de59430f5c4a8ce9ca1bc933732,
     type: 3}
   bulletParent: {fileID: 0}
-  gunCooldown: 3
+  gunCooldown: 0.25
   sword: {fileID: 1316099055176214389}
   swordAttackTime: 0.3
   swordAttackCooldown: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepDistance: 6
-  fmodEventPath: event:/Player/steps
+  fmodEventPath: event:/Player/Pl_steps
   minWaterDist: 5
   maxWaterDist: 7
   waterFalloff:

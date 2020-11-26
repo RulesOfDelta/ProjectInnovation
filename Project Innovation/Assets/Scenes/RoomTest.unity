@@ -196,6 +196,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1316099054918830532}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &123330214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123330215}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123330215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123330214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &920455094
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +422,71 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: minWaterDist
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: maxWaterDist
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[0].inSlope
+      value: -0.009546387
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[0].outSlope
+      value: -0.009546387
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[0].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[0].outWeight
+      value: 0.08869156
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[1].inWeight
+      value: 0.09272432
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[1].inSlope
+      value: -2.3537223
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterFalloff.m_Curve.Array.data[1].outSlope
+      value: -2.3537223
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterSource
+      value: 
+      objectReference: {fileID: 123330215}
     - target: {fileID: 1316099054983123680, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -461,6 +556,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 81074980}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: enemySpawnPerSqrUnit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4418598227391175933, guid: b8702a98fdb547d48bd58f795c6057ea,
         type: 3}
       propertyPath: m_LocalPosition.x

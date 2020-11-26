@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    [FMODUnity.EventRef, SerializeField] private string hitSound;
     [SerializeField] private float maxHealth;
     private float health;
     
@@ -34,6 +35,17 @@ public class PlayerStats : MonoBehaviour
         // TODO: DIE!!!!!!!!
         // Debug.Log("omfg he fuckin dedd");
     }
+
+    public void Damage(float amount)
+    {
+        Health -= amount;
+        Debug.Log("Damage player");
+        if (Health > 0f)
+        {
+            // Play sound
+            PlayHitSound();
+        }
+    }
     
     private void ToggleShield(InputHandler.ButtonAction action)
     {
@@ -47,5 +59,12 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Shield inactive");
             shieldActive = false;
         }
+    }
+
+    private void PlayHitSound()
+    {
+        var eventInstance = FMODUnity.RuntimeManager.CreateInstance(hitSound);
+        eventInstance.start();
+        eventInstance.release();
     }
 }

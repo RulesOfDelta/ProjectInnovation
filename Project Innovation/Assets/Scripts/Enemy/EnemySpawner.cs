@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
 
     //[SerializeField] [Tooltip("Only the xz-plane will be considered!")] private Vector3 spawnArea;
     [SerializeField] private float spawnInterval;
+    [SerializeField] private int minEnemiesSpawned = 1;
+    [SerializeField] private int maxEnemiesSpawned = 25;
 
     private Room2 room;
     
@@ -25,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemies(int amount, Vector2 spawnArea)
     {
+        amount = Mathf.Clamp(amount, minEnemiesSpawned, maxEnemiesSpawned);
         ClearEnemies();
         Vector3 vectorToGround;
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycastHit,
@@ -45,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private bool clearing = false;
+    private bool clearing;
 
     private void OnRemoveEnemy(GameObject enemy)
     {

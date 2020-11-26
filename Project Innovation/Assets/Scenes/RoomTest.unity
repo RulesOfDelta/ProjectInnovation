@@ -491,6 +491,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2180861421346825547, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 1705878588738581136, guid: b357d24e9bd085746870b463f86f2a76,
+        type: 3}
     - target: {fileID: 3553723587455376162, guid: b8702a98fdb547d48bd58f795c6057ea,
         type: 3}
       propertyPath: m_LocalRotation.w

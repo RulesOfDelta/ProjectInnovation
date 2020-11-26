@@ -25,6 +25,7 @@ public class Room2 : MonoBehaviour
 
     [SerializeField] private Transform wallPrefab;
     [SerializeField] private Transform floor;
+    [SerializeField] private Transform entryBlockade;
     private List<Transform> walls;
     private List<Door> doors;
 
@@ -229,6 +230,12 @@ public class Room2 : MonoBehaviour
         wallList.Add(wall1);
         wallList.Add(wall2);
         var dist = wall.Distance < 0f ? -entryDepth : entryDepth;
+        var posBlockadeWall = new Wall(wall.Distance, splitPos, wall.Rotation, entryWidth, wall.Horizontal);
+
+        entryBlockade.position = PosFromWall(posBlockadeWall);
+        entryBlockade.rotation = posBlockadeWall.Rotation;
+        entryBlockade.localScale = new Vector3(entryWidth, wallHeight, 1f);
+        
         wallList.Add(new Wall(wall.Distance + dist, splitPos, wall.Rotation, entryWidth, wall.Horizontal));
 
         // Side walls
@@ -287,38 +294,26 @@ public class Room2 : MonoBehaviour
 #if UNITY_EDITOR
         if (UnityEditor.EditorApplication.isPlaying)
         {
-            doors.ForEach(door =>
-            {
-                if (door) Destroy(door.gameObject);
-            });
-            walls.ForEach(wall =>
-            {
-                if (wall) Destroy(wall.gameObject);
-            });
+            ClearWithFunc(Destroy, doors);
+            ClearWithFunc(Destroy, walls);
         }
         else
         {
-            doors.ForEach(door =>
-            {
-                if (door) DestroyImmediate(door.gameObject);
-            });
-            walls.ForEach(wall =>
-            {
-                if (wall) DestroyImmediate(wall.gameObject);
-            });
+            ClearWithFunc(DestroyImmediate, doors);
+            ClearWithFunc(DestroyImmediate, walls);
         }
 #else
-        doors.ForEach(door =>
-        {
-            if (door) Destroy(door.gameObject);
-        });
-        walls.ForEach(wall =>
-        {
-            if (wall) Destroy(wall.gameObject);
-        });
+        ClearWithFunc(Destroy, doors);
+        ClearWithFunc(Destroy, walls);
 #endif
-        walls.Clear();
-        doors.Clear();
+        void ClearWithFunc<T>(Action<GameObject> destroyFunc, List<T> toClear) where T : Component
+        {
+            toClear.ForEach(t =>
+            {
+                if (t) destroyFunc(t.gameObject);
+            });
+            toClear.Clear();
+        }
     }
 
     public void OnClear()

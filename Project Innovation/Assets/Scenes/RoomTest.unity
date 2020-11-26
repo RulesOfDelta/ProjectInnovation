@@ -417,16 +417,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1316099054918830534, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: waterSource
+      value: 
+      objectReference: {fileID: 123330215}
     - target: {fileID: 1316099054983123677, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1316099054983123678, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
-        type: 3}
-      propertyPath: waterSource
-      value: 
-      objectReference: {fileID: 123330215}
     - target: {fileID: 1316099054983123680, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: m_LocalPosition.x

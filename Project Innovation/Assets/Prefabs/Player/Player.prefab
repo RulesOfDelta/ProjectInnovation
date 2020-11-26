@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1316099054983123674}
   - component: {fileID: 1316099054983123672}
   - component: {fileID: 1316099054983123679}
-  - component: {fileID: 1316099054983123678}
+  - component: {fileID: 1316099054918830534}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -179,7 +179,7 @@ MonoBehaviour:
   maxHealth: 100
   shieldActive: 0
   shieldAngle: 90
---- !u!114 &1316099054983123678
+--- !u!114 &1316099054918830534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,10 +188,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1316099054983123677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7505a421e4b857744b3a93074e7887bd, type: 3}
+  m_Script: {fileID: 11500000, guid: b25b665c8191b6545a71c8a48b6c5bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stepDistance: 6
+  fmodEventPath: event:/Player/steps
   minWaterDist: 5
   maxWaterDist: 7
   waterFalloff:
@@ -200,26 +201,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.009546387
-      outSlope: -0.009546387
+      inSlope: 0.0018933077
+      outSlope: 0.0018933077
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.08869156
+      outWeight: 0.08525259
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -2.3537223
-      outSlope: -2.3537223
+      inSlope: -2.6148896
+      outSlope: -2.6148896
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.09272432
+      inWeight: 0.05078602
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   waterSource: {fileID: 0}
-  fmodEventPath: event:/Player/steps
 --- !u!1 &1316099055176214388
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,13 +11,24 @@ public class WalkingSound : MonoBehaviour
     [FMODUnity.EventRef]
     public string fmodEventPath;
 
+    private FMOD.Studio.EventInstance footStepInstance;
+
     void Start()
     {
         _distanceTraveled = 0;
         _oldPosition = transform.position;
         _randomStepSDistance = Random.Range(0.0f, 0.5f);
+        
+        footStepInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventPath);
+        footStepInstance.set3DAttributes(
+            FMODUnity.RuntimeUtils.To3DAttributes(_oldPosition - new Vector3(0, -0.5f, 0)));
     }
-    
+
+    private void OnDestroy()
+    {
+        footStepInstance.release();
+    }
+
     void Update()
     {
         _distanceTraveled += (transform.position - _oldPosition).magnitude;
@@ -33,13 +44,11 @@ public class WalkingSound : MonoBehaviour
 
     private void PlayFootstepSound()
     {
-        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventPath);
-        eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position - new Vector3(0,-0.5f,0)));
+        footStepInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position - new Vector3(0,-0.5f,0)));
 
-        ApplyParameters(eventInstance);
+        ApplyParameters(footStepInstance);
         
-        eventInstance.start();
-        eventInstance.release();
+        footStepInstance.start();
     }
 
     protected virtual void ApplyParameters(FMOD.Studio.EventInstance eventInstance)

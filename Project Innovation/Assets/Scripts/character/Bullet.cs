@@ -8,7 +8,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int damage = 10;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask boundsLayer;
-    [SerializeField, FMODUnity.EventRef] private string hitPath;
 
     private void Update()
     {
@@ -28,22 +27,11 @@ public class Bullet : MonoBehaviour
             var stats = other.GetComponent<EnemyHealthManagement>();
             if (stats)
                 stats.ReduceHealth(damage);
-            PlayHitSound();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if(boundsLayer.Contains(other.gameObject.layer)) Destroy(gameObject);
-    }
-
-    private void PlayHitSound()
-    {
-        var e = FMODUnity.RuntimeManager.CreateInstance(hitPath);
-        e.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-
-        e.start();
-        e.release();
-        Destroy(gameObject);
     }
 }

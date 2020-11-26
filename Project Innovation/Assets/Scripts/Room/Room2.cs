@@ -287,38 +287,26 @@ public class Room2 : MonoBehaviour
 #if UNITY_EDITOR
         if (UnityEditor.EditorApplication.isPlaying)
         {
-            doors.ForEach(door =>
-            {
-                if (door) Destroy(door.gameObject);
-            });
-            walls.ForEach(wall =>
-            {
-                if (wall) Destroy(wall.gameObject);
-            });
+            ClearWithFunc(Destroy, doors);
+            ClearWithFunc(Destroy, walls);
         }
         else
         {
-            doors.ForEach(door =>
-            {
-                if (door) DestroyImmediate(door.gameObject);
-            });
-            walls.ForEach(wall =>
-            {
-                if (wall) DestroyImmediate(wall.gameObject);
-            });
+            ClearWithFunc(DestroyImmediate, doors);
+            ClearWithFunc(DestroyImmediate, walls);
         }
 #else
-        doors.ForEach(door =>
-        {
-            if (door) Destroy(door.gameObject);
-        });
-        walls.ForEach(wall =>
-        {
-            if (wall) Destroy(wall.gameObject);
-        });
+        ClearWithFunc(Destroy, doors);
+        ClearWithFunc(Destroy, walls);
 #endif
-        walls.Clear();
-        doors.Clear();
+        void ClearWithFunc<T>(Action<GameObject> destroyFunc, List<T> toClear) where T : Component
+        {
+            toClear.ForEach(t =>
+            {
+                if (t) destroyFunc(t.gameObject);
+            });
+            toClear.Clear();
+        }
     }
 
     public void OnClear()

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{98bfd72c-6b07-4531-825a-564e63093e33}">
+		<property name="name">
+			<value>hb_quick</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d135528b-1fbb-4fc2-8dc2-81596b7154e8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{43388d62-c534-48e8-8e00-439e83ff7416}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{43388d62-c534-48e8-8e00-439e83ff7416}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

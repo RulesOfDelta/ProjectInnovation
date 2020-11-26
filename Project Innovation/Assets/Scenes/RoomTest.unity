@@ -422,11 +422,6 @@ PrefabInstance:
       propertyPath: waterSource
       value: 
       objectReference: {fileID: 123330215}
-    - target: {fileID: 1316099054983123672, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
-        type: 3}
-      propertyPath: gunCooldown
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 1316099054983123677, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: m_Name
@@ -485,11 +480,6 @@ PrefabInstance:
     - target: {fileID: 1316099054983123680, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1316099055176214391, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

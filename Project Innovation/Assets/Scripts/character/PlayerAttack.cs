@@ -7,6 +7,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletParent;
     private InputHandler handler;
+
+    [Header("Shooty settings")] [SerializeField]
+    private float gunCooldown = 3f;
     [Header("Sword settings")]
     [SerializeField] private SwordHandler sword;
     [SerializeField] private float swordAttackTime = 0.1f;
@@ -29,12 +32,26 @@ public class PlayerAttack : MonoBehaviour
         handler.DeregisterOnSword(OnSword);
     }
 
+    private bool canShoot = true;
+    
     private void OnFire()
     {
+        if (!canShoot) return;
         var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletParent)
             .GetComponent<Bullet>();
-        if(bullet) bullet.Fire(transform.forward);
+        if (bullet)
+        {
+            bullet.Fire(transform.forward);
+            StartCoroutine(ShootCooldown());
+        }
         else Debug.LogError("Bullet prefab should have a Bullet component on it");
+    }
+
+    private IEnumerator ShootCooldown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(gunCooldown);
+        canShoot = true;
     }
 
     private void OnSword()

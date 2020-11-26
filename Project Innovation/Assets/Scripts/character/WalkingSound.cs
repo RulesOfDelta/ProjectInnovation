@@ -49,6 +49,7 @@ public class WalkingSound : MonoBehaviour
 
     private float SampleParamVal()
     {
+        if (!waterSource) return 0f;
         var dist = Vector3.Distance(transform.position, waterSource.position);
         if (dist < minWaterDist) return 1f;
         if (dist > maxWaterDist) return 0f;

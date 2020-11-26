@@ -15,10 +15,14 @@ public class EnemySpawner : MonoBehaviour
     
     private List<GameObject> enemies;
 
+    private void Awake()
+    {
+        enemies = new List<GameObject>();
+    }
+
     private void Start()
     {
         room = GetComponent<Room2>();
-        enemies = new List<GameObject>();
     }
 
     // private void SpawnEnemyIntervals()

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{ce038d2f-66c8-4c19-9669-7fe7f8359f30}">
+		<property name="name">
+			<value>hb_slow</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d135528b-1fbb-4fc2-8dc2-81596b7154e8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6fb6f22c-f8f7-4be5-8c50-72c890f2c7f3}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6fb6f22c-f8f7-4be5-8c50-72c890f2c7f3}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{6fbc630c-e172-4c1a-bf98-8344a573ccdc}">
+		<property name="name">
+			<value>OffPath</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d135528b-1fbb-4fc2-8dc2-81596b7154e8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{738e96b0-c54d-4217-8e8f-91e153e21a09}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{738e96b0-c54d-4217-8e8f-91e153e21a09}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

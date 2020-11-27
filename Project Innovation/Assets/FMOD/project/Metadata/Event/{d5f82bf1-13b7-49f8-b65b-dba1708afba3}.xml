@@ -92,9 +92,6 @@
 		<property name="isAsync">
 			<value>true</value>
 		</property>
-		<property name="start">
-			<value>0.012660550458715596</value>
-		</property>
 		<property name="length">
 			<value>0.42733944954128439</value>
 		</property>
@@ -153,16 +150,10 @@
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>
 		</property>
-		<property name="amount">
-			<value>17.5</value>
-		</property>
 	</object>
 	<object class="RandomizerModulator" id="{ff66504b-07d0-42ec-a7b4-50ef9da1bdc1}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>startOffset</value>
-		</property>
-		<property name="amount">
-			<value>16</value>
 		</property>
 	</object>
 	<object class="SingleSound" id="{95862a77-60be-4f12-a939-8cb9ed86b0ed}">
@@ -376,7 +367,6 @@
 		<property name="name">
 			<value>Name</value>
 		</property>
-		<property name="value" />
 		<property name="dataType">
 			<value>0</value>
 		</property>
@@ -385,7 +375,6 @@
 		<property name="name">
 			<value>SourcePos</value>
 		</property>
-		<property name="value" />
 		<property name="dataType">
 			<value>-2</value>
 		</property>
@@ -548,7 +537,6 @@
 		<property name="name">
 			<value>OverallGain</value>
 		</property>
-		<property name="value" />
 		<property name="dataType">
 			<value>-1</value>
 		</property>

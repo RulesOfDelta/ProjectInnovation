@@ -1,4 +1,4 @@
-﻿
+﻿using UnityEditor;
 using UnityEngine;
 
 public static class ExtensionMethodsTobias
@@ -21,5 +21,18 @@ public static class ExtensionMethodsTobias
     public static bool Contains(this LayerMask mask, int layer)
     {
         return mask == (mask | (1 << layer));
+    }
+
+    public static FMOD.Studio.EventInstance CreateSound(this string path)
+    {
+        return FMODUnity.RuntimeManager.CreateInstance(path);
+    }
+
+    public static void PlayAtPos(this FMOD.Studio.EventInstance instance, Vector3 pos)
+    {
+        instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(pos));
+
+        instance.start();
+        instance.release();
     }
 }

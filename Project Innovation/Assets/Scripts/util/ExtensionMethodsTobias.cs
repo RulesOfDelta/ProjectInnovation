@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public static class ExtensionMethodsTobias
@@ -36,5 +37,10 @@ public static class ExtensionMethodsTobias
     {
         instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(pos));
         instance.start();
+    }
+
+    public static T Random<T>(this IList<T> l)
+    {
+        return l[UnityEngine.Random.Range(0, l.Count)];
     }
 }

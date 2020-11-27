@@ -97,5 +97,10 @@ PrefabInstance:
       propertyPath: fmodEventPath
       value: event:/Monsters/Spider/Spider_Walk
       objectReference: {fileID: 0}
+    - target: {fileID: 5797488197233397585, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: stepDistance
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df372e13d6d87394687c8fa47edc6d54, type: 3}

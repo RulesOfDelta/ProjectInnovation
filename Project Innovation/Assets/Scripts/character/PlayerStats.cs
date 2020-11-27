@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -7,20 +8,24 @@ public class PlayerStats : MonoBehaviour
     [FMODUnity.EventRef, SerializeField] private string hitSoundSword, hitSoundShield;
     [SerializeField] private float maxHealth;
     private float health;
-    
+
     private InputHandler controls;
     public bool shieldActive;
     public int shieldAngle = 90;
-    
-    public enum AttackMethod {Sword, Shield}
-    
+
+    public enum AttackMethod
+    {
+        Sword,
+        Shield
+    }
+
     public float Health
     {
         get => health;
         set
         {
             health = Mathf.Min(value, maxHealth);
-            if(health <= 0f) OnDeath();
+            if (health <= 0f) OnDeath();
         }
     }
 
@@ -48,14 +53,14 @@ public class PlayerStats : MonoBehaviour
             PlayHitSound(attackMethod);
         }
     }
-    
+
     private void ToggleShield(InputHandler.ButtonAction action)
     {
         if (action == InputHandler.ButtonAction.Down)
         {
             Debug.Log("Shield active");
             shieldActive = true;
-        } 
+        }
         else if (action == InputHandler.ButtonAction.Up)
         {
             Debug.Log("Shield inactive");
@@ -65,9 +70,9 @@ public class PlayerStats : MonoBehaviour
 
     private void PlayHitSound(AttackMethod attackMethod)
     {
-        FMOD.Studio.EventInstance attackSound;
-        if (attackMethod == AttackMethod.Sword) attackSound = hitSoundSword.CreateSound();
-        else attackSound = hitSoundShield.CreateSound();
+        var attackSound = attackMethod == AttackMethod.Sword
+            ? hitSoundSword.CreateSound()
+            : hitSoundShield.CreateSound();
         attackSound.start();
         attackSound.release();
     }

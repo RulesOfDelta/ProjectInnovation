@@ -43,16 +43,14 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            foreach (var enemyPrefab in enemyPrefabs)
-            {
-                Vector3 spawnPoint = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2),
-                    vectorToGround.y + enemyPrefab.transform.localScale.y,
-                    Random.Range(-spawnArea.y / 2, spawnArea.y / 2));
-                var enemy = Instantiate(enemyPrefab, spawnPoint,
-                    Quaternion.identity * Quaternion.Euler(0, Random.rotation.eulerAngles.y, 0));
-                enemy.GetComponent<EnemyRemoveNotifier>().AddEvent(OnRemoveEnemy);
-                enemies.Add(enemy);
-            }
+            var enemyPrefab = enemyPrefabs.Random();
+            Vector3 spawnPoint = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2),
+                vectorToGround.y + enemyPrefab.transform.localScale.y,
+                Random.Range(-spawnArea.y / 2, spawnArea.y / 2));
+            var enemy = Instantiate(enemyPrefab, spawnPoint,
+                Quaternion.identity * Quaternion.Euler(0, Random.rotation.eulerAngles.y, 0));
+            enemy.GetComponent<EnemyRemoveNotifier>().AddEvent(OnRemoveEnemy);
+            enemies.Add(enemy);
         }
     }
 

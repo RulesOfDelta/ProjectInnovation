@@ -70,10 +70,12 @@ public class EnemyAttack : MonoBehaviour
                             playerStats.Damage(damage, PlayerStats.AttackMethod.Sword);
                             attackInstance.PlayAtPos(transform.position);
                         }
+                        else
+                            playerStats.Damage(0, PlayerStats.AttackMethod.Shield);
                     }
                     else
                     {
-                        playerStats.Damage(damage, PlayerStats.AttackMethod.Shield);
+                        playerStats.Damage(damage, PlayerStats.AttackMethod.Sword);
                         if(hasAttackSound)
                              attackInstance.PlayAtPos(transform.position);
                     }

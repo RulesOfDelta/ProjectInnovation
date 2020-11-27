@@ -21,6 +21,7 @@ public class Door : MonoBehaviour
 
     private void OnDestroy()
     {
+        doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         doorSoundInstance.release();
     }
 

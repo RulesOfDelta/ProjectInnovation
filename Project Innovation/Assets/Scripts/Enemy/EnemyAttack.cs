@@ -23,8 +23,8 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         if(hasAttackSound)
-            attackInstance = FMODUnity.RuntimeManager.CreateInstance(attackSound);
-        prepareInstance = FMODUnity.RuntimeManager.CreateInstance(prepareSound);
+            attackInstance = attackSound.CreateSound();
+        prepareInstance = prepareSound.CreateSound();
         
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
     }

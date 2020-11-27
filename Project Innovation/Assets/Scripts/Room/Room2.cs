@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class Room2 : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    private PlayerMusicHandler playerMusicHandler;
 
     [SerializeField] private float minSize = 15f;
     [SerializeField] private float maxSize = 50f;
@@ -37,10 +38,18 @@ public class Room2 : MonoBehaviour
     [SerializeField, Min(0f)] private float enemySpawnPerSqrUnit;
     private EnemySpawner enemySpawner;
 
+    private void Awake()
+    {
+        if (walls == null) walls = new List<Transform>();
+        if(doors == null) doors = new List<Door>();
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
-        if (!enemySpawner) enemySpawner = GetComponent<EnemySpawner>();
+        enemySpawner = GetComponent<EnemySpawner>();
+        playerMusicHandler = player.GetComponent<PlayerMusicHandler>();
+        playerMusicHandler.InsertDoors(doors);
         Generate();
     }
 
@@ -168,6 +177,8 @@ public class Room2 : MonoBehaviour
         var spawnY = y * enemySpawnPercentageY;
         var enemyCount = Mathf.CeilToInt(spawnX * spawnY * enemySpawnPerSqrUnit);
         enemySpawner.SpawnEnemies(enemyCount, new Vector2(spawnX, spawnY));
+        
+        playerMusicHandler.OnGenerate();
     }
 
     private void SplitWallAtEnd(IList<Wall> wallList)
@@ -322,5 +333,6 @@ public class Room2 : MonoBehaviour
         {
             if(door) door.OnAllEnemiesClear();
         }
+        playerMusicHandler.OnClear();
     }
 }

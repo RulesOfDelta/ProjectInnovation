@@ -620,55 +620,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96f3ba93a9c1c674b8a15bce48b22f12, type: 3}
---- !u!1 &1841732629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1316099054983123677, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
-    type: 3}
-  m_PrefabInstance: {fileID: 819664888571445944}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1841732639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841732629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc64aca77a4bc84f9a15ccd92d26878, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  directBinaural: 1
-  interpolation: 0
-  physicsBasedAttenuation: 0
-  airAbsorption: 0
-  dipoleWeight: 0
-  dipolePower: 0
-  occlusionMode: 0
-  occlusionMethod: 0
-  sourceRadius: 1
-  occlusionSamples: 16
-  directMixLevel: 1
-  reflections: 0
-  indirectBinaural: 0
-  physicsBasedAttenuationForIndirect: 1
-  indirectMixLevel: 1
-  simulationType: 0
-  uniqueIdentifier: Footsteps
-  avoidSilenceDuringInit: 0
-  overrideHRTFIndex: 0
-  hrtfIndex: 0
-  bakingRadius: 4
-  useAllProbeBoxes: 0
-  probeBoxes: []
-  bakedProbeNames: []
-  bakedProbeDataSizes: 
-  bakedDataSize: 0
-  bakedStatsFoldout: 0
-  bakeToggle: 0
-  bakedDataIdentifier:
-    identifier: 0
-    type: 0
 --- !u!1 &2053292843
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efe840488645874d88cc5215f09a1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 0}
+  enemyPrefabs: []
   spawnInterval: 0
   minEnemiesSpawned: 1
   maxEnemiesSpawned: 25

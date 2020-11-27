@@ -67,7 +67,6 @@ GameObject:
   - component: {fileID: 8315665663182099409}
   - component: {fileID: 8315665663182099408}
   - component: {fileID: 8315665663182099411}
-  - component: {fileID: 4164770589671098107}
   - component: {fileID: -5053553500449530413}
   m_Layer: 0
   m_Name: Door
@@ -166,31 +165,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 8192
---- !u!114 &4164770589671098107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8315665663182099410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  Event: event:/Humming
-  PlayEvent: 1
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params:
-  - Name: HumVolume
-    Value: 1
-  OverrideAttenuation: 0
-  OverrideMinDistance: 0
-  OverrideMaxDistance: 0
+  doorSound: event:/Humming
 --- !u!114 &-5053553500449530413
 MonoBehaviour:
   m_ObjectHideFlags: 0

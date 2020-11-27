@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b18870a81521e848af61f4647457ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSound: event:/Player/Pl_GetHit
   maxHealth: 100
   shieldActive: 0
   shieldAngle: 90

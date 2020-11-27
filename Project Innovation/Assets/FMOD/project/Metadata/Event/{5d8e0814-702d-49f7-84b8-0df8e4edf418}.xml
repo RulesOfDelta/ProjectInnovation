@@ -124,6 +124,9 @@
 		<property name="length">
 			<value>0.17999999999999999</value>
 		</property>
+		<property name="playlistMode">
+			<value>1</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{ce25ad30-a275-49b4-bffe-3d8d9500db4f}</destination>
 			<destination>{b2294bbd-abde-48af-b788-e0bd28fc2b14}</destination>
@@ -301,7 +304,7 @@
 			<value>AirAbsorption</value>
 		</property>
 		<property name="value">
-			<value>false</value>
+			<value>true</value>
 		</property>
 	</object>
 	<object class="IntPluginParameter" id="{3d48a448-10bd-4509-9798-bc2cfe1c5b84}">
@@ -359,7 +362,7 @@
 			<value>Indirect</value>
 		</property>
 		<property name="value">
-			<value>false</value>
+			<value>true</value>
 		</property>
 	</object>
 	<object class="BoolPluginParameter" id="{32ad51fe-d942-43d9-8b10-ca83e8a37a12}">
@@ -367,7 +370,7 @@
 			<value>IndirBinaural</value>
 		</property>
 		<property name="value">
-			<value>false</value>
+			<value>true</value>
 		</property>
 	</object>
 	<object class="FloatPluginParameter" id="{2759a075-c2c0-4826-8c0f-0f6880edb849}">

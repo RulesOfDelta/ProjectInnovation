@@ -38,14 +38,14 @@ public class PlayerStats : MonoBehaviour
         // Debug.Log("omfg he fuckin dedd");
     }
 
-    public void Damage(float amount)
+    public void Damage(float amount, AttackMethod attackMethod)
     {
         Health -= amount;
         Debug.Log("Damage player");
         if (Health > 0f)
         {
             // Play sound
-            PlayHitSound();
+            PlayHitSound(attackMethod);
         }
     }
     
@@ -66,8 +66,8 @@ public class PlayerStats : MonoBehaviour
     private void PlayHitSound(AttackMethod attackMethod)
     {
         FMOD.Studio.EventInstance attackSound;
-        if(attackMethod == AttackMethod.Sword) attackSound = FMODUnity.RuntimeManager.CreateInstance(hitSoundSword);
-        else attackSound = attackSound = FMODUnity.RuntimeManager.CreateInstance(hitSoundShield);
+        if (attackMethod == AttackMethod.Sword) attackSound = hitSoundSword.CreateSound();
+        else attackSound = hitSoundShield.CreateSound();
         attackSound.start();
         attackSound.release();
     }

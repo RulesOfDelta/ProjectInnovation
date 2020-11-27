@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
     private bool attacking = false;
     
     [FMODUnity.EventRef]
-    public string fmodEventPath;
+    public string swordEventPath;
 
     private FMOD.Studio.EventInstance swordSound;
     
@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
             handler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         handler.RegisterOnFire(OnFire);
         handler.RegisterOnSword(OnSword);
-        swordSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventPath);
+        swordSound = FMODUnity.RuntimeManager.CreateInstance(swordEventPath);
     }
     
     private void OnDestroy()

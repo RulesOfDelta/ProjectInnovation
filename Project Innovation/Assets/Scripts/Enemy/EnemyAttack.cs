@@ -62,13 +62,17 @@ public class EnemyAttack : MonoBehaviour
                     {
                         Vector3 differenceVector = transform.position - playerStats.transform.position;
                         float angle = Vector3.Angle(differenceVector, playerStats.transform.forward);
-                        if (angle > playerStats.shieldAngle) playerStats.Damage(damage);
+                        if (angle > playerStats.shieldAngle)
+                        {
+                            playerStats.Damage(damage, PlayerStats.AttackMethod.Sword);
+                            attackInstance.PlayAtPos(transform.position);
+                        }
                     }
                     else
                     {
-                        playerStats.Damage(damage);
+                        playerStats.Damage(damage, PlayerStats.AttackMethod.Shield);
                         if(hasAttackSound)
-                            attackInstance.PlayAtPos(transform.position);
+                             attackInstance.PlayAtPos(transform.position);
                     }
                 }
                 yield return new WaitForSeconds(attackInterval);

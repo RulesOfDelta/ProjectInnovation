@@ -16,6 +16,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float swordAttackCooldown = 1f;
 
     private bool attacking = false;
+    
+    [FMODUnity.EventRef]
+    public string swordEventPath;
+
+    private FMOD.Studio.EventInstance swordSound;
+    
 
     private void Start()
     {
@@ -24,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
             handler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         handler.RegisterOnFire(OnFire);
         handler.RegisterOnSword(OnSword);
+        swordSound = FMODUnity.RuntimeManager.CreateInstance(swordEventPath);
     }
     
     private void OnDestroy()
@@ -63,6 +70,7 @@ public class PlayerAttack : MonoBehaviour
     private void SwordAttack()
     {
         if (attacking) return;
+        swordSound.start();
         sword.gameObject.SetActive(true);
         attacking = true;
         StartCoroutine(Disable());

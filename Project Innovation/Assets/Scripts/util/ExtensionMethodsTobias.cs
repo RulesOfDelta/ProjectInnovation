@@ -31,8 +31,6 @@ public static class ExtensionMethodsTobias
     public static void PlayAtPos(this FMOD.Studio.EventInstance instance, Vector3 pos)
     {
         instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(pos));
-
         instance.start();
-        instance.release();
     }
 }

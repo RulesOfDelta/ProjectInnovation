@@ -25,6 +25,10 @@ public static class ExtensionMethodsTobias
 
     public static FMOD.Studio.EventInstance CreateSound(this string path)
     {
+        if (string.IsNullOrEmpty(path))
+        {
+            Debug.LogError("path is empty");
+        }
         return FMODUnity.RuntimeManager.CreateInstance(path);
     }
 

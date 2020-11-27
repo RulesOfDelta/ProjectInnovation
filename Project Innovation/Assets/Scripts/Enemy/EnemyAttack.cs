@@ -25,6 +25,9 @@ public class EnemyAttack : MonoBehaviour
         if(hasAttackSound)
             attackInstance = attackSound.CreateSound();
         prepareInstance = prepareSound.CreateSound();
+
+        attackInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        prepareInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
         
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
     }

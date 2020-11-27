@@ -145,7 +145,9 @@ MonoBehaviour:
   attackInterval: 1
   damage: 10
   showDebugInfo: 1
-  attackSound: event:/Monsters/Skeleton/Sk_preparePunch
+  hasAttackSound: 0
+  attackSound: 
+  prepareSound: event:/Monsters/Skeleton/Sk_preparePunch
 --- !u!114 &2818199464910742327
 MonoBehaviour:
   m_ObjectHideFlags: 0

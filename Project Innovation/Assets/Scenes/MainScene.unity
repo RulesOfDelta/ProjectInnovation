@@ -310,7 +310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &686503165
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -453,11 +453,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2180861421346825547, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 1705878588738581136, guid: b357d24e9bd085746870b463f86f2a76,
+        type: 3}
     - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 45874866}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: minSize
+      value: 22.222
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: maxSize
+      value: 44.444
+      objectReference: {fileID: 0}
     - target: {fileID: 4418598227391175933, guid: b8702a98fdb547d48bd58f795c6057ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -521,7 +537,7 @@ PrefabInstance:
     - target: {fileID: 4418598227391175935, guid: b8702a98fdb547d48bd58f795c6057ea,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4418598227992029691, guid: b8702a98fdb547d48bd58f795c6057ea,
         type: 3}
@@ -600,7 +616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2053292844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,6 +631,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 0}
   spawnInterval: 0
+  minEnemiesSpawned: 1
+  maxEnemiesSpawned: 25
 --- !u!4 &2053292845
 Transform:
   m_ObjectHideFlags: 0
@@ -821,7 +839,7 @@ PrefabInstance:
     - target: {fileID: 1316099054983123684, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: maxVelocity
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1316099055176214385, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}

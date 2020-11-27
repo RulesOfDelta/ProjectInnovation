@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [FMODUnity.EventRef, SerializeField] private string hitSound;
+    [FMODUnity.EventRef, SerializeField] private string hitSoundSword, hitSoundShield;
     [SerializeField] private float maxHealth;
     private float health;
     
     private InputHandler controls;
     public bool shieldActive;
     public int shieldAngle = 90;
+    
+    public enum AttackMethod {Sword, Shield}
     
     public float Health
     {
@@ -61,10 +63,12 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void PlayHitSound()
+    private void PlayHitSound(AttackMethod attackMethod)
     {
-        var eventInstance = FMODUnity.RuntimeManager.CreateInstance(hitSound);
-        eventInstance.start();
-        eventInstance.release();
+        FMOD.Studio.EventInstance attackSound;
+        if(attackMethod == AttackMethod.Sword) attackSound = FMODUnity.RuntimeManager.CreateInstance(hitSoundSword);
+        else attackSound = attackSound = FMODUnity.RuntimeManager.CreateInstance(hitSoundShield);
+        attackSound.start();
+        attackSound.release();
     }
 }

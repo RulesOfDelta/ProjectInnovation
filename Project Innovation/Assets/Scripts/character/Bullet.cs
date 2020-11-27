@@ -26,7 +26,10 @@ public class Bullet : MonoBehaviour
         {
             var stats = other.GetComponent<EnemyHealthManagement>();
             if (stats)
+            {
                 stats.ReduceHealth(damage);
+                Destroy(gameObject);
+            }
         }
     }
 

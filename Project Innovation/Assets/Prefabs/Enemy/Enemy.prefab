@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 284317916417099805}
   - component: {fileID: 1804844888}
   - component: {fileID: -869707410504913764}
+  - component: {fileID: 5797488197233397585}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -140,9 +141,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 5
+  chargeTime: 0.2
   attackInterval: 1
   damage: 10
   showDebugInfo: 1
+  attackSound: 
 --- !u!114 &284317916417099805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
+  damageSound: 
+  deathSound: 
 --- !u!54 &1804844888
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,3 +189,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37fd4873da28ac4408eaea45b921d54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5797488197233397585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693557877149292986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7505a421e4b857744b3a93074e7887bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepDistance: 1.2
+  fmodEventPath: 

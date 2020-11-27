@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - InputHandler
+  - Puddle
   layers:
   - Default
   - TransparentFX

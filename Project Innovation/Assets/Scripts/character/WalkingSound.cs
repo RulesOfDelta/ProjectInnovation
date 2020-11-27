@@ -7,6 +7,7 @@ public class WalkingSound : MonoBehaviour
     private Vector3 _oldPosition;
     public float stepDistance = 1.2f;
     private float _randomStepSDistance;
+    protected GameObject[] puddles;
 
     [FMODUnity.EventRef]
     public string fmodEventPath;
@@ -16,6 +17,7 @@ public class WalkingSound : MonoBehaviour
         _distanceTraveled = 0;
         _oldPosition = transform.position;
         _randomStepSDistance = Random.Range(0.0f, 0.5f);
+        puddles = GameObject.FindGameObjectsWithTag("Puddle");
     }
     
     void Update()

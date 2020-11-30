@@ -130,7 +130,7 @@
 	</object>
 	<object class="SingleSound" id="{6d2111c4-95d4-437d-bcf9-82ee0ef2ab9d}">
 		<property name="length">
-			<value>14.300000000000001</value>
+			<value>12.923076923076923</value>
 		</property>
 		<property name="quantizationInterval">
 			<value>1</value>
@@ -144,10 +144,10 @@
 	</object>
 	<object class="SingleSound" id="{d675a563-b6f4-44d1-81ca-7cbd55493705}">
 		<property name="start">
-			<value>14.800000000000001</value>
+			<value>14.76923076923077</value>
 		</property>
 		<property name="length">
-			<value>22.199999999999999</value>
+			<value>22.153846153846157</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>14.9</value>
@@ -158,10 +158,10 @@
 	</object>
 	<object class="SingleSound" id="{ac354bfc-97e1-4906-9e48-2bb1813cbdad}">
 		<property name="start">
-			<value>37.600000000000001</value>
+			<value>38.769230769230774</value>
 		</property>
 		<property name="length">
-			<value>22.200000000000003</value>
+			<value>22.153846153846153</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>66.399999999999963</value>
@@ -209,7 +209,10 @@
 			<value>0</value>
 		</property>
 		<property name="length">
-			<value>14.300000000000001</value>
+			<value>12.923076923076923</value>
+		</property>
+		<property name="quantizationInterval">
+			<value>2</value>
 		</property>
 		<property name="looping">
 			<value>2</value>
@@ -226,10 +229,13 @@
 	</object>
 	<object class="LoopRegion" id="{b344e833-1873-461d-b20e-dcfff32b4dfe}">
 		<property name="position">
-			<value>14.800000000000001</value>
+			<value>14.76923076923077</value>
 		</property>
 		<property name="length">
-			<value>22.199999999999999</value>
+			<value>22.153846153846157</value>
+		</property>
+		<property name="quantizationInterval">
+			<value>2</value>
 		</property>
 		<property name="looping">
 			<value>2</value>
@@ -246,10 +252,13 @@
 	</object>
 	<object class="LoopRegion" id="{27e9d104-d877-4e6c-9299-809bf8154685}">
 		<property name="position">
-			<value>37.600000000000001</value>
+			<value>38.769230769230774</value>
 		</property>
 		<property name="length">
-			<value>22.200000000000003</value>
+			<value>22.153846153846153</value>
+		</property>
+		<property name="quantizationInterval">
+			<value>2</value>
 		</property>
 		<property name="looping">
 			<value>2</value>
@@ -334,8 +343,8 @@
 			<destination>{e539cb5f-e806-422d-91f9-59eadf1c0d8e}</destination>
 		</relationship>
 		<relationship name="automationPoints">
-			<destination>{7622351e-c7a0-4e61-94b4-56055712d924}</destination>
 			<destination>{bca7e46e-9c1b-4da6-842d-6456e8ff596a}</destination>
+			<destination>{d3cde224-0247-4f47-a680-f1f5fdb9cfdf}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{288eb87d-2b5b-49de-84ab-068a5363224c}" />
@@ -358,20 +367,20 @@
 			<value>0</value>
 		</property>
 	</object>
-	<object class="AutomationPoint" id="{7622351e-c7a0-4e61-94b4-56055712d924}">
+	<object class="AutomationPoint" id="{bca7e46e-9c1b-4da6-842d-6456e8ff596a}">
 		<property name="position">
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>-80</value>
 		</property>
 	</object>
-	<object class="AutomationPoint" id="{bca7e46e-9c1b-4da6-842d-6456e8ff596a}">
+	<object class="AutomationPoint" id="{d3cde224-0247-4f47-a680-f1f5fdb9cfdf}">
 		<property name="position">
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>-80</value>
+			<value>0</value>
 		</property>
 	</object>
 </objects>

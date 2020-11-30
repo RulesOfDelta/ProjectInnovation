@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -27,8 +28,8 @@ public class EnemyAttack : MonoBehaviour
             attackInstance = attackSound.CreateSound();
         prepareInstance = prepareSound.CreateSound();
 
-        attackInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-        prepareInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        attackInstance.set3DAttributes(transform.position.To3DAttributes());
+        prepareInstance.set3DAttributes(transform.position.To3DAttributes());
 
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
     }

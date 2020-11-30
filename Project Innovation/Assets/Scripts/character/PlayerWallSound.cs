@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerWallSound : MonoBehaviour
 {
     [SerializeField] private LayerMask playerWallMask;
     [SerializeField] private float minVelocity = 1f;
     [FMODUnity.EventRef, SerializeField] private string wallHitEvent;
+    [SerializeField] private float soundDist = 2.5f;
     [SerializeField] private InputHandler inputHandler;
 
     [FMODUnity.EventRef, SerializeField] private string hummingSound;
@@ -50,12 +49,14 @@ public class PlayerWallSound : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        // Debug.Log("Collision");
-        // if (playerWallMask.Contains(other.gameObject.layer) && 
-        //     other.relativeVelocity.magnitude > minVelocity)
-        // {
-        //     Debug.Log("Play Sound");
-        //     FMODUnity.RuntimeManager.PlayOneShot(wallHitEvent, other.GetContact(0).point);
-        // }
+        if (playerWallMask.Contains(other.gameObject.layer))
+        {
+            var point = other.GetContact(0).point;
+            Debug.Log($"point {point} pos {transform.position}");
+            point.y = transform.position.y;
+            point += (point - transform.position).normalized * soundDist;
+            Debug.Log($"sound pos {point}");
+            FMODUnity.RuntimeManager.PlayOneShot(wallHitEvent, point);
+        }
     }
 }

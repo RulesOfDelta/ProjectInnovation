@@ -8,6 +8,9 @@ public class MusicHandler : MonoBehaviour
     [FMODUnity.EventRef, SerializeField] private string restMusicPath;
     private FMOD.Studio.EventInstance restInstance;
 
+    [FMODUnity.EventRef, SerializeField] private string fightMusicPath;
+    private FMOD.Studio.EventInstance fightInstance;
+
     public enum MusicState
     {
         Rest,
@@ -18,6 +21,8 @@ public class MusicHandler : MonoBehaviour
     {
         restInstance = restMusicPath.CreateSound();
         restInstance.setParameterByName("RestVolume", 1f);
+        fightInstance = fightMusicPath.CreateSound();
+        fightInstance.setParameterByName("")
     }
 
     private MusicState musicState;
@@ -32,6 +37,15 @@ public class MusicHandler : MonoBehaviour
             SwitchMusic(musicState);
         }
     }
+
+    [Serializable]
+    private struct IntensityLevel
+    {
+        public float HealthLevel;
+        public int Intensity;
+    }
+
+    [SerializeField] private List<IntensityLevel> intensityLevels;
 
     private void SwitchMusic(MusicState newState)
     {
@@ -60,5 +74,10 @@ public class MusicHandler : MonoBehaviour
         val = Mathf.Clamp01(val);
         restInstance.setParameterByName("OnPath", val);
         restInstance.setParameterByName("OffPath", 1f - val);
+    }
+
+    public void HealthCallback(float newHealth)
+    {
+        
     }
 }

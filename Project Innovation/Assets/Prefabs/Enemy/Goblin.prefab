@@ -37,6 +37,11 @@ PrefabInstance:
       propertyPath: chargeTime
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: heartbeatRadius
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
         type: 3}
       propertyPath: m_LocalPosition.x

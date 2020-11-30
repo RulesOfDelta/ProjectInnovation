@@ -144,8 +144,11 @@ MonoBehaviour:
   chargeTime: 0.2
   attackInterval: 1
   damage: 10
+  heartbeatRadius: 16
   showDebugInfo: 1
+  hasAttackSound: 0
   attackSound: 
+  prepareSound: 
 --- !u!114 &284317916417099805
 MonoBehaviour:
   m_ObjectHideFlags: 0

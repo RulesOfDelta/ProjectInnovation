@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
 
     private Room2 room;
     
-    private List<GameObject> enemies;
+    private  List<GameObject> enemies;
 
     private void Awake()
     {
@@ -87,4 +87,9 @@ public class EnemySpawner : MonoBehaviour
     // {
     //     spawnArea = new Vector3(area.x, 0, area.z);
     // }
+
+    public List<GameObject> GetEnemies()
+    {
+        return enemies;
+    }
 }

@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
 {
     [FMODUnity.EventRef, SerializeField] private string hitSoundSword, hitSoundShield;
     [SerializeField] private float maxHealth;
+    [SerializeField] private MusicHandler musicHandler;
     private float health;
 
     private InputHandler controls;
@@ -26,6 +27,7 @@ public class PlayerStats : MonoBehaviour
         {
             health = Mathf.Min(value, maxHealth);
             if (health <= 0f) OnDeath();
+            else musicHandler.HealthCallback(health);
         }
     }
 

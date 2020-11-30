@@ -11,20 +11,25 @@ public class MusicHandler : MonoBehaviour
     [FMODUnity.EventRef, SerializeField] private string fightMusicPath;
     private FMOD.Studio.EventInstance fightInstance;
 
+    [SerializeField, Range(0f, 1f)] private float battleVolume;
+
     public enum MusicState
     {
         Rest,
         Fight
     }
 
-    private void Start()
+    private void Awake()
     {
         restInstance = restMusicPath.CreateSound();
         restInstance.setParameterByName("RestVolume", 1f);
+        
         fightInstance = fightMusicPath.CreateSound();
-        fightInstance.setParameterByName("BattleMusic", 0);
-        fightInstance.setParameterByName("BattleVolume", 1f);
+        fightInstance.setParameterByName("BattleMusic", 1);
+        fightInstance.setParameterByName("BattleVolume", battleVolume);
         fightInstance.setParameterByName("BattleIntensity", 0);
+
+        State = MusicState.Fight;
     }
 
     private MusicState musicState;
@@ -55,9 +60,11 @@ public class MusicHandler : MonoBehaviour
         {
             case MusicState.Rest:
                 restInstance.start();
+                fightInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 break;
             case MusicState.Fight:
                 restInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                fightInstance.start();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);

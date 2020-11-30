@@ -194,6 +194,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8040309794444029618, guid: 6dbe4e07036b7d34c89702ce8ba70090,
+        type: 3}
+      propertyPath: fightMusicPath
+      value: event:/BackgroundMusic/BattleMusic
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dbe4e07036b7d34c89702ce8ba70090, type: 3}
 --- !u!1 &598718222 stripped
@@ -808,6 +813,11 @@ PrefabInstance:
       propertyPath: hitSoundShield
       value: event:/Player/Fighting/shield
       objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123679, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: musicHandler
+      value: 
+      objectReference: {fileID: 1612797831}
     - target: {fileID: 1316099054983123680, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: m_LocalPosition.x

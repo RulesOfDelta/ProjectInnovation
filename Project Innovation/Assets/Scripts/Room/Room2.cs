@@ -56,10 +56,7 @@ public class Room2 : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            Generate();
-        }
+        
     }
 
     private void OnValidate()

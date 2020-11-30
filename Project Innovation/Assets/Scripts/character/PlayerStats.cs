@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using FMOD.Studio;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerStats : MonoBehaviour
 {
-    [FMODUnity.EventRef, SerializeField] private string hitSoundSword, hitSoundShield;
+    [FMODUnity.EventRef, SerializeField] private string hitSoundSword, hitSoundShield, moveShieldUp, moveShieldDown, hiddenSound;
     [SerializeField] private float maxHealth;
     [SerializeField] private MusicHandler musicHandler;
     private float health;
@@ -13,6 +14,9 @@ public class PlayerStats : MonoBehaviour
     private InputHandler controls;
     public bool shieldActive;
     public int shieldAngle = 90;
+    
+    //Very important
+    public InputHandler test;
 
     public enum AttackMethod
     {
@@ -37,6 +41,7 @@ public class PlayerStats : MonoBehaviour
         if (!controls)
             controls = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         controls.RegisterOnShield(ToggleShield);
+        controls.RegisterOnHidden(FatAssFart);
     }
 
     private void OnDeath()
@@ -61,12 +66,14 @@ public class PlayerStats : MonoBehaviour
     {
         if (action == InputHandler.ButtonAction.Down)
         {
-            Debug.Log("Shield active");
+            var moveShieldUpSound = moveShieldUp.CreateSound();
+            moveShieldUpSound.start();
             shieldActive = true;
         }
         else if (action == InputHandler.ButtonAction.Up)
         {
-            Debug.Log("Shield inactive");
+            var moveShieldDownSound = moveShieldDown.CreateSound();
+            moveShieldDownSound.start();
             shieldActive = false;
         }
     }
@@ -78,5 +85,12 @@ public class PlayerStats : MonoBehaviour
             : hitSoundShield.CreateSound();
         attackSound.start();
         attackSound.release();
+    }
+
+    private void FatAssFart()
+    {
+        var hiddenSoundInstance = hiddenSound.CreateSound();
+        hiddenSoundInstance.start();
+        Debug.Log("asdifujasiopdfuaspoidfpaosidfpasodif");
     }
 }

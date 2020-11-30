@@ -5,7 +5,7 @@
 			<value>ShieldDOWN</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{03ccf8d5-9f4f-454b-b42b-cb02fd1ac97a}</destination>
@@ -142,7 +142,6 @@
 	<object class="MixerBusEffectChain" id="{d33b1eec-2538-458f-a5fa-f663a566eb35}">
 		<relationship name="effects">
 			<destination>{3a492b23-b3ea-4786-b5e3-182187d9cacc}</destination>
-			<destination>{734544ad-3db3-402f-8bc5-7773aaae3b5a}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{3a4cb975-02c6-4cbd-a480-e6f9871ff331}" />
@@ -187,7 +186,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{be8134c1-ee59-4674-a565-5088405471f0}" />
 	<object class="MixerBusFader" id="{3a492b23-b3ea-4786-b5e3-182187d9cacc}" />
-	<object class="SpatialiserEffect" id="{734544ad-3db3-402f-8bc5-7773aaae3b5a}" />
 	<object class="AutomationPoint" id="{49a428e0-843d-4316-a78b-8ccb7ccc2622}">
 		<property name="position">
 			<value>0.45000000000000001</value>
@@ -233,7 +231,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-12.0485229</value>
+			<value>-10</value>
 		</property>
 		<property name="curveShape">
 			<value>-0.404369265</value>
@@ -244,7 +242,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>5</value>
+			<value>0</value>
 		</property>
 	</object>
 </objects>

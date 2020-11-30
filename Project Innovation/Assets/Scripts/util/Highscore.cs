@@ -26,11 +26,6 @@ public class Highscore : MonoBehaviour
      1. Killed
     */
 
-    void Update()
-    {
-        Debug.Log(_currentHighscore);
-    }
-    
     public static void AddToHighscore(int valueToAdd)
     {
         if(valueToAdd > 0) _currentHighscore += valueToAdd;

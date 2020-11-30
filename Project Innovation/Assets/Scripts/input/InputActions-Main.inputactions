@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Hidden",
+                    "type": "Button",
+                    "id": "134ddcd8-aa45-441a-b915-45249ce00b70",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -242,6 +250,17 @@
                     "processors": "",
                     "groups": "KBM",
                     "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53074cec-6543-4e0d-b6b8-9172ea992769",
+                    "path": "<Keyboard>/M",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Hidden",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

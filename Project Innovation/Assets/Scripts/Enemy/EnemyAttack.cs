@@ -11,6 +11,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float attackInterval = 1f;
     [SerializeField] private float damage;
     Color debugLineColor = Color.red;
+
     public bool showDebugInfo = true;
     // TODO maybe load event at start?
 
@@ -22,13 +23,13 @@ public class EnemyAttack : MonoBehaviour
 
     private void Start()
     {
-        if(hasAttackSound)
+        if (hasAttackSound)
             attackInstance = attackSound.CreateSound();
         prepareInstance = prepareSound.CreateSound();
 
         attackInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
         prepareInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-        
+
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
     }
 
@@ -37,15 +38,15 @@ public class EnemyAttack : MonoBehaviour
         if (showDebugInfo && playerStats.shieldActive)
         {
             Vector3 differenceVector = transform.position - playerStats.transform.position;
-            Debug.DrawLine(transform.position,playerStats.transform.position, debugLineColor);
+            Debug.DrawLine(transform.position, playerStats.transform.position, debugLineColor);
             float angle = Vector3.Angle(differenceVector, playerStats.transform.forward);
 #if UNITY_EDITOR
-            if (angle > playerStats.shieldAngle) debugLineColor = Color.red; 
+            if (angle > playerStats.shieldAngle) debugLineColor = Color.red;
             else debugLineColor = Color.green;
 #endif
         }
     }
-    
+
     public IEnumerator AttackLoop()
     {
         while (gameObject)
@@ -71,18 +72,19 @@ public class EnemyAttack : MonoBehaviour
                             attackInstance.PlayAtPos(transform.position);
                             Highscore.ReduceHighscore(10);
                         }
-                        //Why is this here lol
                         else
+                        {
                             playerStats.Damage(0, PlayerStats.AttackMethod.Shield);
+                        }
                     }
                     else
                     {
                         playerStats.Damage(damage, PlayerStats.AttackMethod.Sword);
-                        if(hasAttackSound)
-                             attackInstance.PlayAtPos(transform.position);
+                        if (hasAttackSound) attackInstance.PlayAtPos(transform.position);
                         Highscore.ReduceHighscore(15);
                     }
                 }
+
                 yield return new WaitForSeconds(attackInterval);
             }
             else

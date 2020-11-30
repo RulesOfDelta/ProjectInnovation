@@ -50,6 +50,7 @@ public class InputHandler : MonoBehaviour
     private event ButtonCallback OnFireCb;
     private event ButtonCallback OnSwordCb;
     private event ButtonActionCallback OnShieldCb;
+    private event ButtonCallback OnHiddenCb;
     private PlayerInput input;
 
     private InputState state;
@@ -129,6 +130,11 @@ public class InputHandler : MonoBehaviour
         OnShieldCb -= cb;
     }
 
+    public void RegisterOnHidden(ButtonCallback cb)
+    {
+        OnHiddenCb += cb;
+    }
+    
     public void OnFire(InputAction.CallbackContext context)
     {
         switch (CheckButton(context))
@@ -177,6 +183,13 @@ public class InputHandler : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+    
+    public void OnHidden(InputAction.CallbackContext context)
+    {
+ 
+            OnHiddenCb?.Invoke();
+        
     }
 
     public void OnMove(InputAction.CallbackContext context)

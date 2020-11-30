@@ -5,7 +5,7 @@
 			<value>ShieldImpact</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{03ccf8d5-9f4f-454b-b42b-cb02fd1ac97a}</destination>
@@ -145,7 +145,6 @@
 	<object class="MixerBusEffectChain" id="{77506a1b-09d3-48cb-9be6-2da84ba28c88}">
 		<relationship name="effects">
 			<destination>{7fd7340c-7004-470d-9656-ab8cd1895b2a}</destination>
-			<destination>{c9849195-1e42-468e-95f9-36a23ef794ec}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{4e67cbe0-8ca7-4d5f-ad7c-2a5ce896dd9f}" />
@@ -182,23 +181,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{26e38f0b-1082-42e6-b558-d86af34f9c95}" />
 	<object class="MixerBusFader" id="{7fd7340c-7004-470d-9656-ab8cd1895b2a}" />
-	<object class="SpatialiserEffect" id="{c9849195-1e42-468e-95f9-36a23ef794ec}">
-		<property name="minimumDistance">
-			<value>1.60000002</value>
-		</property>
-		<property name="maximumDistance">
-			<value>28.5</value>
-		</property>
-		<property name="extentMode">
-			<value>1</value>
-		</property>
-		<property name="soundSize">
-			<value>15</value>
-		</property>
-		<property name="minimumExtent">
-			<value>10</value>
-		</property>
-	</object>
 	<object class="AutomationCurve" id="{53dd9b5e-cc2b-4227-84b6-d42e9ae54007}">
 		<relationship name="parameter">
 			<destination>{a2d14899-b09d-467c-b87e-82bf140702f7}</destination>
@@ -231,7 +213,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-5</value>
+			<value>-8</value>
 		</property>
 		<property name="curveShape">
 			<value>-0.359567225</value>
@@ -242,7 +224,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>10</value>
+			<value>7</value>
 		</property>
 	</object>
 </objects>

@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Room2))]
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private List<GameObject> enemyPrefabs;
 
     //[SerializeField] [Tooltip("Only the xz-plane will be considered!")] private Vector3 spawnArea;
     [SerializeField] private float spawnInterval;
@@ -43,8 +43,10 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
+            var enemyPrefab = enemyPrefabs.Random();
             Vector3 spawnPoint = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2),
-                vectorToGround.y + enemyPrefab.transform.localScale.y, Random.Range(-spawnArea.y / 2, spawnArea.y / 2));
+                vectorToGround.y + enemyPrefab.transform.localScale.y,
+                Random.Range(-spawnArea.y / 2, spawnArea.y / 2));
             var enemy = Instantiate(enemyPrefab, spawnPoint,
                 Quaternion.identity * Quaternion.Euler(0, Random.rotation.eulerAngles.y, 0));
             enemy.GetComponent<EnemyRemoveNotifier>().AddEvent(OnRemoveEnemy);

@@ -77,9 +77,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efe840488645874d88cc5215f09a1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 3693557877149292986, guid: df372e13d6d87394687c8fa47edc6d54,
-    type: 3}
+  enemyPrefabs:
+  - {fileID: 7026731039652102895, guid: 660bc06b06290dd498577d0b2c7cc8a6, type: 3}
+  - {fileID: 2296398938102839093, guid: 9d7d92b629d260241b2ed92c46ea2e47, type: 3}
+  - {fileID: 7026731039652102895, guid: 89d2a2cdd547d464c9307f6ab385aa99, type: 3}
   spawnInterval: 0
+  minEnemiesSpawned: 1
+  maxEnemiesSpawned: 25
 --- !u!1 &4418598227992029690
 GameObject:
   m_ObjectHideFlags: 0

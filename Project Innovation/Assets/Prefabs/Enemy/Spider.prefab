@@ -20,7 +20,17 @@ PrefabInstance:
     - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
         type: 3}
       propertyPath: attackSound
+      value: event:/Monsters/Spider/Spider_attch
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: prepareSound
       value: event:/Monsters/Spider/Spider_Prepare a punch
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: hasAttackSound
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
         type: 3}
@@ -86,6 +96,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fmodEventPath
       value: event:/Monsters/Spider/Spider_Walk
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797488197233397585, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: stepDistance
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df372e13d6d87394687c8fa47edc6d54, type: 3}

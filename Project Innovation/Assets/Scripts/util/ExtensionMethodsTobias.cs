@@ -1,5 +1,8 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using FMOD;
+using UnityEditor;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public static class ExtensionMethodsTobias
 {
@@ -25,6 +28,10 @@ public static class ExtensionMethodsTobias
 
     public static FMOD.Studio.EventInstance CreateSound(this string path)
     {
+        if (string.IsNullOrEmpty(path))
+        {
+            Debug.LogError("path is empty");
+        }
         return FMODUnity.RuntimeManager.CreateInstance(path);
     }
 
@@ -32,5 +39,20 @@ public static class ExtensionMethodsTobias
     {
         instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(pos));
         instance.start();
+    }
+
+    public static T Random<T>(this IList<T> l)
+    {
+        return l[UnityEngine.Random.Range(0, l.Count)];
+    }
+
+    public static float Remap(this float val, float minIn, float maxIn, float minOut, float maxOut)
+    {
+        return minOut + (val - minIn) * (maxOut - minOut) / (maxIn - minIn);
+    }
+
+    public static void RemapThis(this ref float val, float minIn, float maxIn, float minOut, float maxOut)
+    {
+        val = val.Remap(minIn, maxIn, minOut, maxOut);
     }
 }

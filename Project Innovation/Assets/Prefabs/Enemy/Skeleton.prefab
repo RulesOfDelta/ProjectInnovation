@@ -1,205 +1,96 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1705878588738581136
-GameObject:
+--- !u!1001 &3214538771380858511
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1705878588738581149}
-  - component: {fileID: 1705878588738581148}
-  - component: {fileID: 1705878588738581139}
-  - component: {fileID: 1705878588738581138}
-  - component: {fileID: 1705878588738581137}
-  - component: {fileID: 1705878588738581150}
-  - component: {fileID: 2818199464910742327}
-  - component: {fileID: 2661162115849704562}
-  - component: {fileID: 6269139805015443382}
-  - component: {fileID: -3271393849736244774}
-  m_Layer: 9
-  m_Name: Skeleton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1705878588738581149
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1705878588738581148
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1705878588738581139
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!136 &1705878588738581138
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1705878588738581137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da0fabd3a0b3a114cab8ad885f6b1b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 2
-  showDebugInfo: 1
-  sightDistance: 5
-  sightRange: 70
-  maxChaseDistance: 10
-  enableCBR: 1
-  wallCheckDistance: 2
-  angleRange: 65
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4096
-  enableSBR: 0
-  minDistToDestPoint: 0.5
-  maxSphereSize: 100
-  walkableRadius: 0
-  destinationPoint: {x: 0, y: 0, z: 0}
---- !u!114 &1705878588738581150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71eea1d6e5070f428b53ba339019b8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDistance: 5
-  chargeTime: 1.6
-  attackInterval: 1
-  damage: 10
-  showDebugInfo: 1
-  attackSound: event:/Monsters/Skeleton/Sk_preparePunch
---- !u!114 &2818199464910742327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d6d204cd96450e408334147f57c59f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 100
-  damageSound: event:/Monsters/Skeleton/Sk_getHit
-  deathSound: event:/Monsters/Skeleton/Sk_die
---- !u!54 &2661162115849704562
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
---- !u!114 &6269139805015443382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37fd4873da28ac4408eaea45b921d54a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-3271393849736244774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705878588738581136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7505a421e4b857744b3a93074e7887bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stepDistance: 1.2
-  fmodEventPath: event:/Monsters/Skeleton/Sk_steps
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 284317916417099805, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: damageSound
+      value: event:/Monsters/Skeleton/Sk_getHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 284317916417099805, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: deathSound
+      value: event:/Monsters/Skeleton/Sk_die
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: prepareSound
+      value: event:/Monsters/Skeleton/Sk_preparePunch
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: chargeTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292986, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_Name
+      value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797488197233397585, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: fmodEventPath
+      value: event:/Monsters/Skeleton/Sk_steps
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: df372e13d6d87394687c8fa47edc6d54, type: 3}

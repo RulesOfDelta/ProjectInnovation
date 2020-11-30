@@ -25,6 +25,9 @@ public class EnemyAttack : MonoBehaviour
         if(hasAttackSound)
             attackInstance = attackSound.CreateSound();
         prepareInstance = prepareSound.CreateSound();
+
+        attackInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        prepareInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
         
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
     }
@@ -67,10 +70,12 @@ public class EnemyAttack : MonoBehaviour
                             playerStats.Damage(damage, PlayerStats.AttackMethod.Sword);
                             attackInstance.PlayAtPos(transform.position);
                         }
+                        else
+                            playerStats.Damage(0, PlayerStats.AttackMethod.Shield);
                     }
                     else
                     {
-                        playerStats.Damage(damage, PlayerStats.AttackMethod.Shield);
+                        playerStats.Damage(damage, PlayerStats.AttackMethod.Sword);
                         if(hasAttackSound)
                              attackInstance.PlayAtPos(transform.position);
                     }

@@ -16,7 +16,7 @@ public class WalkingSound : MonoBehaviour
     {
         _distanceTraveled = 0;
         _oldPosition = transform.position;
-        _randomStepSDistance = Random.Range(0.0f, 0.5f);
+        _randomStepSDistance = Random.Range(0.0f, 0.5f * stepDistance);
         puddles = GameObject.FindGameObjectsWithTag("Puddle");
     }
     

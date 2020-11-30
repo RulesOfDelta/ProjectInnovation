@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 5712861632411801873, guid: 6dbe4e07036b7d34c89702ce8ba70090,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5712861632411801873, guid: 6dbe4e07036b7d34c89702ce8ba70090,
         type: 3}
@@ -803,6 +803,11 @@ PrefabInstance:
       propertyPath: musicHandler
       value: 
       objectReference: {fileID: 1612797831}
+    - target: {fileID: 2713956838767196805, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: heartbeat
+      value: event:/Player/Pl_heartBeat
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a, type: 3}
 --- !u!1001 &2984040541124737388

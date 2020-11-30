@@ -11,6 +11,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float attackInterval = 1f;
     [SerializeField] private float damage;
     Color debugLineColor = Color.red;
+    public float heartbeatRadius = 4.0f;
 
     public bool showDebugInfo = true;
     // TODO maybe load event at start?
@@ -20,6 +21,9 @@ public class EnemyAttack : MonoBehaviour
     private FMOD.Studio.EventInstance attackInstance;
     [FMODUnity.EventRef, SerializeField] private string prepareSound;
     private FMOD.Studio.EventInstance prepareInstance;
+
+    private int enemiesWithinHeartbeatRadius;
+    private bool isWithinHeartbeatRadius;
 
     private void Start()
     {
@@ -31,10 +35,14 @@ public class EnemyAttack : MonoBehaviour
         prepareInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
 
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
+
+        enemiesWithinHeartbeatRadius = 0;
+        isWithinHeartbeatRadius = false;
     }
 
     private void Update()
     {
+        CheckForHeartbeatDistance();
         if (showDebugInfo && playerStats.shieldActive)
         {
             Vector3 differenceVector = transform.position - playerStats.transform.position;
@@ -51,7 +59,9 @@ public class EnemyAttack : MonoBehaviour
     {
         while (gameObject)
         {
-            if (Vector3.Distance(playerStats.transform.position, transform.position) < attackDistance)
+            float distanceToPlayer = Vector3.Distance(playerStats.transform.position, transform.position);
+
+            if (distanceToPlayer < attackDistance)
             {
                 prepareInstance.PlayAtPos(transform.position);
                 yield return new WaitForSeconds(chargeTime);
@@ -89,6 +99,24 @@ public class EnemyAttack : MonoBehaviour
             }
             else
                 yield return null;
+        }
+    }
+
+
+    private void CheckForHeartbeatDistance()
+    {
+        float distanceToPlayer = Vector3.Distance(playerStats.transform.position, transform.position);
+        if (distanceToPlayer <= heartbeatRadius && !isWithinHeartbeatRadius)
+        {
+            if(enemiesWithinHeartbeatRadius == 0) playerStats.gameObject.GetComponent<PlayerMusicHandler>().PlayHeartbeat(distanceToPlayer);
+            enemiesWithinHeartbeatRadius++;
+            isWithinHeartbeatRadius = true;
+        }
+        else if (distanceToPlayer > heartbeatRadius && isWithinHeartbeatRadius)
+        {
+            enemiesWithinHeartbeatRadius--;
+            isWithinHeartbeatRadius = false;
+            if(enemiesWithinHeartbeatRadius == 0) playerStats.gameObject.GetComponent<PlayerMusicHandler>().StopHeartbeat();
         }
     }
 }

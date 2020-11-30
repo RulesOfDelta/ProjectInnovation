@@ -7,6 +7,8 @@ public class PlayerMusicHandler : MonoBehaviour
 {
     [SerializeField] private MusicHandler musicHandler;
     private IReadOnlyList<Door> doors;
+    [FMODUnity.EventRef, SerializeField] private string heartbeat;
+    private FMOD.Studio.EventInstance heartbeatSound;
 
     public void InsertDoors(IReadOnlyList<Door> doorList)
     {
@@ -21,6 +23,11 @@ public class PlayerMusicHandler : MonoBehaviour
     public void OnGenerate()
     {
         musicHandler.State = MusicHandler.MusicState.Fight;
+    }
+
+    private void Start()
+    {
+        heartbeatSound = heartbeat.CreateSound();
     }
 
     private void Update()
@@ -50,5 +57,15 @@ public class PlayerMusicHandler : MonoBehaviour
             }
             else musicHandler.SetRestVal(0f);
         }
+    }
+
+    public void PlayHeartbeat(float distance)
+    {
+            heartbeatSound.start();
+    }
+
+    public void StopHeartbeat()
+    {
+        heartbeatSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

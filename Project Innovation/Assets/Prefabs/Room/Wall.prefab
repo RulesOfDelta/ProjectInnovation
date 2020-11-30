@@ -93,8 +93,8 @@ GameObject:
   - component: {fileID: 3149391755230881726}
   - component: {fileID: 3149391755230881727}
   - component: {fileID: 3149391755230881720}
-  - component: {fileID: 5717765116700124323}
-  m_Layer: 0
+  - component: {fileID: 1804954228011542507}
+  m_Layer: 15
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,8 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assetFileName: test.instancedmesh
---- !u!64 &5717765116700124323
-MeshCollider:
+--- !u!65 &1804954228011542507
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -222,10 +222,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7878178320070812409
 GameObject:
   m_ObjectHideFlags: 0

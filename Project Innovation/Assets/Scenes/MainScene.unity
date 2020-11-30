@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 5712861632411801873, guid: 6dbe4e07036b7d34c89702ce8ba70090,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5712861632411801873, guid: 6dbe4e07036b7d34c89702ce8ba70090,
         type: 3}
@@ -563,6 +563,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puddle (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2984040540761323465, guid: 96f3ba93a9c1c674b8a15bce48b22f12,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96f3ba93a9c1c674b8a15bce48b22f12, type: 3}
 --- !u!114 &1612797831 stripped
@@ -798,15 +804,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123685, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 2713956838767196805, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: musicHandler
       value: 
       objectReference: {fileID: 1612797831}
-    - target: {fileID: 2713956838767196805, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+    - target: {fileID: 5500939977421985903, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
-      propertyPath: heartbeat
-      value: event:/Player/Pl_heartBeat
+      propertyPath: inputHandler
+      value: 
+      objectReference: {fileID: 662652946}
+    - target: {fileID: 5500939977421985903, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: playerWallMask.m_Bits
+      value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812257532471370970, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: inputHandler
+      value: 
+      objectReference: {fileID: 662652946}
+    - target: {fileID: 9067360160114057918, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: minVelocity
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a, type: 3}

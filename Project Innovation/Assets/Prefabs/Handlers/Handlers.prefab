@@ -44,6 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restMusicPath: event:/BackgroundMusic/RestMusic
+  fightMusicPath: event:/BackgroundMusic/BattleMusic
+  intensityLevels:
+  - healthLevel: 20
+    intensity: 2
+  - healthLevel: 50
+    intensity: 1
+  - healthLevel: 1e+13
+    intensity: 0
 --- !u!1 &8025365089208255648
 GameObject:
   m_ObjectHideFlags: 0

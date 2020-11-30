@@ -22,7 +22,9 @@ public class MusicHandler : MonoBehaviour
         restInstance = restMusicPath.CreateSound();
         restInstance.setParameterByName("RestVolume", 1f);
         fightInstance = fightMusicPath.CreateSound();
-        fightInstance.setParameterByName("")
+        fightInstance.setParameterByName("BattleMusic", 0);
+        fightInstance.setParameterByName("BattleVolume", 1f);
+        fightInstance.setParameterByName("BattleIntensity", 0);
     }
 
     private MusicState musicState;
@@ -41,8 +43,8 @@ public class MusicHandler : MonoBehaviour
     [Serializable]
     private struct IntensityLevel
     {
-        public float HealthLevel;
-        public int Intensity;
+        public float healthLevel;
+        public int intensity;
     }
 
     [SerializeField] private List<IntensityLevel> intensityLevels;
@@ -78,6 +80,11 @@ public class MusicHandler : MonoBehaviour
 
     public void HealthCallback(float newHealth)
     {
-        
+        foreach (var level in intensityLevels)
+        {
+            if (!(newHealth < level.healthLevel)) continue;
+            fightInstance.setParameterByName("BattleIntensity", level.intensity);
+            break;
+        }
     }
 }

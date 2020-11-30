@@ -187,9 +187,7 @@ public class InputHandler : MonoBehaviour
     
     public void OnHidden(InputAction.CallbackContext context)
     {
- 
-            OnHiddenCb?.Invoke();
-        
+        OnHiddenCb?.Invoke();
     }
 
     public void OnMove(InputAction.CallbackContext context)

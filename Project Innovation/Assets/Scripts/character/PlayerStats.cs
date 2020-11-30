@@ -89,6 +89,7 @@ public class PlayerStats : MonoBehaviour
 
     private void FatAssFart()
     {
+        return;
         var hiddenSoundInstance = hiddenSound.CreateSound();
         hiddenSoundInstance.start();
         Debug.Log("asdifujasiopdfuaspoidfpaosidfpasodif");

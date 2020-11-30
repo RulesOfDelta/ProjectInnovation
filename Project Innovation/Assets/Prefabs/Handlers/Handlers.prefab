@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restMusicPath: event:/BackgroundMusic/RestMusic
   fightMusicPath: event:/BackgroundMusic/BattleMusic
-  battleVolume: 0.3
+  battleVolume: 0.45
   intensityLevels:
   - healthLevel: 20
     intensity: 2

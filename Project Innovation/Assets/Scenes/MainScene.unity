@@ -839,6 +839,16 @@ PrefabInstance:
       propertyPath: musicHandler
       value: 
       objectReference: {fileID: 1612797831}
+    - target: {fileID: 5500939977421985903, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: inputHandler
+      value: 
+      objectReference: {fileID: 662652946}
+    - target: {fileID: 5500939977421985903, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: playerWallMask.m_Bits
+      value: 32768
+      objectReference: {fileID: 0}
     - target: {fileID: 9067360160114057918, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: minVelocity

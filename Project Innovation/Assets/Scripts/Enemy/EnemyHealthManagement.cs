@@ -36,6 +36,8 @@ public class EnemyHealthManagement : MonoBehaviour
         {
             PlaySound(deathSound);
             currentStatus = CurrentStatus.Dead;
+            //Player successfully kills the enemy
+            Highscore.AddToHighscore(50);
             Destroy(gameObject);
         }
         else

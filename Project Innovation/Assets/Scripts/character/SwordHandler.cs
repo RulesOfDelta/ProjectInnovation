@@ -29,5 +29,6 @@ public class SwordHandler : MonoBehaviour
     private void AddDamageToEnemies(GameObject hitGameObject)
     {
         hitGameObject.GetComponent<EnemyHealthManagement>().ReduceHealth(swordDamage);
+        Highscore.AddToHighscore(20);
     }
 }

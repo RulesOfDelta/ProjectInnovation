@@ -69,7 +69,9 @@ public class EnemyAttack : MonoBehaviour
                         {
                             playerStats.Damage(damage, PlayerStats.AttackMethod.Sword);
                             attackInstance.PlayAtPos(transform.position);
+                            Highscore.ReduceHighscore(10);
                         }
+                        //Why is this here lol
                         else
                             playerStats.Damage(0, PlayerStats.AttackMethod.Shield);
                     }
@@ -78,6 +80,7 @@ public class EnemyAttack : MonoBehaviour
                         playerStats.Damage(damage, PlayerStats.AttackMethod.Sword);
                         if(hasAttackSound)
                              attackInstance.PlayAtPos(transform.position);
+                        Highscore.ReduceHighscore(15);
                     }
                 }
                 yield return new WaitForSeconds(attackInterval);

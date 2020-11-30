@@ -34,8 +34,11 @@ public class Door : MonoBehaviour
     {
         if (!playerMask.Contains(other.gameObject.layer)) return;
         // This is a player -> generate a new room
-        if(room)
+        if (room)
+        {
             room.Generate();
+            Highscore.AddToHighscore(50);
+        }
     }
 
     public void OnAllEnemiesClear()

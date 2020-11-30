@@ -39,6 +39,7 @@ public class PlayerStats : MonoBehaviour
 
     private void OnDeath()
     {
+        Highscore.SaveCurrentHighscore();
         // TODO: DIE!!!!!!!!
         // Debug.Log("omfg he fuckin dedd");
     }

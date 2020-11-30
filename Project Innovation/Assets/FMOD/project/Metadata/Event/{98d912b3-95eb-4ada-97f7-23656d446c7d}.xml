@@ -126,6 +126,9 @@
 	<object class="MixerBusPanner" id="{6ead4959-61f0-4853-8b81-844c06cd2601}" />
 	<object class="MixerBusFader" id="{433b0429-4634-4e5e-9abf-667fd7fe7dab}" />
 	<object class="PluginEffect" id="{d6b27652-a815-41e5-a68f-c43c5de573ef}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<relationship name="plugin">
 			<destination>{0bad5982-6216-416c-87d4-a17b79bb7685}</destination>
 		</relationship>

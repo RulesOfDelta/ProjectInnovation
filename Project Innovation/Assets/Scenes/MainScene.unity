@@ -825,10 +825,25 @@ PrefabInstance:
       propertyPath: waterSource
       value: 
       objectReference: {fileID: 711708329}
+    - target: {fileID: 1316099054983123672, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: swordEventPath
+      value: event:/Player/Fighting/sword
+      objectReference: {fileID: 0}
     - target: {fileID: 1316099054983123677, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123679, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: hitSoundSword
+      value: event:/Player/Pl_GetHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123679, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: hitSoundShield
+      value: event:/Player/Fighting/shield
       objectReference: {fileID: 0}
     - target: {fileID: 1316099054983123680, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}

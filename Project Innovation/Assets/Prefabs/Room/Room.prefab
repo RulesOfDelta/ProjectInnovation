@@ -65,6 +65,10 @@ MonoBehaviour:
   enemySpawnPercentageX: 0.62
   enemySpawnPercentageY: 0.62
   enemySpawnPerSqrUnit: 0.01
+  puddlePrefab: {fileID: 2984040540761323461, guid: 96f3ba93a9c1c674b8a15bce48b22f12,
+    type: 3}
+  minPuddles: 1
+  maxPuddles: 5
 --- !u!114 &2180861421346825547
 MonoBehaviour:
   m_ObjectHideFlags: 0

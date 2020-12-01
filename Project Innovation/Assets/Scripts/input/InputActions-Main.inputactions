@@ -212,7 +212,7 @@
                 {
                     "name": "",
                     "id": "f1b5b831-a6b7-4cee-ba03-41eb9102eb85",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",

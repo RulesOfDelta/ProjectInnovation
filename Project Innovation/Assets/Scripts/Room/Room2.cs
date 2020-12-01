@@ -39,15 +39,23 @@ public class Room2 : MonoBehaviour
     private EnemySpawner enemySpawner;
 
     [SerializeField] private Transform puddlePrefab;
-    private List<Transform> puddles;
+    private List<Transform> ambiences;
     [SerializeField, Min(0)] private int minPuddles;
     [SerializeField, Min(0)] private int maxPuddles;
+
+    [SerializeField] private Transform bugPrefab;
+    [SerializeField, Min(0)] private int minBugs;
+    [SerializeField, Min(0)] private int maxBugs;
+
+    [SerializeField] private Transform batPrefab;
+    [SerializeField, Min(0)] private int minBats;
+    [SerializeField, Min(0)] private int maxBats;
 
     private void Awake()
     {
         if (walls == null) walls = new List<Transform>();
         if (doors == null) doors = new List<Door>();
-        if (puddles == null) puddles = new List<Transform>();
+        if (ambiences == null) ambiences = new List<Transform>();
     }
 
     // Start is called before the first frame update
@@ -110,7 +118,7 @@ public class Room2 : MonoBehaviour
 
         if (walls == null) walls = new List<Transform>();
         if (doors == null) doors = new List<Door>();
-        if (puddles == null) puddles = new List<Transform>();
+        if (ambiences == null) ambiences = new List<Transform>();
 
         Generate();
     }
@@ -177,11 +185,28 @@ public class Room2 : MonoBehaviour
 
         // Add puddles
         var puddleCount = Random.Range(minPuddles, maxPuddles + 1);
-        for (int i = 0; i < puddleCount; i++)
+        for (var i = 0; i < puddleCount; i++)
         {
             var pos = new Vector3(Random.Range(-x / 2f, x / 2f), 0f, Random.Range(-y / 2f, y / 2f));
             var puddle = Instantiate(puddlePrefab, pos, Quaternion.identity, transform);
-            puddles.Add(puddle);
+            ambiences.Add(puddle);
+        }
+
+        var bugCount = Random.Range(minBugs, maxBugs + 1);
+        for (var i = 0; i < bugCount; i++)
+        {
+            var bug = Instantiate(bugPrefab, transform);
+            ambiences.Add(bug);
+            bug.GetComponent<MovingSound>().SetBounds(transform.position, new Vector3(x, 0, y));
+        }
+
+        var batCount = Random.Range(minBats, maxBats + 1);
+        for (var i = 0; i < batCount; i++)
+        {
+            var bat = Instantiate(batPrefab, transform);
+            ambiences.Add(bat);
+            bat.GetComponent<MovingSound>().SetBounds(transform.position + new Vector3(0f, wallHeight / 2f, 0f),
+                new Vector3(x, wallHeight, y));
         }
 
         // TODO spawn enemies
@@ -317,20 +342,20 @@ public class Room2 : MonoBehaviour
     {
         if (walls == null) walls = new List<Transform>();
         if (doors == null) doors = new List<Door>();
-        if (puddles == null) puddles = new List<Transform>();
-        
+        if (ambiences == null) ambiences = new List<Transform>();
+
 #if UNITY_EDITOR
         if (UnityEditor.EditorApplication.isPlaying)
         {
             ClearWithFunc(Destroy, doors);
             ClearWithFunc(Destroy, walls);
-            ClearWithFunc(Destroy, puddles);
+            ClearWithFunc(Destroy, ambiences);
         }
         else
         {
             ClearWithFunc(DestroyImmediate, doors);
             ClearWithFunc(DestroyImmediate, walls);
-            ClearWithFunc(DestroyImmediate, puddles);
+            ClearWithFunc(DestroyImmediate, ambiences);
         }
 #else
         ClearWithFunc(Destroy, doors);

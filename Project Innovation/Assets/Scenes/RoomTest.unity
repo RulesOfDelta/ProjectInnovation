@@ -516,6 +516,11 @@ PrefabInstance:
       propertyPath: musicHandler
       value: 
       objectReference: {fileID: 1058918788}
+    - target: {fileID: 2713956838767196805, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: heartbeat
+      value: event:/Player/Pl_heartBeat
+      objectReference: {fileID: 0}
     - target: {fileID: 7812257532471370970, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: inputHandler

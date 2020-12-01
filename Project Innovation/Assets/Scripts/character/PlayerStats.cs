@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     [FMODUnity.EventRef, SerializeField] private string hitSoundSword, hitSoundShield, moveShieldUp, moveShieldDown, hiddenSound;
     [SerializeField] private float maxHealth;
     [SerializeField] private MusicHandler musicHandler;
+    private PlayerMusicHandler playerMusicHandler;
     private float health;
 
     private InputHandler controls;
@@ -43,22 +44,23 @@ public class PlayerStats : MonoBehaviour
             controls = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         controls.RegisterOnShield(ToggleShield);
         controls.RegisterOnHidden(FatAssFart);
+        playerMusicHandler = GetComponent<PlayerMusicHandler>();
     }
 
     private void OnDeath()
     {
-        StartCoroutine(lellek());
+        StartCoroutine(OnPlayerDeath());
     }
 
-    IEnumerator lellek()
+    IEnumerator OnPlayerDeath()
     {
         Health = maxHealth;
+        playerMusicHandler.ApplyDeathFilter();
+        playerMusicHandler.StopHeartbeat();
         Highscore.SaveCurrentHighscore();
         musicHandler.State = MusicHandler.MusicState.Stop;
-        //yield return null;
-        Debug.Log("Player is dead");
         yield return new WaitForSeconds(5.0f);
-        Debug.Log("Waited 5 seconds");
+        playerMusicHandler.RemoveDeathFilter();
         GameObject.Find("Room").GetComponent<Room2>().Generate();
     }
 

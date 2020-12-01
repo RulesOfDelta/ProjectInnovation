@@ -360,7 +360,7 @@ public class Room2 : MonoBehaviour
 #else
         ClearWithFunc(Destroy, doors);
         ClearWithFunc(Destroy, walls);
-        ClearWithFunc(Destroy, puddles);
+        ClearWithFunc(Destroy, ambiences);
 #endif
         void ClearWithFunc<T>(Action<GameObject> destroyFunc, List<T> toClear) where T : Component
         {

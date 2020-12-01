@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMOD.Studio;
 using UnityEngine;
 
 public class PlayerMusicHandler : MonoBehaviour
 {
     [SerializeField] private MusicHandler musicHandler;
     private IReadOnlyList<Door> doors;
-    [FMODUnity.EventRef, SerializeField] private string heartbeat;
-    private FMOD.Studio.EventInstance heartbeatSound;
+    [FMODUnity.EventRef, SerializeField] private string heartbeat, deadFilter;
+    private FMOD.Studio.EventInstance heartbeatSound, deadFilterInstance;
 
     public void InsertDoors(IReadOnlyList<Door> doorList)
     {
@@ -28,6 +29,7 @@ public class PlayerMusicHandler : MonoBehaviour
     private void Start()
     {
         heartbeatSound = heartbeat.CreateSound();
+        deadFilterInstance = deadFilter.CreateSound();
     }
 
     private void Update()
@@ -69,5 +71,15 @@ public class PlayerMusicHandler : MonoBehaviour
     public void StopHeartbeat()
     {
         heartbeatSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    public void ApplyDeathFilter()
+    {
+        deadFilterInstance.start();
+    }
+
+    public void RemoveDeathFilter()
+    {
+        deadFilterInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

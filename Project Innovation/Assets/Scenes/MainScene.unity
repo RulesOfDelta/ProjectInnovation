@@ -591,6 +591,11 @@ PrefabInstance:
       propertyPath: heartbeat
       value: event:/Player/Pl_heartBeat
       objectReference: {fileID: 0}
+    - target: {fileID: 2713956838767196805, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: deadFilter
+      value: snapshot:/DeathFilter
+      objectReference: {fileID: 0}
     - target: {fileID: 5500939977421985903, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: inputHandler

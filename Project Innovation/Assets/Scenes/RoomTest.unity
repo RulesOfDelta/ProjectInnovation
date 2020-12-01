@@ -226,6 +226,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &306763876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5712861632411801872, guid: 6dbe4e07036b7d34c89702ce8ba70090,
+    type: 3}
+  m_PrefabInstance: {fileID: 8025365089906515520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23471c9855c4f34a9ec68905b5e2b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &920455094
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +516,11 @@ PrefabInstance:
       propertyPath: musicHandler
       value: 
       objectReference: {fileID: 1058918788}
+    - target: {fileID: 7812257532471370970, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: inputHandler
+      value: 
+      objectReference: {fileID: 306763876}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a, type: 3}
 --- !u!1001 &4418598227584804922
@@ -543,6 +560,16 @@ PrefabInstance:
         type: 3}
       propertyPath: enemySpawnPerSqrUnit
       value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: minPuddles
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: maxPuddles
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4418598227391175933, guid: b8702a98fdb547d48bd58f795c6057ea,
         type: 3}
@@ -623,6 +650,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8025365089208255651, guid: 6dbe4e07036b7d34c89702ce8ba70090,
+        type: 3}
+      propertyPath: rayTracerOption
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8025365089622558268, guid: 6dbe4e07036b7d34c89702ce8ba70090,
         type: 3}
       propertyPath: m_Name

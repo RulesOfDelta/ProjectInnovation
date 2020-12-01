@@ -97,7 +97,7 @@ MonoBehaviour:
   - {fileID: 7026731039652102895, guid: 89d2a2cdd547d464c9307f6ab385aa99, type: 3}
   spawnInterval: 0
   minEnemiesSpawned: 1
-  maxEnemiesSpawned: 25
+  maxEnemiesSpawned: 5
 --- !u!114 &1550186818954597501
 MonoBehaviour:
   m_ObjectHideFlags: 0

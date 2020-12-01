@@ -251,6 +251,11 @@ PrefabInstance:
       propertyPath: enemySpawnPerSqrUnit
       value: 0.006
       objectReference: {fileID: 0}
+    - target: {fileID: 4418598227391175932, guid: b8702a98fdb547d48bd58f795c6057ea,
+        type: 3}
+      propertyPath: snapshot
+      value: snapshot:/LF
+      objectReference: {fileID: 0}
     - target: {fileID: 4418598227391175933, guid: b8702a98fdb547d48bd58f795c6057ea,
         type: 3}
       propertyPath: m_LocalPosition.x

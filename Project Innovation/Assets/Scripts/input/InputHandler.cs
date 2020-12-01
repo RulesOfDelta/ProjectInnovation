@@ -63,6 +63,7 @@ public class InputHandler : MonoBehaviour
 
     private void Start()
     {
+        inputEnabled = true;
         state = new InputState();
         input = GetComponent<PlayerInput>();
         state.IsMouse = input.currentControlScheme == mouseSettings.controlScheme;

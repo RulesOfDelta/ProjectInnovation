@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -100,6 +101,25 @@ public class InputHandler : MonoBehaviour
     }
 #endif
 
+    private bool inputEnabled;
+    public void HaltInput(float time)
+    {
+        inputEnabled = false;
+        state.Move = Vector2.zero;
+        state.Look = Vector2.zero;
+        OnShieldCb?.Invoke(ButtonAction.Up);
+        state.ShieldPressed = false;
+        ResetRumble();
+
+        StartCoroutine(Reenable());
+        
+        IEnumerator Reenable()
+        {
+            yield return new WaitForSeconds(time);
+            inputEnabled = true;
+        }
+    }
+
     public void RegisterOnFire(ButtonCallback cb)
     {
         OnFireCb += cb;
@@ -137,6 +157,7 @@ public class InputHandler : MonoBehaviour
     
     public void OnFire(InputAction.CallbackContext context)
     {
+        if (!inputEnabled) return;
         switch (CheckButton(context))
         {
             case ButtonAction.Down:
@@ -152,6 +173,7 @@ public class InputHandler : MonoBehaviour
 
     public void OnSwitch(InputAction.CallbackContext context)
     {
+        if (!inputEnabled) return;
         switch (CheckButton(context))
         {
             case ButtonAction.Down:
@@ -172,6 +194,7 @@ public class InputHandler : MonoBehaviour
 
     public void OnShield(InputAction.CallbackContext context)
     {
+        if (!inputEnabled) return;
         var action = CheckButton(context);
         switch (action)
         {
@@ -192,16 +215,19 @@ public class InputHandler : MonoBehaviour
     
     public void OnHidden(InputAction.CallbackContext context)
     {
+        if (!inputEnabled) return;
         OnHiddenCb?.Invoke();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!inputEnabled) return;
         state.Move = context.ReadValue<Vector2>();
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
+        if (!inputEnabled) return;
         state.Look = context.ReadValue<Vector2>();
     }
 
@@ -224,7 +250,7 @@ public class InputHandler : MonoBehaviour
     
     public void Rumble(float lowFreq, float highFreq)
     {
-        if (!state.IsMouse)
+        if (inputEnabled && !state.IsMouse)
             RumbleInternal(lowFreq, highFreq);
     }
 

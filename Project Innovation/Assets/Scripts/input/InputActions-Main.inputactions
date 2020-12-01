@@ -212,7 +212,7 @@
                 {
                     "name": "",
                     "id": "f1b5b831-a6b7-4cee-ba03-41eb9102eb85",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -223,7 +223,7 @@
                 {
                     "name": "",
                     "id": "e3afdc40-8046-4b7b-8af7-f145a5e80b04",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "KBM",
@@ -234,7 +234,7 @@
                 {
                     "name": "",
                     "id": "943a3ce1-c46d-4e78-ad5f-707eb2c02a38",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -245,7 +245,7 @@
                 {
                     "name": "",
                     "id": "abab638d-9238-4b6b-b4b2-7107460fad56",
-                    "path": "<Keyboard>/q",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "KBM",

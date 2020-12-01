@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,15 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float swordAttackTime = 0.1f;
     [SerializeField] private float swordAttackCooldown = 1f;
 
-    private bool attacking = false;
+    private enum Weapon
+    {
+        Sword,
+        Bow
+    }
+
+    private Weapon currentWeapon = Weapon.Sword;
+
+    private bool attacking;
     
     [FMODUnity.EventRef]
     public string swordEventPath;
@@ -29,19 +38,34 @@ public class PlayerAttack : MonoBehaviour
         if (!handler)
             handler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         handler.RegisterOnFire(OnFire);
-        handler.RegisterOnSword(OnSword);
+        handler.RegisterOnSwitch(OnSwitch);
         swordSound = FMODUnity.RuntimeManager.CreateInstance(swordEventPath);
     }
     
     private void OnDestroy()
     {
         handler.DeregisterOnFire(OnFire);
-        handler.DeregisterOnSword(OnSword);
+        handler.DeregisterOnSwitch(OnSwitch);
     }
 
     private bool canShoot = true;
-    
+
     private void OnFire()
+    {
+        switch (currentWeapon)
+        {
+            case Weapon.Sword:
+                SwordAttack();
+                break;
+            case Weapon.Bow:
+                BowAttack();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+    
+    private void BowAttack()
     {
         if (!canShoot) return;
         var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletParent)
@@ -61,10 +85,19 @@ public class PlayerAttack : MonoBehaviour
         canShoot = true;
     }
 
-    private void OnSword()
+    private void OnSwitch()
     {
-        // TODO: spawn hitbox that stays in front of player and that does damage once to the enemy
-        SwordAttack();
+        switch (currentWeapon)
+        {
+            case Weapon.Sword:
+                currentWeapon = Weapon.Bow;
+                break;
+            case Weapon.Bow:
+                currentWeapon = Weapon.Sword;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     private void SwordAttack()
@@ -74,8 +107,6 @@ public class PlayerAttack : MonoBehaviour
         sword.gameObject.SetActive(true);
         attacking = true;
         StartCoroutine(Disable());
-
-        Debug.Log("Attack");
 
         IEnumerator Disable()
         {

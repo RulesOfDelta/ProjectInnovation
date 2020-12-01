@@ -30,7 +30,7 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "Sword",
+                    "name": "Switch",
                     "type": "Button",
                     "id": "243e8c57-641c-4303-83ab-a63f3604390e",
                     "expectedControlType": "Button",
@@ -201,7 +201,7 @@
                 {
                     "name": "",
                     "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KBM",
@@ -216,18 +216,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Sword",
+                    "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b32b4e62-b55c-4472-8193-35a33bdc562d",
-                    "path": "<Mouse>/leftButton",
+                    "id": "e3afdc40-8046-4b7b-8af7-f145a5e80b04",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "KBM",
-                    "action": "Sword",
+                    "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

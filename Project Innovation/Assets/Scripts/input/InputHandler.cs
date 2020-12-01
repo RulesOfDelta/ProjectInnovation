@@ -48,7 +48,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float rumbleStrength = .5f;
 
     private event ButtonCallback OnFireCb;
-    private event ButtonCallback OnSwordCb;
+    private event ButtonCallback OnSwitchCb;
     private event ButtonActionCallback OnShieldCb;
     private event ButtonCallback OnHiddenCb;
     private PlayerInput input;
@@ -110,14 +110,14 @@ public class InputHandler : MonoBehaviour
         OnFireCb -= cb;
     }
 
-    public void RegisterOnSword(ButtonCallback cb)
+    public void RegisterOnSwitch(ButtonCallback cb)
     {
-        OnSwordCb += cb;
+        OnSwitchCb += cb;
     }
 
-    public void DeregisterOnSword(ButtonCallback cb)
+    public void DeregisterOnSwitch(ButtonCallback cb)
     {
-        OnSwordCb -= cb;
+        OnSwitchCb -= cb;
     }
 
     public void RegisterOnShield(ButtonActionCallback cb)
@@ -150,12 +150,12 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    public void OnSword(InputAction.CallbackContext context)
+    public void OnSwitch(InputAction.CallbackContext context)
     {
         switch (CheckButton(context))
         {
             case ButtonAction.Down:
-                OnSwordCb?.Invoke();
+                OnSwitchHandler();
                 break;
             case ButtonAction.Up:
             case ButtonAction.Invalid:
@@ -163,6 +163,11 @@ public class InputHandler : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void OnSwitchHandler()
+    {
+        OnSwitchCb?.Invoke();
     }
 
     public void OnShield(InputAction.CallbackContext context)

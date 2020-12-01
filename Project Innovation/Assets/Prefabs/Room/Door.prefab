@@ -165,7 +165,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 8192
-  doorSound: event:/Humming
+  doorActivationSound: event:/Gates/Gates
 --- !u!114 &-5053553500449530413
 MonoBehaviour:
   m_ObjectHideFlags: 0

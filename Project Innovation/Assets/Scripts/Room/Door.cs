@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -6,23 +7,12 @@ public class Door : MonoBehaviour
     private Collider coll;
     private Room2 room;
 
-    // [FMODUnity.EventRef, SerializeField] private string doorSound;
-    // private FMOD.Studio.EventInstance doorSoundInstance;
+    [EventRef, SerializeField] private string doorActivationSound;
 
     private void Start()
     {
         coll = GetComponent<Collider>();
         coll.isTrigger = false;
-
-        // doorSoundInstance = FMODUnity.RuntimeManager.CreateInstance(doorSound);
-        // doorSoundInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-        // doorSoundInstance.setParameterByName("HumVolume", 0f);
-    }
-
-    private void OnDestroy()
-    {
-        // doorSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        // doorSoundInstance.release();
     }
 
     public void InsertRoom(Room2 r)
@@ -38,6 +28,9 @@ public class Door : MonoBehaviour
         {
             room.Generate();
             Highscore.AddToHighscore(50);
+            var sound = doorActivationSound.CreateSound();
+            sound.start();
+            sound.release();
         }
     }
 

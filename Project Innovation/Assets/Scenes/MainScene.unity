@@ -566,6 +566,16 @@ PrefabInstance:
       propertyPath: m_SkinWidth
       value: 0.0001
       objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123686, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316099054983123687, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2713956838767196805, guid: 682ddbc7a55b9aa4ea4ca6c2a0c3c25a,
         type: 3}
       propertyPath: musicHandler

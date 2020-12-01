@@ -47,19 +47,18 @@ public class PlayerStats : MonoBehaviour
 
     private void OnDeath()
     {
-        Highscore.SaveCurrentHighscore();
-        GetComponent<PlayerMusicHandler>().StopHeartbeat();
-        Health = maxHealth;
-        Debug.Log("On death exec");
         StartCoroutine(lellek());
     }
 
     IEnumerator lellek()
     {
-        GetComponent<AudioListener>().enabled = false;
-        //GetComponent<StudioListenerEditor>().
-        yield return new WaitForSeconds(5);
-        GetComponent<AudioListener>().enabled = true;
+        Health = maxHealth;
+        Highscore.SaveCurrentHighscore();
+        musicHandler.State = MusicHandler.MusicState.Stop;
+        //yield return null;
+        Debug.Log("Player is dead");
+        yield return new WaitForSeconds(5.0f);
+        Debug.Log("Waited 5 seconds");
         GameObject.Find("Room").GetComponent<Room2>().Generate();
     }
 

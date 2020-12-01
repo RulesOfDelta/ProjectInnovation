@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FMODUnity;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class WalkingSound : MonoBehaviour
@@ -9,15 +10,21 @@ public class WalkingSound : MonoBehaviour
     private float _randomStepSDistance;
     protected GameObject[] puddles;
 
-    [FMODUnity.EventRef]
+    [EventRef]
     public string fmodEventPath;
+
+    private FMOD.Studio.EventInstance footstepInstance;
 
     void Start()
     {
         _distanceTraveled = 0;
         _oldPosition = transform.position;
         _randomStepSDistance = Random.Range(0.0f, 0.5f * stepDistance);
+        // TODO doesn't work when regenerating
         puddles = GameObject.FindGameObjectsWithTag("Puddle");
+
+        footstepInstance = fmodEventPath.CreateSound();
+        footstepInstance.set3DAttributes((transform.position - new Vector3(0, -0.5f, 0)).To3DAttributes());
     }
     
     void Update()
@@ -33,15 +40,17 @@ public class WalkingSound : MonoBehaviour
         _oldPosition = transform.position;
     }
 
+    private void OnDestroy()
+    {
+        footstepInstance.release();
+    }
+
     private void PlayFootstepSound()
     {
-        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventPath);
-        eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position - new Vector3(0,-0.5f,0)));
-
-        ApplyParameters(eventInstance);
+        footstepInstance.set3DAttributes((transform.position - new Vector3(0, -0.5f, 0)).To3DAttributes());
+        ApplyParameters(footstepInstance);
         
-        eventInstance.start();
-        eventInstance.release();
+        footstepInstance.start();
     }
 
     protected virtual void ApplyParameters(FMOD.Studio.EventInstance eventInstance)

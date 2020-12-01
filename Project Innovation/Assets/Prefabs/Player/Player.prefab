@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicHandler: {fileID: 0}
+  heartbeat: 
 --- !u!1 &1316099055176214388
 GameObject:
   m_ObjectHideFlags: 0

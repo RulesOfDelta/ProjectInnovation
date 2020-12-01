@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -47,8 +48,19 @@ public class PlayerStats : MonoBehaviour
     private void OnDeath()
     {
         Highscore.SaveCurrentHighscore();
-        // TODO: DIE!!!!!!!!
-        // Debug.Log("omfg he fuckin dedd");
+        GetComponent<PlayerMusicHandler>().StopHeartbeat();
+        Health = maxHealth;
+        Debug.Log("On death exec");
+        StartCoroutine(lellek());
+    }
+
+    IEnumerator lellek()
+    {
+        GetComponent<AudioListener>().enabled = false;
+        //GetComponent<StudioListenerEditor>().
+        yield return new WaitForSeconds(5);
+        GetComponent<AudioListener>().enabled = true;
+        GameObject.Find("Room").GetComponent<Room2>().Generate();
     }
 
     public void Damage(float amount, AttackMethod attackMethod)
@@ -89,9 +101,7 @@ public class PlayerStats : MonoBehaviour
 
     private void FatAssFart()
     {
-        return;
         var hiddenSoundInstance = hiddenSound.CreateSound();
         hiddenSoundInstance.start();
-        Debug.Log("asdifujasiopdfuaspoidfpaosidfpasodif");
     }
 }

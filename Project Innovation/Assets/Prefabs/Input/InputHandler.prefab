@@ -218,21 +218,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 134ddcd8-aa45-441a-b915-45249ce00b70
     m_ActionName: Player/Hidden
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 47370229570047973}
-        m_MethodName: OnSwitchAxis
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2465ee37-9d81-4295-a838-d3aa6e17d630
-    m_ActionName: Player/SwitchAxis[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -97,5 +97,10 @@ PrefabInstance:
       propertyPath: fmodEventPath
       value: event:/Monsters/Skeleton/Sk_steps
       objectReference: {fileID: 0}
+    - target: {fileID: 6188409782350182633, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: bumms
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df372e13d6d87394687c8fa47edc6d54, type: 3}

@@ -32,16 +32,22 @@ public class Room2 : MonoBehaviour
 
     [SerializeField, Min(0)] private int minDoorCount;
     [SerializeField, Min(0)] private int maxDoorCount;
-    
+
     [SerializeField, Range(0, 1f)] private float enemySpawnPercentageX;
     [SerializeField, Range(0, 1f)] private float enemySpawnPercentageY;
     [SerializeField, Min(0f)] private float enemySpawnPerSqrUnit;
     private EnemySpawner enemySpawner;
 
+    [SerializeField] private Transform puddlePrefab;
+    private List<Transform> puddles;
+    [SerializeField, Min(0)] private int minPuddles;
+    [SerializeField, Min(0)] private int maxPuddles;
+
     private void Awake()
     {
         if (walls == null) walls = new List<Transform>();
-        if(doors == null) doors = new List<Door>();
+        if (doors == null) doors = new List<Door>();
+        if (puddles == null) puddles = new List<Transform>();
     }
 
     // Start is called before the first frame update
@@ -56,7 +62,6 @@ public class Room2 : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
     }
 
     private void OnValidate()
@@ -103,6 +108,10 @@ public class Room2 : MonoBehaviour
     {
         SetupEditMode();
 
+        if (walls == null) walls = new List<Transform>();
+        if (doors == null) doors = new List<Door>();
+        if (puddles == null) puddles = new List<Transform>();
+
         Generate();
     }
 
@@ -124,7 +133,7 @@ public class Room2 : MonoBehaviour
         inEditMode = false;
     }
 #endif
-    
+
     public void Generate()
     {
         Clear();
@@ -165,7 +174,16 @@ public class Room2 : MonoBehaviour
         FillFromWalls(preWalls);
         // TODO no magic division by 10
         floor.localScale = new Vector3((x + entryDepth * 2) / 10, 1, (y + entryDepth * 2) / 10);
-        
+
+        // Add puddles
+        var puddleCount = Random.Range(minPuddles, maxPuddles + 1);
+        for (int i = 0; i < puddleCount; i++)
+        {
+            var pos = new Vector3(Random.Range(-x / 2f, x / 2f), 0f, Random.Range(-y / 2f, y / 2f));
+            var puddle = Instantiate(puddlePrefab, pos, Quaternion.identity, transform);
+            puddles.Add(puddle);
+        }
+
         // TODO spawn enemies
 #if UNITY_EDITOR
         if (!UnityEditor.EditorApplication.isPlaying) return;
@@ -174,7 +192,7 @@ public class Room2 : MonoBehaviour
         var spawnY = y * enemySpawnPercentageY;
         var enemyCount = Mathf.CeilToInt(spawnX * spawnY * enemySpawnPerSqrUnit);
         enemySpawner.SpawnEnemies(enemyCount, new Vector2(spawnX, spawnY));
-        
+
         playerMusicHandler.OnGenerate();
     }
 
@@ -243,7 +261,7 @@ public class Room2 : MonoBehaviour
         entryBlockade.position = PosFromWall(posBlockadeWall);
         entryBlockade.rotation = posBlockadeWall.Rotation;
         entryBlockade.localScale = new Vector3(entryWidth, wallHeight, 1f);
-        
+
         wallList.Add(new Wall(wall.Distance + dist, splitPos, wall.Rotation, entryWidth, wall.Horizontal));
 
         // Side walls
@@ -299,23 +317,29 @@ public class Room2 : MonoBehaviour
     {
         if (walls == null) walls = new List<Transform>();
         if (doors == null) doors = new List<Door>();
+        if (puddles == null) puddles = new List<Transform>();
+        
 #if UNITY_EDITOR
         if (UnityEditor.EditorApplication.isPlaying)
         {
             ClearWithFunc(Destroy, doors);
             ClearWithFunc(Destroy, walls);
+            ClearWithFunc(Destroy, puddles);
         }
         else
         {
             ClearWithFunc(DestroyImmediate, doors);
             ClearWithFunc(DestroyImmediate, walls);
+            ClearWithFunc(DestroyImmediate, puddles);
         }
 #else
         ClearWithFunc(Destroy, doors);
         ClearWithFunc(Destroy, walls);
+        ClearWithFunc(Destroy, puddles);
 #endif
         void ClearWithFunc<T>(Action<GameObject> destroyFunc, List<T> toClear) where T : Component
         {
+            if (toClear == null) return;
             toClear.ForEach(t =>
             {
                 if (t) destroyFunc(t.gameObject);
@@ -328,8 +352,9 @@ public class Room2 : MonoBehaviour
     {
         foreach (var door in doors)
         {
-            if(door) door.OnAllEnemiesClear();
+            if (door) door.OnAllEnemiesClear();
         }
+
         playerMusicHandler.OnClear();
     }
 }

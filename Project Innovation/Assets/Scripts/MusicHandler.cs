@@ -16,7 +16,8 @@ public class MusicHandler : MonoBehaviour
     public enum MusicState
     {
         Rest,
-        Fight
+        Fight,
+        Stop
     }
 
     private void Awake()
@@ -66,6 +67,11 @@ public class MusicHandler : MonoBehaviour
                 restInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 fightInstance.start();
                 break;
+            case MusicState.Stop:
+                restInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                fightInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                break;
+                
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }

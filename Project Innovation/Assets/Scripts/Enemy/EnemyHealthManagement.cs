@@ -38,6 +38,8 @@ public class EnemyHealthManagement : MonoBehaviour
             currentStatus = CurrentStatus.Dead;
             //Player successfully kills the enemy
             Highscore.AddToHighscore(50);
+            //This is being called to ensure that the heartbeat is being stopped before the enemy gets detroyed
+            GetComponent<EnemyAttack>().CheckForHeartbeatDistance();
             Destroy(gameObject);
         }
         else

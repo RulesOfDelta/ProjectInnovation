@@ -104,20 +104,27 @@ public class EnemyAttack : MonoBehaviour
     }
 
 
-    private void CheckForHeartbeatDistance()
+    public void CheckForHeartbeatDistance()
     {
         float distanceToPlayer = Vector3.Distance(playerStats.transform.position, transform.position);
         if (distanceToPlayer <= heartbeatRadius && !isWithinHeartbeatRadius)
         {
-            if(enemiesWithinHeartbeatRadius == 0) playerStats.gameObject.GetComponent<PlayerMusicHandler>().PlayHeartbeat(distanceToPlayer);
+            if (enemiesWithinHeartbeatRadius == 0)
+            {
+                playerStats.gameObject.GetComponent<PlayerMusicHandler>().PlayHeartbeat(distanceToPlayer);
+            }
             enemiesWithinHeartbeatRadius++;
             isWithinHeartbeatRadius = true;
         }
-        else if (distanceToPlayer > heartbeatRadius && isWithinHeartbeatRadius)
+        else if (distanceToPlayer > heartbeatRadius && isWithinHeartbeatRadius || 
+                 GetComponent<EnemyHealthManagement>().GetCurrentStatus() == EnemyHealthManagement.CurrentStatus.Dead)
         {
             enemiesWithinHeartbeatRadius--;
             isWithinHeartbeatRadius = false;
-            if(enemiesWithinHeartbeatRadius == 0) playerStats.gameObject.GetComponent<PlayerMusicHandler>().StopHeartbeat();
+            if (enemiesWithinHeartbeatRadius == 0)
+            {
+                playerStats.gameObject.GetComponent<PlayerMusicHandler>().StopHeartbeat();
+            }
         }
     }
 }

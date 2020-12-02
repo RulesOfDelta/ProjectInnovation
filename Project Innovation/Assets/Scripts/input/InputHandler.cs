@@ -121,6 +121,22 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    private bool waitForFire;
+    private Action fireCb;
+    
+    public void HaltInputUntilFire(float minTime = 0.5f, Action tempFireCb = null)
+    {
+        inputEnabled = false;
+        fireCb = tempFireCb;
+        StartCoroutine(StartWaiting());
+
+        IEnumerator StartWaiting()
+        {
+            yield return new WaitForSeconds(minTime);
+            waitForFire = true;
+        }
+    }
+
     public void RegisterOnFire(ButtonCallback cb)
     {
         OnFireCb += cb;
@@ -158,7 +174,14 @@ public class InputHandler : MonoBehaviour
     
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (!inputEnabled) return;
+        if (!inputEnabled)
+        {
+            if (!waitForFire) return;
+            inputEnabled = true;
+            waitForFire = false;
+            fireCb?.Invoke();
+            return;
+        }
         switch (CheckButton(context))
         {
             case ButtonAction.Down:

@@ -47,19 +47,26 @@ public class PlayerStats : MonoBehaviour
         playerMusicHandler = GetComponent<PlayerMusicHandler>();
     }
 
-    private void OnDeath()
+    private void Update()
     {
-        StartCoroutine(OnPlayerDeath());
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Damage(1000, AttackMethod.Sword);
+        }
     }
 
-    IEnumerator OnPlayerDeath()
+    private void OnDeath()
     {
-        Health = maxHealth;
         playerMusicHandler.ApplyDeathFilter();
         playerMusicHandler.StopHeartbeat();
         Highscore.SaveCurrentHighscore();
         musicHandler.State = MusicHandler.MusicState.Stop;
-        yield return new WaitForSeconds(5.0f);
+        controls.HaltInputUntilFire(3.0f, Resurrect);
+    }
+
+    private void Resurrect()
+    {
+        Health = maxHealth;
         playerMusicHandler.RemoveDeathFilter();
         GameObject.Find("Room").GetComponent<Room2>().Generate();
     }

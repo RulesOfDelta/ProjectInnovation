@@ -384,7 +384,10 @@ public class Room2 : MonoBehaviour
         }
 
         playerMusicHandler.OnClear();
-        var wallSound = player.GetComponentInChildren<PlayerWallSound>();
-        if(wallSound) wallSound.OnClear();
+        if (player)
+        {
+            var wallSound = player.GetComponentInChildren<PlayerWallSound>();
+            if (wallSound) wallSound.OnClear();
+        }
     }
 }

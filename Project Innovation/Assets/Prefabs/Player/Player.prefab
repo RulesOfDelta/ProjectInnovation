@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 1071692896236647669}
   - component: {fileID: 6232164595805607644}
   - component: {fileID: 7812257532471370970}
-  m_Layer: 12
+  m_Layer: 17
   m_Name: BullshitHack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,6 +470,9 @@ MonoBehaviour:
   playerWallMask:
     serializedVersion: 2
     m_Bits: 32768
+  doorMask:
+    serializedVersion: 2
+    m_Bits: 65536
   minVelocity: 1
   wallHitEvent: event:/Player/Pl_bumping
   soundDist: 2.5

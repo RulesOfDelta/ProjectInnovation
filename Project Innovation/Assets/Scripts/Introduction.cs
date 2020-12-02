@@ -11,6 +11,8 @@ public class Introduction : MonoBehaviour
     [FMODUnity.EventRef, SerializeField] private string[] voiceLines;
     private FMOD.Studio.EventInstance[] voiceLinesInstances;
 
+    [SerializeField] private string nextScene;
+
     private Transform spider;
     
     void Start()
@@ -81,12 +83,13 @@ public class Introduction : MonoBehaviour
     IEnumerator End()
     {
         yield return StartCoroutine(StartAndWaitForVoiceline(6));
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(nextScene);
         yield return null;
     }
 
     IEnumerator StartAndWaitForVoiceline(int voiceLineIndex)
     {
+        inputHandler.LockInput();
         voiceLinesInstances[voiceLineIndex].start();
         FMOD.Studio.PLAYBACK_STATE playbackState;
         voiceLinesInstances[voiceLineIndex].getPlaybackState(out playbackState);
@@ -95,5 +98,6 @@ public class Introduction : MonoBehaviour
             voiceLinesInstances[voiceLineIndex].getPlaybackState(out playbackState);
             yield return new WaitForSeconds(0.2f);
         }
+        inputHandler.ReleaseInput();
     }
 }

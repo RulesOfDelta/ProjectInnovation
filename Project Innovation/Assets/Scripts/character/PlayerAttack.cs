@@ -86,6 +86,7 @@ public class PlayerAttack : MonoBehaviour
             .GetComponent<Bullet>();
         if (bullet)
         {
+            bowShootInstance.set3DAttributes(transform.position.To3DAttributes());
             bowShootInstance.start();
             bullet.Fire(transform.forward);
             StartCoroutine(ShootCooldown());

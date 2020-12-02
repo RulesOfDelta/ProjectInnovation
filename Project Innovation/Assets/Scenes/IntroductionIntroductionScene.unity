@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: event:/Player/Death
-  scene: MainScene
+  scene: IntroductionScene
 --- !u!1 &659633951
 GameObject:
   m_ObjectHideFlags: 0

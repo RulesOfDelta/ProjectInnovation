@@ -15,17 +15,17 @@ PrefabInstance:
     - target: {fileID: 284317916417099805, guid: df372e13d6d87394687c8fa47edc6d54,
         type: 3}
       propertyPath: deathSound
-      value: event:/Monsters/Goblin/Goblin_yelling
+      value: event:/Monsters/Goblin/Goblin laughing_updated
       objectReference: {fileID: 0}
     - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
         type: 3}
       propertyPath: attackSound
-      value: 
+      value: event:/Monsters/Goblin/Goblin_yelling
       objectReference: {fileID: 0}
     - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
         type: 3}
       propertyPath: prepareSound
-      value: event:/Monsters/Goblin/Goblin_Laughing
+      value: event:/Monsters/Goblin/Goblin_speaking01
       objectReference: {fileID: 0}
     - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
         type: 3}
@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
         type: 3}
       propertyPath: chargeTime
-      value: 1.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
         type: 3}

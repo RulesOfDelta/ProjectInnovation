@@ -21,6 +21,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float swordAttackTime = 0.1f;
     [SerializeField] private float swordAttackCooldown = 1f;
 
+    [EventRef, SerializeField] private string switchToBowSound;
+    [EventRef, SerializeField] private string switchToSwordSound;
+
     private enum Weapon
     {
         Sword,
@@ -103,9 +106,11 @@ public class PlayerAttack : MonoBehaviour
         {
             case Weapon.Sword:
                 currentWeapon = Weapon.Bow;
+                RuntimeManager.PlayOneShot(switchToBowSound);
                 break;
             case Weapon.Bow:
                 currentWeapon = Weapon.Sword;
+                RuntimeManager.PlayOneShot(switchToSwordSound);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

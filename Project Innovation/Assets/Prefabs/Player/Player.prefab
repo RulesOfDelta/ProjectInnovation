@@ -168,6 +168,8 @@ MonoBehaviour:
   sword: {fileID: 1316099055176214389}
   swordAttackTime: 0.3
   swordAttackCooldown: 1
+  switchToBowSound: event:/Player/Fighting/SwitchToBow
+  switchToSwordSound: event:/Player/Fighting/SwitchToSword
   swordEventPath: event:/Player/Fighting/sword
 --- !u!114 &1316099054983123679
 MonoBehaviour:

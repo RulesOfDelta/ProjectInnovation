@@ -7,7 +7,7 @@ public class Introduction : MonoBehaviour
     private InputHandler inputHandler;
     [FMODUnity.EventRef, SerializeField] private string[] voiceLines;
     private FMOD.Studio.EventInstance[] voiceLinesInstances;
-    
+
     void Start()
     {
         inputHandler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();

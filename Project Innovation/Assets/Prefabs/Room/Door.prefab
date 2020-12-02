@@ -166,6 +166,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   doorActivationSound: event:/Gates/Gates
+  doorLocalizationSound: event:/Gates/GatePosition
 --- !u!114 &-5053553500449530413
 MonoBehaviour:
   m_ObjectHideFlags: 0

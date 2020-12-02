@@ -23,8 +23,8 @@ public class EnemyAttack : MonoBehaviour
     [FMODUnity.EventRef, SerializeField] private string prepareSound;
     private FMOD.Studio.EventInstance prepareInstance;
 
-    private int enemiesWithinHeartbeatRadius;
-    private bool isWithinHeartbeatRadius;
+    public static int enemiesWithinHeartbeatRadius;
+    private bool IsWithinHeartbeatRadius;
 
     private void Start()
     {
@@ -38,7 +38,7 @@ public class EnemyAttack : MonoBehaviour
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
 
         enemiesWithinHeartbeatRadius = 0;
-        isWithinHeartbeatRadius = false;
+        IsWithinHeartbeatRadius = false;
     }
 
     private void Update()
@@ -107,20 +107,21 @@ public class EnemyAttack : MonoBehaviour
     public void CheckForHeartbeatDistance()
     {
         float distanceToPlayer = Vector3.Distance(playerStats.transform.position, transform.position);
-        if (distanceToPlayer <= heartbeatRadius && !isWithinHeartbeatRadius)
+        if (distanceToPlayer <= heartbeatRadius && !IsWithinHeartbeatRadius)
         {
             if (enemiesWithinHeartbeatRadius == 0)
             {
                 playerStats.gameObject.GetComponent<PlayerMusicHandler>().PlayHeartbeat(distanceToPlayer);
             }
             enemiesWithinHeartbeatRadius++;
-            isWithinHeartbeatRadius = true;
+            Debug.Log("This was exectued nasojdhsAOPIDFUHAJSDOPIFPDAS");
+            IsWithinHeartbeatRadius = true;
         }
-        else if (distanceToPlayer > heartbeatRadius && isWithinHeartbeatRadius || 
+        else if (distanceToPlayer > heartbeatRadius && IsWithinHeartbeatRadius || 
                  GetComponent<EnemyHealthManagement>().GetCurrentStatus() == EnemyHealthManagement.CurrentStatus.Dead)
         {
             enemiesWithinHeartbeatRadius--;
-            isWithinHeartbeatRadius = false;
+            IsWithinHeartbeatRadius = false;
             if (enemiesWithinHeartbeatRadius == 0)
             {
                 playerStats.gameObject.GetComponent<PlayerMusicHandler>().StopHeartbeat();

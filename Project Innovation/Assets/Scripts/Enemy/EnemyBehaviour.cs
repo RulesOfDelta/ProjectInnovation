@@ -35,8 +35,10 @@ public class EnemyBehaviour : MonoBehaviour
     private Vector3 _initalPosition;
     private bool _withinDestinationRange;
 
+    public bool isPassive = false;
+
     private Rigidbody rigidbody;
-    
+
     private void Start()
     {
         currentWalkSpeed = walkSpeed;
@@ -67,9 +69,12 @@ public class EnemyBehaviour : MonoBehaviour
         //Deprecated: ownTransform.Translate(currentWalkSpeed * Time.deltaTime * transform.forward, Space.World);
         rigidbody.MovePosition(transform.position + currentWalkSpeed * Time.deltaTime * transform.forward);
 
-        if (!SawPlayer) LookForPlayer();
-        else ChasePlayer();
-        
+        if (!isPassive)
+        {
+            if (!SawPlayer) LookForPlayer();
+            else ChasePlayer();
+        }
+
         if (!SawPlayer)
         {
             if (enableCBR)
@@ -110,7 +115,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Vector3 newDirectionVector = Quaternion.Euler(0, deltaAngle, 0) * transformForwardXZ;
             Vector3 perpendicularVector = Vector3.Cross(hitObjectNormalXZ, newDirectionVector);
-            
+
             if (perpendicularVector.y > 0)
             {
                 if (showDebugInfo) Debug.Log("Unsuccessful direction-vector had a clockwise rotation");
@@ -131,7 +136,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SphereReorientation()
     {
-        if (!_withinDestinationRange && (destinationPoint - ownTransform.position).magnitude < minDistToDestPoint || reenabledReorientation)
+        if (!_withinDestinationRange && (destinationPoint - ownTransform.position).magnitude < minDistToDestPoint ||
+            reenabledReorientation)
         {
             _withinDestinationRange = true;
             reenabledReorientation = false;
@@ -169,7 +175,7 @@ public class EnemyBehaviour : MonoBehaviour
         else
         {
             if (showDebugInfo) Debug.Log("First collider hit was " + collidersOverlapped[0].transform.name);
-            walkableRadius = currentSphereRadius - stepSize;   
+            walkableRadius = currentSphereRadius - stepSize;
         }
     }
 
@@ -177,7 +183,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Vector2 randomXZPosition = Random.insideUnitCircle * walkableRadius;
         destinationPoint = _initalPosition +
-                           new Vector3(randomXZPosition.x, ownTransform.position.y - ownTransform.lossyScale.y, randomXZPosition.y);
+                           new Vector3(randomXZPosition.x, ownTransform.position.y - ownTransform.lossyScale.y,
+                               randomXZPosition.y);
     }
 
     private void DrawDebug()
@@ -198,8 +205,8 @@ public class EnemyBehaviour : MonoBehaviour
             reenabledReorientation = true;
         }
         else currentWalkSpeed = walkSpeed;
-        
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
+
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,
             Quaternion.LookRotation(differenceVector).eulerAngles.y, transform.rotation.eulerAngles.z);
     }
 

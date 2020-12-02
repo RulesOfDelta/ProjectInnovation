@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InputHandler
   - Puddle
+  - Enemy
   layers:
   - Default
   - TransparentFX

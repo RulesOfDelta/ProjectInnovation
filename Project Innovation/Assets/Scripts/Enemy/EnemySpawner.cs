@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
     // {
     // }
 
-    public void SpawnEnemies(int amount, Vector2 spawnArea)
+    public List<GameObject> SpawnEnemies(int amount, Vector2 spawnArea)
     {
         amount = Mathf.Clamp(amount, minEnemiesSpawned, maxEnemiesSpawned);
         ClearEnemies();
@@ -72,6 +72,8 @@ public class EnemySpawner : MonoBehaviour
             enemy.GetComponent<EnemyRemoveNotifier>().AddEvent(OnRemoveEnemy);
             enemies.Add(enemy);
         }
+
+        return enemies;
     }
 
     private bool clearing;

@@ -82,12 +82,12 @@ public class EnemySpawner : MonoBehaviour
     {
         if (clearing) return;
         enemies.Remove(enemy);
-        if (!HasEnemies()) 
+        if (!HasEnemies())
             room.OnClear();
         // TODO notify room
     }
 
-    private void ClearEnemies()
+    public void ClearEnemies()
     {
         clearing = true;
         foreach (var enemy in enemies)

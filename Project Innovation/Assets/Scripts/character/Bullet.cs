@@ -1,3 +1,6 @@
+using System.Collections;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -8,6 +11,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int damage = 10;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask boundsLayer;
+    [EventRef, SerializeField] private string hitSound;
 
     private void Update()
     {
@@ -29,6 +33,7 @@ public class Bullet : MonoBehaviour
             {
                 stats.ReduceHealth(damage);
                 Destroy(gameObject);
+                RuntimeManager.PlayOneShot(hitSound, transform.position);
             }
         }
     }

@@ -378,13 +378,18 @@ public class Room2 : MonoBehaviour
 
     public void OnClear()
     {
+        if (player && player.GetComponent<PlayerStats>().Health <= 0f)
+            return;
         foreach (var door in doors)
         {
             if (door) door.OnAllEnemiesClear();
         }
 
         playerMusicHandler.OnClear();
-        var wallSound = player.GetComponentInChildren<PlayerWallSound>();
-        if(wallSound) wallSound.OnClear();
+        if (player)
+        {
+            var wallSound = player.GetComponentInChildren<PlayerWallSound>();
+            if (wallSound) wallSound.OnClear();
+        }
     }
 }

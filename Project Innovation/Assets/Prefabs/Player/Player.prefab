@@ -164,9 +164,12 @@ MonoBehaviour:
     type: 3}
   bulletParent: {fileID: 0}
   gunCooldown: 0.25
+  bowShootSound: event:/Player/Fighting/ArrowTwang
   sword: {fileID: 1316099055176214389}
   swordAttackTime: 0.3
   swordAttackCooldown: 1
+  switchToBowSound: event:/Player/Fighting/SwitchToBow
+  switchToSwordSound: event:/Player/Fighting/SwitchToSword
   swordEventPath: event:/Player/Fighting/sword
 --- !u!114 &1316099054983123679
 MonoBehaviour:
@@ -180,11 +183,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b18870a81521e848af61f4647457ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSoundSword: event:/Player/Pl_GetHit
+  deathSound: event:/Player/Death
+  hitSoundSword: event:/Player/Hurt
   hitSoundShield: event:/Player/Fighting/ShieldImpact
   moveShieldUp: event:/Player/Fighting/Sword
   moveShieldDown: event:/Player/Fighting/ShieldDOWN
-  hiddenSound: 
+  hiddenSound: event:/Player/Hidden
   maxHealth: 100
   musicHandler: {fileID: 0}
   shieldActive: 0
@@ -243,8 +247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicHandler: {fileID: 0}
-  heartbeat: 
-  deadFilter: 
+  heartbeat: event:/Player/Pl_heartBeat
+  deadFilter: snapshot:/DeathFilter
 --- !u!114 &8983513717045613495
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,13 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerStats : MonoBehaviour
 {
-    [FMODUnity.EventRef, SerializeField] private string hitSoundSword, hitSoundShield, moveShieldUp, moveShieldDown, hiddenSound;
+    [FMODUnity.EventRef, SerializeField]
+    private string deathSound, hitSoundSword, hitSoundShield, moveShieldUp, moveShieldDown, hiddenSound;
+
     [SerializeField] private float maxHealth;
     [SerializeField] private MusicHandler musicHandler;
     private PlayerMusicHandler playerMusicHandler;
@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
     private InputHandler controls;
     public bool shieldActive;
     public int shieldAngle = 90;
-    
+
     //Very important
     public InputHandler test;
 
@@ -49,19 +49,35 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Damage(1000, AttackMethod.Sword);
+            Health = -1337;
         }
+#endif
     }
 
     private void OnDeath()
     {
         playerMusicHandler.ApplyDeathFilter();
         playerMusicHandler.StopHeartbeat();
+
+        GameObject.Find("Room").GetComponent<EnemySpawner>().ClearEnemies();
+        
         Highscore.SaveCurrentHighscore();
-        musicHandler.State = MusicHandler.MusicState.Stop;
+        
+        RuntimeManager.PlayOneShot(deathSound, Vector3.zero);
+        StartCoroutine(Hack());
+        
         controls.HaltInputUntilFire(3.0f, Resurrect);
+
+        IEnumerator Hack()
+        {
+            yield return null;
+            yield return null;
+            yield return null;
+            musicHandler.State = MusicHandler.MusicState.Stop;
+        }
     }
 
     private void Resurrect()

@@ -375,9 +375,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs: []
-  spawnInterval: 0
   minEnemiesSpawned: 1
   maxEnemiesSpawned: 25
+  minDistance: 3
+  spawnTries: 10
+  isIntroduction: 1
 --- !u!4 &2053292845
 Transform:
   m_ObjectHideFlags: 0

@@ -1,10 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Room2))]
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> enemyPrefabs;
+    [Serializable]
+    public class EnemySpawn
+    {
+        public GameObject prefab;
+        [Min(0f)] public float percentage;
+    }
+    
+    [SerializeField] private List<EnemySpawn> enemyPrefabs;
 
     //[SerializeField] [Tooltip("Only the xz-plane will be considered!")] private Vector3 spawnArea;
     [SerializeField] private float spawnInterval;
@@ -23,6 +33,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         room = GetComponent<Room2>();
+        ValidatePercentages();
     }
 
     // private void SpawnEnemyIntervals()
@@ -43,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            var enemyPrefab = enemyPrefabs.Random();
+            var enemyPrefab = GetRandomEnemy();
             Vector3 spawnPoint = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2),
                 vectorToGround.y + enemyPrefab.transform.localScale.y,
                 Random.Range(-spawnArea.y / 2, spawnArea.y / 2));
@@ -91,5 +102,41 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> GetEnemies()
     {
         return enemies;
+    }
+
+
+    private void ValidatePercentages()
+    {
+        if (enemyPrefabs == null) return;
+        var total = enemyPrefabs.Sum(prefab => prefab.percentage);
+        if (total == 0f)
+        {
+            foreach (var enemySpawn in enemyPrefabs)
+            {
+                enemySpawn.percentage = 1f / enemyPrefabs.Count;
+            }
+        }
+        else
+        {
+            total = Mathf.Abs(total);
+            foreach (var enemySpawn in enemyPrefabs)
+            {
+                enemySpawn.percentage /= total;
+            }
+        }
+    }
+
+    private GameObject GetRandomEnemy()
+    {
+        var rand = Random.value;
+        var total = 0f;
+        foreach (var enemySpawn in enemyPrefabs)
+        {
+            total += enemySpawn.percentage;
+            if (rand < total)
+                return enemySpawn.prefab;
+        }
+
+        return null;
     }
 }

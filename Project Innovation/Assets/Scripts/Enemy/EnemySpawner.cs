@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
     
     private  List<GameObject> enemies;
 
+    public bool isIntroduction = true;
+
     private void Awake()
     {
         enemies = new List<GameObject>();
@@ -23,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         room = GetComponent<Room2>();
+        //if(isIntroduction) SpawnEnemies(1, );
     }
 
     // private void SpawnEnemyIntervals()

@@ -208,6 +208,8 @@ public class Room2 : MonoBehaviour
             bat.GetComponent<MovingSound>().SetBounds(transform.position + new Vector3(0f, wallHeight / 2f, 0f),
                 new Vector3(x, wallHeight, y));
         }
+        
+        player.GetComponent<PlayerWalkingSound>().FindPuddles();
 
         // TODO spawn enemies
 #if UNITY_EDITOR
@@ -216,7 +218,7 @@ public class Room2 : MonoBehaviour
         var spawnX = x * enemySpawnPercentageX;
         var spawnY = y * enemySpawnPercentageY;
         var enemyCount = Mathf.CeilToInt(spawnX * spawnY * enemySpawnPerSqrUnit);
-        enemySpawner.SpawnEnemies(enemyCount, new Vector2(spawnX, spawnY));
+        if(!GameObject.Find("Introduction")) enemySpawner.SpawnEnemies(enemyCount, new Vector2(spawnX, spawnY));
 
         playerMusicHandler.OnGenerate();
     }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerWallSound : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class PlayerWallSound : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private float maxDistance;
     [SerializeField] private AnimationCurve falloff = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
+
+    private bool bumped = false;
+    public bool bumpedIntoWall => bumped;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +55,7 @@ public class PlayerWallSound : MonoBehaviour
     {
         if (playerWallMask.Contains(other.gameObject.layer))
         {
+            bumped = true;
             var point = other.GetContact(0).point;
             Debug.Log($"point {point} pos {transform.position}");
             point.y = transform.position.y;
@@ -58,5 +63,10 @@ public class PlayerWallSound : MonoBehaviour
             Debug.Log($"sound pos {point}");
             FMODUnity.RuntimeManager.PlayOneShot(wallHitEvent, point);
         }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        bumped = false;
     }
 }

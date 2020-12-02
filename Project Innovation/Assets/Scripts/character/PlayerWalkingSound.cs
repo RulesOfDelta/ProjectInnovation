@@ -5,7 +5,8 @@ public class PlayerWalkingSound : WalkingSound
     [SerializeField] private float minWaterDist;
     [SerializeField] private float maxWaterDist;
     [SerializeField] private AnimationCurve waterFalloff = AnimationCurve.Constant(0f, 1f, 1f);
-
+    private GameObject[] puddles;
+    
     protected override void ApplyParameters(FMOD.Studio.EventInstance eventInstance)
     {
         eventInstance.setParameterByName("wet", SampleParamVal());
@@ -31,5 +32,10 @@ public class PlayerWalkingSound : WalkingSound
         val /= maxWaterDist - minWaterDist;
         //val can't go below 0 or over 1
         return Mathf.Clamp01(waterFalloff.Evaluate(val));
+    }
+    public void FindPuddles()
+    {
+        puddles = GameObject.FindGameObjectsWithTag("Puddle");
+        Debug.Log("Amount of puddles is " + puddles.Length);
     }
 }

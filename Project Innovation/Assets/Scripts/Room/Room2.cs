@@ -208,7 +208,8 @@ public class Room2 : MonoBehaviour
             bat.GetComponent<MovingSound>().SetBounds(transform.position + new Vector3(0f, wallHeight / 2f, 0f),
                 new Vector3(x, wallHeight, y));
         }
-        
+
+        Debug.Log("EXECUTED :))))))");
         player.GetComponent<PlayerWalkingSound>().FindPuddles();
 
         // TODO spawn enemies

@@ -209,8 +209,8 @@ public class Room2 : MonoBehaviour
                 new Vector3(x, wallHeight, y));
         }
 
-        Debug.Log("EXECUTED :))))))");
         player.GetComponent<PlayerWalkingSound>().FindPuddles();
+        player.GetComponentInChildren<PlayerWallSound>().OnGenerate();
 
         // TODO spawn enemies
 #if UNITY_EDITOR
@@ -384,5 +384,7 @@ public class Room2 : MonoBehaviour
         }
 
         playerMusicHandler.OnClear();
+        var wallSound = player.GetComponentInChildren<PlayerWallSound>();
+        if(wallSound) wallSound.OnClear();
     }
 }

@@ -90,10 +90,10 @@ GameObject:
   - component: {fileID: 3149391755230881721}
   - component: {fileID: 3149391755230881722}
   - component: {fileID: 3149391755230881723}
-  - component: {fileID: 3149391755230881726}
+  - component: {fileID: 1804954228011542507}
   - component: {fileID: 3149391755230881727}
   - component: {fileID: 3149391755230881720}
-  - component: {fileID: 1804954228011542507}
+  - component: {fileID: 3149391755230881726}
   m_Layer: 15
   m_Name: Wall
   m_TagString: Untagged
@@ -164,20 +164,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3149391755230881726
-MonoBehaviour:
+--- !u!65 &1804954228011542507
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3149391755230881717}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TerrainSimplificationLevel: 0
-  exportAllChildren: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3149391755230881727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,11 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43300f764e354d642abf0f0dbb612011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Preset: 2
+  Preset: 10
   Value:
-    LowFreqAbsorption: 0.05
-    MidFreqAbsorption: 0.07
-    HighFreqAbsorption: 0.08
+    LowFreqAbsorption: 0.13
+    MidFreqAbsorption: 0.2
+    HighFreqAbsorption: 0.24
     Scattering: 0.05
     LowFreqTransmission: 0.015
     MidFreqTransmission: 0.002
@@ -212,19 +211,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assetFileName: test.instancedmesh
---- !u!65 &1804954228011542507
-BoxCollider:
+--- !u!114 &3149391755230881726
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3149391755230881717}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79e99846fd75c4438917229c144155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainSimplificationLevel: 0
+  exportAllChildren: 0
 --- !u!1 &7878178320070812409
 GameObject:
   m_ObjectHideFlags: 0

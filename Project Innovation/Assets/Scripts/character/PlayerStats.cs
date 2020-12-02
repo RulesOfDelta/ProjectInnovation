@@ -1,4 +1,5 @@
-﻿using FMODUnity;
+﻿using System.Collections;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -51,7 +52,7 @@ public class PlayerStats : MonoBehaviour
 #if UNITY_EDITOR
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Damage(1000, AttackMethod.Sword);
+            Health = -1337;
         }
 #endif
     }
@@ -60,10 +61,23 @@ public class PlayerStats : MonoBehaviour
     {
         playerMusicHandler.ApplyDeathFilter();
         playerMusicHandler.StopHeartbeat();
+
+        GameObject.Find("Room").GetComponent<EnemySpawner>().ClearEnemies();
+        
         Highscore.SaveCurrentHighscore();
+        
         RuntimeManager.PlayOneShot(deathSound, Vector3.zero);
-        musicHandler.State = MusicHandler.MusicState.Stop;
+        StartCoroutine(Hack());
+        
         controls.HaltInputUntilFire(3.0f, Resurrect);
+
+        IEnumerator Hack()
+        {
+            yield return null;
+            yield return null;
+            yield return null;
+            musicHandler.State = MusicHandler.MusicState.Stop;
+        }
     }
 
     private void Resurrect()

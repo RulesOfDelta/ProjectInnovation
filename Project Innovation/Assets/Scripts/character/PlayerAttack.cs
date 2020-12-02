@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -11,6 +13,9 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Shooty settings")] [SerializeField]
     private float gunCooldown = 3f;
+
+    [EventRef, SerializeField] private string bowShootSound;
+    private EventInstance bowShootInstance;
     [Header("Sword settings")]
     [SerializeField] private SwordHandler sword;
     [SerializeField] private float swordAttackTime = 0.1f;
@@ -26,10 +31,10 @@ public class PlayerAttack : MonoBehaviour
 
     private bool attacking;
     
-    [FMODUnity.EventRef]
+    [EventRef]
     public string swordEventPath;
 
-    private FMOD.Studio.EventInstance swordSound;
+    private EventInstance swordSound;
     
 
     private void Start()
@@ -39,13 +44,19 @@ public class PlayerAttack : MonoBehaviour
             handler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         handler.RegisterOnFire(OnFire);
         handler.RegisterOnSwitch(OnSwitch);
-        swordSound = FMODUnity.RuntimeManager.CreateInstance(swordEventPath);
+        swordSound = RuntimeManager.CreateInstance(swordEventPath);
+        bowShootInstance = bowShootSound.CreateSound();
     }
     
     private void OnDestroy()
     {
         handler.DeregisterOnFire(OnFire);
         handler.DeregisterOnSwitch(OnSwitch);
+
+        swordSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        swordSound.release();
+        bowShootInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        bowShootInstance.release();
     }
 
     private bool canShoot = true;
@@ -72,6 +83,7 @@ public class PlayerAttack : MonoBehaviour
             .GetComponent<Bullet>();
         if (bullet)
         {
+            bowShootInstance.start();
             bullet.Fire(transform.forward);
             StartCoroutine(ShootCooldown());
         }

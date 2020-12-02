@@ -1,3 +1,6 @@
+using System.Collections;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -8,6 +11,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int damage = 10;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask boundsLayer;
+    [EventRef, SerializeField] private string hitSound;
+    [EventRef, SerializeField] private string shootSound;
+    [SerializeField] private float shootSoundDelay = 0.5f;
+
+    private void Start()
+    {
+        StartCoroutine(PlayShootSound());
+    }
 
     private void Update()
     {
@@ -20,6 +31,21 @@ public class Bullet : MonoBehaviour
         shotDirection = direction.normalized * speed;
     }
 
+    private IEnumerator PlayShootSound()
+    {
+        var shootSoundInstance = shootSound.CreateSound();
+        yield return new WaitForSeconds(shootSoundDelay);
+        shootSoundInstance.start();
+        PLAYBACK_STATE state;
+        do
+        {
+            shootSoundInstance.getPlaybackState(out state);
+        } while (state == PLAYBACK_STATE.PLAYING);
+
+        shootSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        shootSoundInstance.release();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (enemyLayer.Contains(other.gameObject.layer))
@@ -29,6 +55,7 @@ public class Bullet : MonoBehaviour
             {
                 stats.ReduceHealth(damage);
                 Destroy(gameObject);
+                RuntimeManager.PlayOneShot(hitSound, transform.position);
             }
         }
     }

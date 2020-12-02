@@ -121,6 +121,18 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    public void LockInput()
+    {
+        inputEnabled = false;
+    }
+
+    public void ReleaseInput()
+    {
+        inputEnabled = true;
+        fireCb = null;
+        waitForFire = false;
+    }
+
     private bool waitForFire;
     private Action fireCb;
     
@@ -180,6 +192,7 @@ public class InputHandler : MonoBehaviour
             inputEnabled = true;
             waitForFire = false;
             fireCb?.Invoke();
+            fireCb = null;
             return;
         }
         switch (CheckButton(context))

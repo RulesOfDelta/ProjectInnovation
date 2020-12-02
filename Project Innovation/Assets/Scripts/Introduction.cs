@@ -13,6 +13,9 @@ public class Introduction : MonoBehaviour
 
     [SerializeField] private string nextScene;
 
+    [SerializeField] private Transform targetPosition;
+    [SerializeField] private float speed;
+
     private Transform spider;
     
     void Start()
@@ -35,9 +38,12 @@ public class Introduction : MonoBehaviour
     {
         for (int i = 0; i < voiceLinesInstances.Length; i++)
         {
+            // :D
             if (i == 2) voiceLinesInstances[i].set3DAttributes(spider.position.To3DAttributes());
             else voiceLinesInstances[i].set3DAttributes(transform.position.To3DAttributes());
         }
+
+        transform.position = Vector3.Lerp(transform.position, targetPosition.position, speed * Time.deltaTime);
     }
 
     IEnumerator IntroductionCoroutine()
@@ -56,7 +62,7 @@ public class Introduction : MonoBehaviour
     {
         yield return new WaitUntil(() => GameObject.FindWithTag("Player").GetComponentInChildren<PlayerWallSound>().bumpedIntoWall);
         yield return StartCoroutine(StartAndWaitForVoiceline(1));
-        yield return new WaitUntil(() => (spider.position - transform.position).magnitude < 12.5f);
+        yield return new WaitUntil(() => (spider.position - targetPosition.position).magnitude < 12.5f);
         yield return StartCoroutine(StartAndWaitForVoiceline(2));
         StartCoroutine(SpawnEnemy());
     }

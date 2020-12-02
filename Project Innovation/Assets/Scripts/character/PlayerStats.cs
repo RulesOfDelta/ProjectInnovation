@@ -47,6 +47,12 @@ public class PlayerStats : MonoBehaviour
         playerMusicHandler = GetComponent<PlayerMusicHandler>();
     }
 
+    private void OnDestroy()
+    {
+        controls.DeregisterOnShield(ToggleShield);
+        controls.DeregisterOnHidden(FatAssFart);
+    }
+
     private void Update()
     {
 #if UNITY_EDITOR

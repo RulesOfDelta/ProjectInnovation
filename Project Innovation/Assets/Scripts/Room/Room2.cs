@@ -24,6 +24,8 @@ public class Room2 : MonoBehaviour
     [SerializeField] private float entryWidth = 4f;
     [SerializeField] private float entryDepth = 4f;
 
+    [SerializeField] private float playerSpawnRotY;
+
     [SerializeField] private Transform wallPrefab;
     [SerializeField] private Transform floor;
     [SerializeField] private Transform entryBlockade;
@@ -219,7 +221,7 @@ public class Room2 : MonoBehaviour
         var spawnX = x * enemySpawnPercentageX;
         var spawnY = y * enemySpawnPercentageY;
         var enemyCount = Mathf.CeilToInt(spawnX * spawnY * enemySpawnPerSqrUnit);
-        if(!GameObject.Find("Introduction")) enemySpawner.SpawnEnemies(enemyCount, new Vector2(spawnX, spawnY));
+        if (!GameObject.Find("Introduction")) enemySpawner.SpawnEnemies(enemyCount, new Vector2(spawnX, spawnY));
 
         playerMusicHandler.OnGenerate();
     }
@@ -314,7 +316,8 @@ public class Room2 : MonoBehaviour
         playerPos.y = player.position.y;
         player.position = playerPos;
         var sign = Mathf.Sign(posWall.Distance);
-        player.forward = posWall.Horizontal ? new Vector3(-sign, 0, 0) : new Vector3(0, 0, -sign);
+        player.forward = Quaternion.Euler(0, playerSpawnRotY, 0) *
+                         (posWall.Horizontal ? new Vector3(-sign, 0, 0) : new Vector3(0, 0, -sign));
         controller.EnableControls(true);
     }
 

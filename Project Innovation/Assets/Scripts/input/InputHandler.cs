@@ -124,6 +124,7 @@ public class InputHandler : MonoBehaviour
     public void LockInput()
     {
         inputEnabled = false;
+        ClearDataForHalting();
     }
 
     public void ReleaseInput()
@@ -138,6 +139,7 @@ public class InputHandler : MonoBehaviour
     
     public void HaltInputUntilFire(float minTime = 0.5f, Action tempFireCb = null)
     {
+        ClearDataForHalting();
         inputEnabled = false;
         fireCb = tempFireCb;
         StartCoroutine(StartWaiting());
@@ -147,6 +149,15 @@ public class InputHandler : MonoBehaviour
             yield return new WaitForSeconds(minTime);
             waitForFire = true;
         }
+    }
+
+    private void ClearDataForHalting()
+    {
+        state.Move = Vector2.zero;
+        state.Look = Vector2.zero;
+        OnShieldCb?.Invoke(ButtonAction.Up);
+        state.ShieldPressed = false;
+        ResetRumble();
     }
 
     public void RegisterOnFire(ButtonCallback cb)
@@ -182,6 +193,11 @@ public class InputHandler : MonoBehaviour
     public void RegisterOnHidden(ButtonCallback cb)
     {
         OnHiddenCb += cb;
+    }
+
+    public void DeregisterOnHidden(ButtonCallback cb)
+    {
+        OnHiddenCb -= cb;
     }
     
     public void OnFire(InputAction.CallbackContext context)

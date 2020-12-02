@@ -46,6 +46,7 @@ public class MovingSound : MonoBehaviour
         if (Vector3.Distance(transform.position, waypoint) < speed * Time.deltaTime * 3f)
         {
             waypoint = GetRandomPos();
+            speed = Random.Range(minSpeed, maxSpeed);
         }
         
         soundInstance.set3DAttributes(transform.position.To3DAttributes());

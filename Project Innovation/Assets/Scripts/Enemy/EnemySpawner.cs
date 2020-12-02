@@ -16,10 +16,10 @@ public class EnemySpawner : MonoBehaviour
     
     [SerializeField] private List<EnemySpawn> enemyPrefabs;
 
-    //[SerializeField] [Tooltip("Only the xz-plane will be considered!")] private Vector3 spawnArea;
-    [SerializeField] private float spawnInterval;
     [SerializeField] private int minEnemiesSpawned = 1;
     [SerializeField] private int maxEnemiesSpawned = 25;
+    [SerializeField] private float minDistance = 3f;
+    [SerializeField] private int spawnTries = 10;
 
     private Room2 room;
     
@@ -52,12 +52,19 @@ public class EnemySpawner : MonoBehaviour
         }
         else vectorToGround = transform.position;
 
-        for (int i = 0; i < amount; i++)
+        for (var i = 0; i < amount; i++)
         {
             var enemyPrefab = GetRandomEnemy();
-            Vector3 spawnPoint = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2),
+            if(enemyPrefab == null) continue;
+            var spawnPoint = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2),
                 vectorToGround.y + enemyPrefab.transform.localScale.y,
                 Random.Range(-spawnArea.y / 2, spawnArea.y / 2));
+            for (var j = 0; j < spawnTries && !ValidPos(spawnPoint); j++)
+            {
+                spawnPoint = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2),
+                    vectorToGround.y + enemyPrefab.transform.localScale.y,
+                    Random.Range(-spawnArea.y / 2, spawnArea.y / 2));
+            }
             var enemy = Instantiate(enemyPrefab, spawnPoint,
                 Quaternion.identity * Quaternion.Euler(0, Random.rotation.eulerAngles.y, 0));
             enemy.GetComponent<EnemyRemoveNotifier>().AddEvent(OnRemoveEnemy);
@@ -138,5 +145,10 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return null;
+    }
+
+    private bool ValidPos(Vector3 pos)
+    {
+        return enemies.All(enemy => Vector3.Distance(enemy.transform.position, pos) > minDistance);
     }
 }

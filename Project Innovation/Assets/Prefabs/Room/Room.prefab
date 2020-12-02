@@ -73,12 +73,12 @@ MonoBehaviour:
   maxPuddles: 5
   bugPrefab: {fileID: 1343278890225779944, guid: 29c4bf1671462f64694b122775c3169b,
     type: 3}
-  minBugs: 0
-  maxBugs: 3
+  minBugs: 1
+  maxBugs: 5
   batPrefab: {fileID: 8331289688184641462, guid: 5e7fc642244bfe74cba7cdad86efdf83,
     type: 3}
   minBats: 0
-  maxBats: 2
+  maxBats: 6
 --- !u!114 &2180861421346825547
 MonoBehaviour:
   m_ObjectHideFlags: 0

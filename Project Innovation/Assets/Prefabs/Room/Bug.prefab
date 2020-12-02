@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundPath: event:/Cave/Bugs
-  speed: 2
+  minSpeed: 3.5
+  maxSpeed: 5

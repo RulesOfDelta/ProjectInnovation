@@ -378,6 +378,8 @@ public class Room2 : MonoBehaviour
 
     public void OnClear()
     {
+        if (player && player.GetComponent<PlayerStats>().Health <= 0f)
+            return;
         foreach (var door in doors)
         {
             if (door) door.OnAllEnemiesClear();

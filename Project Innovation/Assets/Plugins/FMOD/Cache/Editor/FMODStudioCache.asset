@@ -296,7 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/FMOD/project/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637425858623527072
+  lastModified: 637425873847801538
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -750,6 +750,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-8880311256062853287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Pl_breathing/br_medium
+  m_EditorClassIdentifier: 
+  Name: br_medium
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-8858945195378490484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,7 +1721,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -1476920022774189621}
+  - {fileID: -5638827404547457365}
   MinDistance: 0
   MaxDistance: 0
   Length: 800
@@ -3607,6 +3627,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-7206942292047139048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/EndBattleMusic/EndBattleVolume
+  m_EditorClassIdentifier: 
+  Name: EndBattleVolume
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-7204032679432570887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,6 +5045,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-6338252725262450051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RestMusic/RestVolume
+  m_EditorClassIdentifier: 
+  Name: RestVolume
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-6328913281872966387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5248,9 +5308,9 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -7439925301432905692}
-  - {fileID: 3623180395654909007}
-  - {fileID: 6236644245606595494}
+  - {fileID: 5388813799630117372}
+  - {fileID: 570149432654624367}
+  - {fileID: 3227808647893500929}
   MinDistance: 0
   MaxDistance: 0
   Length: 8000
@@ -5334,9 +5394,9 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 2026825310700969975}
-  - {fileID: 7592000884623154684}
-  - {fileID: 6523404031988819790}
+  - {fileID: 7382877790107031672}
+  - {fileID: 8434681019253362132}
+  - {fileID: -7206942292047139048}
   MinDistance: 0
   MaxDistance: 0
   Length: 123316
@@ -5818,7 +5878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/FMOD/project/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637425858623447063
+  lastModified: 637425873847781699
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -5842,9 +5902,9 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -1523976551883175698}
-  - {fileID: 6132439365975019897}
-  - {fileID: -2554146395041949369}
+  - {fileID: 3830420873998811915}
+  - {fileID: -6338252725262450051}
+  - {fileID: -4926356185227072415}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -6257,6 +6317,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-5638827404547457365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ShieldUP/UpVolume
+  m_EditorClassIdentifier: 
+  Name: UpVolume
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-5628239526967408188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7346,6 +7426,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-4926356185227072415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RestMusic/OffPath
+  m_EditorClassIdentifier: 
+  Name: OffPath
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-4900964764361591459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9161,7 +9261,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 4692139688788165829}
+  - {fileID: 5306727565692850473}
   MinDistance: 0
   MaxDistance: 0
   Length: 960
@@ -10169,7 +10269,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -1151905707440294400}
+  - {fileID: 7616286868658665838}
   MinDistance: 0
   MaxDistance: 0
   Length: 1712
@@ -13571,6 +13671,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3497
+--- !u!114 &-1040149702337535289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Pl_breathing/br_slow
+  m_EditorClassIdentifier: 
+  Name: br_slow
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-1033482217521789182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15028,7 +15148,7 @@ MonoBehaviour:
   - {fileID: -5875772901503860952}
   StringsBanks:
   - {fileID: -9114380000500606284}
-  stringsBankWriteTime: 637425858623527072
+  stringsBankWriteTime: 637425873847801538
   cacheVersion: 5
 --- !u!114 &8866855257345790
 MonoBehaviour:
@@ -15652,6 +15772,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &353248668188685358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Pl_steps/wet
+  m_EditorClassIdentifier: 
+  Name: wet
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &370774294542391612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15667,6 +15807,26 @@ MonoBehaviour:
   Name: EndBattleMusic
   Min: 0
   Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &371743086175097529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BattleMusic/BattleIntensity
+  m_EditorClassIdentifier: 
+  Name: BattleIntensity
+  Min: 0
+  Max: 2
   Default: 0
   ID:
     data1: 0
@@ -15852,7 +16012,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 6396479663497861265}
+  - {fileID: 6990758392926733159}
   MinDistance: 0
   MaxDistance: 0
   Length: 527
@@ -16076,6 +16236,46 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &570149432654624367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Pl_heartBeat/hb_quick
+  m_EditorClassIdentifier: 
+  Name: hb_quick
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &603345084530146206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Pl_breathing/br_quick
+  m_EditorClassIdentifier: 
+  Name: br_quick
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &623354574596232231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19374,6 +19574,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &2624169378747212845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BattleMusic/BattleMusic
+  m_EditorClassIdentifier: 
+  Name: BattleMusic
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &2647984679333036037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20398,6 +20618,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &3227808647893500929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Pl_heartBeat/hb_slow
+  m_EditorClassIdentifier: 
+  Name: hb_slow
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &3228268227877352343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21310,6 +21550,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2400
+--- !u!114 &3830420873998811915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RestMusic/OnPath
+  m_EditorClassIdentifier: 
+  Name: OnPath
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &3840885394538678118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21792,9 +22052,9 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -7621398627902605736}
-  - {fileID: -144938905575698590}
-  - {fileID: 7679009174278909434}
+  - {fileID: 2624169378747212845}
+  - {fileID: 371743086175097529}
+  - {fileID: 7411158345273998873}
   MinDistance: 0
   MaxDistance: 0
   Length: 60923
@@ -23447,6 +23707,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &5306727565692850473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ShieldDOWN/DownVolume
+  m_EditorClassIdentifier: 
+  Name: DownVolume
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &5332355935020784651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23560,6 +23840,26 @@ MonoBehaviour:
   m_Name: parameter:/EndBattleMusic/EndBattleVolume
   m_EditorClassIdentifier: 
   Name: EndBattleVolume
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &5388813799630117372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Pl_heartBeat/hb_medium
+  m_EditorClassIdentifier: 
+  Name: hb_medium
   Min: 0
   Max: 1
   Default: 0
@@ -25721,9 +26021,9 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 3642225598969182730}
-  - {fileID: 6633261931076756741}
-  - {fileID: 85034932911256398}
+  - {fileID: -1040149702337535289}
+  - {fileID: -8880311256062853287}
+  - {fileID: 603345084530146206}
   MinDistance: 0
   MaxDistance: 0
   Length: 43950
@@ -26208,6 +26508,26 @@ MonoBehaviour:
   Name: EndBattleIntensity
   Min: 0
   Max: 2
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &6990758392926733159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ShieldImpact/ShieldImpactVolume
+  m_EditorClassIdentifier: 
+  Name: ShieldImpactVolume
+  Min: 0
+  Max: 1
   Default: 0
   ID:
     data1: 0
@@ -27001,7 +27321,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 5539288838982961756}
+  - {fileID: 353248668188685358}
   MinDistance: 0
   MaxDistance: 0
   Length: 400
@@ -27025,6 +27345,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &7382877790107031672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/EndBattleMusic/EndBattleMusic
+  m_EditorClassIdentifier: 
+  Name: EndBattleMusic
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &7384856625353585699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27065,6 +27405,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &7411158345273998873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BattleMusic/BattleVolume
+  m_EditorClassIdentifier: 
+  Name: BattleVolume
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &7411165051910163657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27488,6 +27848,26 @@ MonoBehaviour:
   Name: EndBattleIntensity
   Min: 0
   Max: 2
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &7616286868658665838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Humming/HumVolume
+  m_EditorClassIdentifier: 
+  Name: HumVolume
+  Min: 0
+  Max: 1
   Default: 0
   ID:
     data1: 0
@@ -28964,6 +29344,26 @@ MonoBehaviour:
   Name: DownVolume
   Min: 0
   Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &8434681019253362132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/EndBattleMusic/EndBattleIntensity
+  m_EditorClassIdentifier: 
+  Name: EndBattleIntensity
+  Min: 0
+  Max: 2
   Default: 0
   ID:
     data1: 0

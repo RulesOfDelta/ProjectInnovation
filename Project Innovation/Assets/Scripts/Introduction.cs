@@ -49,6 +49,7 @@ public class Introduction : MonoBehaviour
 
     IEnumerator IntroductionCoroutine()
     {
+        yield return null;
         yield return StartCoroutine(StartAndWaitForVoiceline(0));
         StartCoroutine(CheckForMovement());
     }

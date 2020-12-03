@@ -137,9 +137,6 @@
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>
 		</property>
-		<property name="amount">
-			<value>7.5999999</value>
-		</property>
 	</object>
 	<object class="RandomizerModulator" id="{d57e2752-d8d6-4ba0-b6e5-54e099dbbdd4}">
 		<property name="nameOfPropertyBeingModulated">
@@ -168,6 +165,9 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{d68e6b1c-dcc7-4559-bd2f-c405f1c1f102}">
+		<property name="volume">
+			<value>3.5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{6f0453c0-c8b8-449f-8a17-44d50230175b}</destination>
 		</relationship>
@@ -195,6 +195,9 @@
 	<object class="MixerBusPanner" id="{a0969f85-cedf-4cde-ab33-df7ea1a6eddf}" />
 	<object class="MixerBusFader" id="{1ed891a2-c8a9-4e62-ab0b-f0217d1f1ef0}" />
 	<object class="PluginEffect" id="{35eb6f50-fa81-4ed7-a9e3-fbc94c9f081e}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<relationship name="plugin">
 			<destination>{497f7e09-61fe-4e57-856f-af50bea126d7}</destination>
 		</relationship>

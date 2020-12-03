@@ -150,16 +150,10 @@
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>
 		</property>
-		<property name="amount">
-			<value>17.5</value>
-		</property>
 	</object>
 	<object class="RandomizerModulator" id="{ff66504b-07d0-42ec-a7b4-50ef9da1bdc1}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>startOffset</value>
-		</property>
-		<property name="amount">
-			<value>16</value>
 		</property>
 	</object>
 	<object class="SingleSound" id="{95862a77-60be-4f12-a939-8cb9ed86b0ed}">
@@ -190,6 +184,9 @@
 	<object class="MixerBusPanner" id="{14146fd0-9c65-4d72-a03b-6fcc8e96f872}" />
 	<object class="MixerBusFader" id="{90840bc6-a822-4985-8a4a-ebb9efe581b1}" />
 	<object class="PluginEffect" id="{f45b4aa5-e304-4be9-a8ba-424c15cdee57}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<relationship name="plugin">
 			<destination>{81459355-5ee9-42db-a9cc-2561da5918d9}</destination>
 		</relationship>

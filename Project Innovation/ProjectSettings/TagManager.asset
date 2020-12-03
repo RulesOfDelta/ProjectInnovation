@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - InputHandler
+  - Puddle
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,12 +20,12 @@ TagManager:
   - Enemy
   - Bounds
   - Bullets
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Room
+  - Player
+  - IgnorePlayer
+  - PlayerWall
+  - Door
+  - EnemyIgnore
   - 
   - 
   - 

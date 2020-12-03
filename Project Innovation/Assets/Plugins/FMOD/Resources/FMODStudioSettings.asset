@@ -419,7 +419,7 @@ MonoBehaviour:
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
-  AutomaticSampleLoading: 0
+  AutomaticSampleLoading: 1
   EncryptionKey: 
   ImportType: 0
   TargetAssetPath: FMODBanks
@@ -663,11 +663,10 @@ MonoBehaviour:
       HasValue: 1
     Plugins:
       Value:
-      - OculusSpatializerFMOD
+      - phonon_fmod
       HasValue: 1
     StaticPlugins:
-      Value:
-      - 
+      Value: []
       HasValue: 1
     CallbackHandler:
       Value: {fileID: 0}

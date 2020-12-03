@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{d990a1bc-f164-4f97-b63e-af7ffcb3f4dd}">
+		<property name="assetPath">
+			<value>177780__dheming__wood-hit-01.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>37.973333333333336</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0ebbe3b2-edf8-4063-9ea0-5eb64bb7499a}</destination>
+		</relationship>
+	</object>
+</objects>

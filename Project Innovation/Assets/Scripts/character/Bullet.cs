@@ -1,3 +1,6 @@
+using System.Collections;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -5,9 +8,10 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed;
     private Vector3 shotDirection = Vector3.zero;
 
+    [SerializeField] private int damage = 10;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask boundsLayer;
-    [SerializeField, FMODUnity.EventRef] private string hitPath;
+    [EventRef, SerializeField] private string hitSound;
 
     private void Update()
     {
@@ -22,21 +26,20 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (enemyLayer.Contains(other.gameObject.layer)) PlayHitSound();
+        if (enemyLayer.Contains(other.gameObject.layer))
+        {
+            var stats = other.GetComponent<EnemyHealthManagement>();
+            if (stats)
+            {
+                stats.ReduceHealth(damage);
+                Destroy(gameObject);
+                RuntimeManager.PlayOneShot(hitSound, transform.position);
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if(boundsLayer.Contains(other.gameObject.layer)) Destroy(gameObject);
-    }
-
-    private void PlayHitSound()
-    {
-        var e = FMODUnity.RuntimeManager.CreateInstance(hitPath);
-        e.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-
-        e.start();
-        e.release();
-        Destroy(gameObject);
     }
 }

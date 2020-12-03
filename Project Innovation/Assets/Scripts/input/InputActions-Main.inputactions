@@ -27,7 +27,31 @@
                     "id": "28d3660e-b4e0-4726-b94b-fe374e5730ca",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Switch",
+                    "type": "Button",
+                    "id": "243e8c57-641c-4303-83ab-a63f3604390e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Shield",
+                    "type": "Button",
+                    "id": "24e92bd2-7167-481a-8833-f9977f278a7e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Hidden",
+                    "type": "Button",
+                    "id": "134ddcd8-aa45-441a-b915-45249ce00b70",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -182,6 +206,61 @@
                     "processors": "",
                     "groups": ";KBM",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1b5b831-a6b7-4cee-ba03-41eb9102eb85",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Switch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3afdc40-8046-4b7b-8af7-f145a5e80b04",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Switch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "943a3ce1-c46d-4e78-ad5f-707eb2c02a38",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "abab638d-9238-4b6b-b4b2-7107460fad56",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53074cec-6543-4e0d-b6b8-9172ea992769",
+                    "path": "<Keyboard>/M",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Hidden",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

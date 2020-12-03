@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{99913447-89b4-4fd0-a875-b7fe5d07e889}">
+		<property name="assetPath">
+			<value>41863__kemitix__moving-boxes-and-bags.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>15</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0ebbe3b2-edf8-4063-9ea0-5eb64bb7499a}</destination>
+		</relationship>
+	</object>
+</objects>

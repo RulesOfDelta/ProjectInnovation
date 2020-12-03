@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{37976308-113a-4e95-96f1-6456bdc27b0c}">
+		<property name="assetPath">
+			<value>518992__amaiguri__swordclash.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>6.5793541666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0ebbe3b2-edf8-4063-9ea0-5eb64bb7499a}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{a23e66bd-ecdf-472b-877d-d9b485034359}">
+		<property name="assetPath">
+			<value>extraline03.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>5.4595918367346936</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0ebbe3b2-edf8-4063-9ea0-5eb64bb7499a}</destination>
+		</relationship>
+	</object>
+</objects>

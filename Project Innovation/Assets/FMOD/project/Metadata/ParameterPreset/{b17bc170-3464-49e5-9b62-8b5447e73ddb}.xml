@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{b17bc170-3464-49e5-9b62-8b5447e73ddb}">
+		<property name="name">
+			<value>HumVolume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d135528b-1fbb-4fc2-8dc2-81596b7154e8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{77a6d935-69e9-43f1-aafa-e07f52d96ed3}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{77a6d935-69e9-43f1-aafa-e07f52d96ed3}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>3.2000000476837158</value>
+		</property>
+	</object>
+</objects>

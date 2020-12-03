@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3214538771380858511
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 284317916417099805, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: damageSound
+      value: event:/Monsters/Skeleton/Sk_getHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 284317916417099805, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: deathSound
+      value: event:/Monsters/Skeleton/Sk_die
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: prepareSound
+      value: event:/Monsters/Skeleton/Sk_preparePunch
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: chargeTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: heartbeatRadius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292980, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: damage
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292983, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693557877149292986, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: m_Name
+      value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797488197233397585, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: fmodEventPath
+      value: event:/Monsters/Skeleton/Sk_steps
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188409782350182633, guid: df372e13d6d87394687c8fa47edc6d54,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: bumms
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: df372e13d6d87394687c8fa47edc6d54, type: 3}

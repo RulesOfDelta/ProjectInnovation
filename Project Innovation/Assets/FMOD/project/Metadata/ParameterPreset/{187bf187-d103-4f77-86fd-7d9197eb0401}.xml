@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{187bf187-d103-4f77-86fd-7d9197eb0401}">
+		<property name="name">
+			<value>ShieldImpactVolume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d135528b-1fbb-4fc2-8dc2-81596b7154e8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{a2d14899-b09d-467c-b87e-82bf140702f7}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{a2d14899-b09d-467c-b87e-82bf140702f7}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

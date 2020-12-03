@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{c079331f-86cb-4ecc-9e78-68dab5748fb7}">
+		<property name="name">
+			<value>DownVolume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d135528b-1fbb-4fc2-8dc2-81596b7154e8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{ce80c9e6-e481-444d-8cbd-31fde98126d0}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{ce80c9e6-e481-444d-8cbd-31fde98126d0}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

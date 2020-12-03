@@ -3,7 +3,7 @@
 [RequireComponent(typeof(CharacterController))]
 public class SimpleCharacterController : MonoBehaviour
 {
-    [SerializeField] private InputHandler handler;
+    private InputHandler handler;
     
     [SerializeField] private float acceleration = 5.0f;
     [SerializeField] private float maxVelocity = 10.0f;
@@ -19,10 +19,17 @@ public class SimpleCharacterController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 acceleration3d, velocityXZ, velocityY;
 
+    private void Awake()
+    {
+        if (!characterController)
+            characterController = GetComponent<CharacterController>();
+    }
+
     private void Start()
     {
         //Components
-        characterController = GetComponent<CharacterController>();
+        if (!handler)
+            handler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         //Movement vectors
         acceleration3d = Vector3.zero;
         velocityXZ = Vector3.zero;
@@ -61,5 +68,19 @@ public class SimpleCharacterController : MonoBehaviour
         //Move character
         characterController.Move(transform.rotation * velocityXZ * Time.deltaTime);
         characterController.Move(velocityY * Time.deltaTime);
+    }
+
+    public void EnableControls(bool shouldBeEnabledPlease)
+    {
+        characterController.enabled = shouldBeEnabledPlease;
+    }
+
+    public void ResetController()
+    {
+        characterController.SimpleMove(Vector3.zero);
+        
+        acceleration3d = Vector3.zero;
+        velocityXZ = Vector3.zero;
+        velocityY = Vector3.zero;
     }
 }

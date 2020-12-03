@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{c7d487f6-eda5-418a-8c81-cbaa0eaa320b}">
+		<property name="name">
+			<value>BattleVolume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d135528b-1fbb-4fc2-8dc2-81596b7154e8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{c4d0b66e-4e4e-4cb9-a66b-76a055e45183}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{c4d0b66e-4e4e-4cb9-a66b-76a055e45183}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

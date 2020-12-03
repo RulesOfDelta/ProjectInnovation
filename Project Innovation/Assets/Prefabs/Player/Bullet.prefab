@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cda01286d94c9eaa26a09771524625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 10
   enemyLayer:
     serializedVersion: 2
@@ -102,8 +102,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   hitSound: event:/Player/Fighting/ArrowImpact
-  shootSound: event:/Player/Fighting/ArrowFly
-  shootSoundDelay: 0.5
 --- !u!65 &7510132012686579305
 BoxCollider:
   m_ObjectHideFlags: 0

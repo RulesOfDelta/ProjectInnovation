@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cda01286d94c9eaa26a09771524625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 12.5
   damage: 10
   enemyLayer:
     serializedVersion: 2

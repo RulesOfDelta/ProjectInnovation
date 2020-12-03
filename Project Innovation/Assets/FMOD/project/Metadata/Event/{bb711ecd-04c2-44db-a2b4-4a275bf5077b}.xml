@@ -319,20 +319,35 @@
 		<property name="filterTypeA">
 			<value>7</value>
 		</property>
+		<property name="filterTypeB">
+			<value>9</value>
+		</property>
+		<property name="filterTypeC">
+			<value>3</value>
+		</property>
 		<property name="frequencyA">
-			<value>301.852356</value>
+			<value>255.746063</value>
 		</property>
 		<property name="frequencyB">
-			<value>38.0166931</value>
+			<value>308.171722</value>
+		</property>
+		<property name="frequencyC">
+			<value>2347.55957</value>
 		</property>
 		<property name="qualityA">
 			<value>1.06368971</value>
 		</property>
 		<property name="qualityB">
-			<value>10</value>
+			<value>1.20000005</value>
+		</property>
+		<property name="qualityC">
+			<value>0.434896529</value>
 		</property>
 		<property name="gainA">
-			<value>10.3448257</value>
+			<value>10.8620701</value>
+		</property>
+		<property name="gainB">
+			<value>5.17241478</value>
 		</property>
 	</object>
 	<object class="AutomationCurve" id="{c0908ded-32dd-451d-8c52-63f99e631ac4}">
@@ -366,7 +381,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-18</value>
+			<value>0</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{f18e5840-96b8-4907-80ed-597c6ff96b01}">
@@ -374,7 +389,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>-5.5</value>
+			<value>10</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{be265b62-3e5c-4576-84fa-936003dfb4ca}">

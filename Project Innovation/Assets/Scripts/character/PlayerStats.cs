@@ -112,7 +112,7 @@ public class PlayerStats : MonoBehaviour
             moveShieldUpSound.start();
             shieldActive = true;
         }
-        else if (action == InputHandler.ButtonAction.Up)
+        else if (action == InputHandler.ButtonAction.Up && shieldActive)
         {
             var moveShieldDownSound = moveShieldDown.CreateSound();
             moveShieldDownSound.start();

@@ -23,7 +23,7 @@ public class Introduction : MonoBehaviour
     {
         inputHandler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         
-        voiceLinesInstances = new FMOD.Studio.EventInstance[7];
+        voiceLinesInstances = new FMOD.Studio.EventInstance[voiceLines.Length];
 
         for (int i = 0; i < voiceLines.Length; i++)
         {
@@ -93,14 +93,15 @@ public class Introduction : MonoBehaviour
         yield return StartCoroutine(StartAndWaitForVoiceline(3));
         enemy.ElementAt(0).GetComponent<EnemyBehaviour>().isPassive = false;
         yield return new WaitUntil(() => GameObject.FindWithTag("Enemy") == null);
-        
+
+        yield return StartCoroutine(StartAndWaitForVoiceline(4));
         //Enemy 2
         // TODO you are able to die here
         enemy.ElementAt(0).SetActive(true);
         enemy.ElementAt(0).GetComponent<EnemyBehaviour>().isPassive = true;
         
-        yield return StartCoroutine(StartAndWaitForVoiceline(4));
         yield return StartCoroutine(StartAndWaitForVoiceline(5));
+        yield return StartCoroutine(StartAndWaitForVoiceline(6));
         enemy.ElementAt(0).GetComponent<EnemyBehaviour>().isPassive = false;
         yield return new WaitUntil(() => GameObject.FindWithTag("Enemy") == null);
         StartCoroutine(End());
@@ -108,7 +109,7 @@ public class Introduction : MonoBehaviour
 
     IEnumerator End()
     {
-        yield return StartCoroutine(StartAndWaitForVoiceline(6));
+        yield return StartCoroutine(StartAndWaitForVoiceline(7));
         SceneManager.LoadScene(nextScene);
         yield return null;
     }

@@ -10,9 +10,9 @@ public class InputHandler : MonoBehaviour
     {
         public Vector2 Move;
         public Vector2 Look;
-        
+
         public bool ShieldPressed;
-        
+
         public bool IsMouse;
     }
 
@@ -36,7 +36,9 @@ public class InputHandler : MonoBehaviour
 
     public enum ButtonAction
     {
-        Down, Up, Invalid
+        Down,
+        Up,
+        Invalid
     }
 
     public delegate void ButtonCallback();
@@ -77,10 +79,10 @@ public class InputHandler : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    
-#if UNITY_EDITOR
+
     private void Update()
     {
+#if UNITY_EDITOR
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             switch (Cursor.lockState)
@@ -98,11 +100,20 @@ public class InputHandler : MonoBehaviour
 
             Cursor.visible = !Cursor.visible;
         }
-        
-    }
+        else
 #endif
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            if (inputEnabled || !waitForFire) return;
+            inputEnabled = true;
+            waitForFire = false;
+            fireCb?.Invoke();
+            fireCb = null;
+        }
+    }
 
     private bool inputEnabled;
+
     public void HaltInput(float time)
     {
         inputEnabled = false;
@@ -113,7 +124,7 @@ public class InputHandler : MonoBehaviour
         ResetRumble();
 
         StartCoroutine(Reenable());
-        
+
         IEnumerator Reenable()
         {
             yield return new WaitForSeconds(time);
@@ -136,7 +147,7 @@ public class InputHandler : MonoBehaviour
 
     private bool waitForFire;
     private Action fireCb;
-    
+
     public void HaltInputUntilFire(float minTime = 0.5f, Action tempFireCb = null)
     {
         ClearDataForHalting();
@@ -199,18 +210,9 @@ public class InputHandler : MonoBehaviour
     {
         OnHiddenCb -= cb;
     }
-    
+
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (!inputEnabled)
-        {
-            if (!waitForFire) return;
-            inputEnabled = true;
-            waitForFire = false;
-            fireCb?.Invoke();
-            fireCb = null;
-            return;
-        }
         switch (CheckButton(context))
         {
             case ButtonAction.Down:
@@ -265,7 +267,7 @@ public class InputHandler : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
-    
+
     public void OnHidden(InputAction.CallbackContext context)
     {
         OnHiddenCb?.Invoke();
@@ -299,7 +301,7 @@ public class InputHandler : MonoBehaviour
     {
         RumbleInternal(0f, 0f);
     }
-    
+
     public void Rumble(float lowFreq, float highFreq)
     {
         if (inputEnabled && !state.IsMouse)

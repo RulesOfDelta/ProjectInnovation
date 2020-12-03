@@ -150,16 +150,10 @@
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>
 		</property>
-		<property name="amount">
-			<value>17.5</value>
-		</property>
 	</object>
 	<object class="RandomizerModulator" id="{ff66504b-07d0-42ec-a7b4-50ef9da1bdc1}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>startOffset</value>
-		</property>
-		<property name="amount">
-			<value>16</value>
 		</property>
 	</object>
 	<object class="SingleSound" id="{95862a77-60be-4f12-a939-8cb9ed86b0ed}">

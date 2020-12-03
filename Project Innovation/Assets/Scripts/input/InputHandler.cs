@@ -268,7 +268,6 @@ public class InputHandler : MonoBehaviour
     
     public void OnHidden(InputAction.CallbackContext context)
     {
-        if (!inputEnabled) return;
         OnHiddenCb?.Invoke();
     }
 

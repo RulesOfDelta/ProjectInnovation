@@ -139,9 +139,6 @@
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>
 		</property>
-		<property name="amount">
-			<value>7</value>
-		</property>
 	</object>
 	<object class="RandomizerModulator" id="{b4c78114-3157-4f26-9356-01e031e290f7}">
 		<property name="nameOfPropertyBeingModulated">
@@ -167,11 +164,17 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{85ff8f9e-20d3-4a27-ae97-599f25dee4a5}">
+		<property name="volume">
+			<value>5.5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{46dfc9d6-7285-4d60-8aa0-1bb223b2028b}</destination>
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{bf41fcdb-0f75-4cd0-a38f-b64cd5f67a48}">
+		<property name="volume">
+			<value>3.5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{d3c8434b-e7fc-4acc-a200-785311a436c9}</destination>
 		</relationship>

@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1869f5e5bfdbbd846b65e67dacdbb9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: event:/Player/Death
+  clip: event:/Tutorial/BeginGame
   scene: IntroductionScene
 --- !u!1 &659633951
 GameObject:

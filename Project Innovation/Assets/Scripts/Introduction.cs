@@ -17,7 +17,8 @@ public class Introduction : MonoBehaviour
     [SerializeField] private float speed;
 
     private Transform spider;
-    
+    [SerializeField] private float spiderDist = 8f;
+
     void Start()
     {
         inputHandler = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
@@ -60,9 +61,24 @@ public class Introduction : MonoBehaviour
 
     IEnumerator CheckForWallBump()
     {
-        yield return new WaitUntil(() => GameObject.FindWithTag("Player").GetComponentInChildren<PlayerWallSound>().bumpedIntoWall);
-        yield return StartCoroutine(StartAndWaitForVoiceline(1));
-        yield return new WaitUntil(() => (spider.position - targetPosition.position).magnitude < 12.5f);
+        bool doStuff = true;
+        var wallSound = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerWallSound>();
+        while (doStuff)
+        {
+            if (wallSound.bumpedIntoWall)
+            {
+                yield return StartCoroutine(StartAndWaitForVoiceline(1));
+                doStuff = false;
+            }
+            else if ((spider.position - targetPosition.position).magnitude < spiderDist)
+            {
+                yield return StartCoroutine(StartAndWaitForVoiceline(2));
+                StartCoroutine(SpawnEnemy());
+                yield break;
+            }
+            yield return null;
+        }
+        yield return new WaitUntil(() => (spider.position - targetPosition.position).magnitude < spiderDist);
         yield return StartCoroutine(StartAndWaitForVoiceline(2));
         StartCoroutine(SpawnEnemy());
     }
@@ -79,9 +95,13 @@ public class Introduction : MonoBehaviour
         yield return new WaitUntil(() => GameObject.FindWithTag("Enemy") == null);
         
         //Enemy 2
+        // TODO you are able to die here
         enemy.ElementAt(0).SetActive(true);
+        enemy.ElementAt(0).GetComponent<EnemyBehaviour>().isPassive = true;
+        
         yield return StartCoroutine(StartAndWaitForVoiceline(4));
         yield return StartCoroutine(StartAndWaitForVoiceline(5));
+        enemy.ElementAt(0).GetComponent<EnemyBehaviour>().isPassive = false;
         yield return new WaitUntil(() => GameObject.FindWithTag("Enemy") == null);
         StartCoroutine(End());
     }
